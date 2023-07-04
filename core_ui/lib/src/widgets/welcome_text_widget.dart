@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class WelcomeTextWidget extends StatelessWidget {
-  const WelcomeTextWidget({super.key});
+  final String title;
+  final String mainText;
+
+  WelcomeTextWidget({required this.title, required this.mainText});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +16,7 @@ class WelcomeTextWidget extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            'Welcome',
+            title,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 28,
@@ -23,7 +26,7 @@ class WelcomeTextWidget extends StatelessWidget {
           ),
           SizedBox(height: 20),
           Text(
-            "It's a pleasure to meet you. We are excited that you're here so let's get started!",
+            mainText,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 16,

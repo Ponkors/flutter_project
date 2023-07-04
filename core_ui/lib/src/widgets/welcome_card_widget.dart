@@ -4,9 +4,7 @@ class WelcomeCardWidget extends StatelessWidget {
   final String imagePath;
   final String title;
 
-  WelcomeCardWidget(
-      {this.imagePath = 'assets/images/welcome_screen_images/emblem.png',
-      this.title = 'Tamang\nFoodService'});
+  WelcomeCardWidget({required this.imagePath, required this.title});
 
   @override
   Widget build(BuildContext context) {

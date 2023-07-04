@@ -25,12 +25,19 @@ class WelcomeScreen extends StatelessWidget {
           ),
           Column(
             children: [
-              WelcomeCardWidget(),
+              WelcomeCardWidget(
+                imagePath: 'assets/images/welcome_screen_images/emblem.png',
+                title: 'Tamang\nFoodService',
+              ),
               SizedBox(height: 14),
-              Image.asset(
-                  'assets/images/welcome_screen_images/illustration.png'),
+              WelcomeGraphicWidget(
+                  imagePath:
+                      'assets/images/welcome_screen_images/illustration.png'),
               SizedBox(height: 40),
-              WelcomeTextWidget(),
+              WelcomeTextWidget(
+                  title: 'Welcome',
+                  mainText:
+                      "It's a pleasure to meet you. We are excited that you're here so let's get started!"),
               SizedBox(height: 40),
               WelcomeButtonWidget('GET STARTED', () {}),
             ],
