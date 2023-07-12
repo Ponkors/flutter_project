@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
 class WelcomeButtonWidget extends StatelessWidget {
-  final String text;
   final VoidCallback onPressed;
 
-  const WelcomeButtonWidget(this.text, this.onPressed);
+  const WelcomeButtonWidget(this.onPressed);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +17,7 @@ class WelcomeButtonWidget extends StatelessWidget {
         minimumSize: Size(335, 48),
       ),
       child: Text(
-        text,
+        'GET STARTED',
         style: TextStyle(
           color: Colors.white,
           fontSize: 14,

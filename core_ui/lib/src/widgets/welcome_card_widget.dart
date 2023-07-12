@@ -1,22 +1,17 @@
 import 'package:flutter/material.dart';
 
 class WelcomeCardWidget extends StatelessWidget {
-  final String imagePath;
-  final String title;
-
-  WelcomeCardWidget({required this.imagePath, required this.title});
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 95, left: 25, right: 25),
+      margin: EdgeInsets.only(top: 70, left: 25, right: 25),
       height: 120,
       width: 400,
       // color: Colors.red,
       child: Row(
         children: [
           Image.asset(
-            imagePath,
+            'assets/images/welcome_screen_images/emblem.png',
             height: 65,
             width: 65,
             alignment: Alignment.topLeft,
@@ -24,7 +19,7 @@ class WelcomeCardWidget extends StatelessWidget {
           SizedBox(width: 2.0),
           Expanded(
             child: Text(
-              title,
+              'Tamang\nFoodService',
               maxLines: 2,
               textAlign: TextAlign.center,
               style: TextStyle(
