@@ -7,17 +7,28 @@ class SingleRestaurantScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-            body: SingleChildScrollView(
-                child: Column(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: Column(
           children: [
-            RestaurantHeader(),
-            RestaurantPropertiesWidget(),
-            HorizontalFoodList(),
-            ScrollableFoodMenu(),
-            VerticalFoodList(),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    RestaurantHeader(),
+                    RestaurantPropertiesWidget(),
+                    HorizontalFoodList(),
+                    ScrollableFoodMenu(),
+                    VerticalFoodList(),
+                    VerticalFoodList(),
+                  ],
+                ),
+              ),
+            ),
+            AppFooter(),
           ],
-        ))));
+        ),
+      ),
+    );
   }
 }

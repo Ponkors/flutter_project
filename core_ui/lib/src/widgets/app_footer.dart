@@ -7,7 +7,7 @@ class AppFooter extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 90,
+      height: 55,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
