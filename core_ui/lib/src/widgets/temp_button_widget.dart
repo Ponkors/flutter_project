@@ -1,10 +1,10 @@
 import 'package:core_ui/src/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class WelcomeButtonWidget extends StatelessWidget {
+class TempButtonWidget extends StatelessWidget {
   final VoidCallback onPressed;
 
-  const WelcomeButtonWidget(this.onPressed);
+  const TempButtonWidget(this.onPressed);
 
   @override
   Widget build(BuildContext context) {
@@ -15,16 +15,15 @@ class WelcomeButtonWidget extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
-        minimumSize: Size(335, 48),
+        minimumSize: Size(115, 40),
       ),
       child: Text(
-        'GET STARTED',
+        'TAKE AWAY',
         style: TextStyle(
           color: AppColors.white,
           fontSize: 14,
-          // TODO check fontFamily
           fontFamily: 'Poppins',
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.w600,
         ),
       ),
     );

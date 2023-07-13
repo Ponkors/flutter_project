@@ -9,11 +9,15 @@ class SingleRestaurantScreen extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-            body: Column(
+            body: SingleChildScrollView(
+                child: Column(
           children: [
             RestaurantHeader(),
             RestaurantPropertiesWidget(),
+            HorizontalFoodList(),
+            ScrollableFoodMenu(),
+            VerticalFoodList(),
           ],
-        )));
+        ))));
   }
 }
