@@ -1,26 +1,32 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
-class MyPage extends StatelessWidget {
+class WalkthroughScreen extends StatelessWidget {
   final String image;
   final String text;
   final String mainText;
 
-  const MyPage(
+  const WalkthroughScreen(
       {required this.image, required this.text, required this.mainText});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SafeArea(
         child: Column(
           children: [
             WelcomeCardWidget(),
-            // todo ROW + spacebetween
+            Spacer(),
             WelcomeGraphicWidget(imagePath: image),
-            WelcomeTextWidget(title: text, mainText: mainText),
-            // end
-            WelcomeButtonWidget(() {})
+            Spacer(),
+            WelcomeTextWidget(
+              mainText: mainText,
+              title: text,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            WelcomeButtonWidget(() {}),
           ],
         ),
       ),
@@ -49,13 +55,13 @@ final List<Map<String, dynamic>> pages = [
   }
 ];
 
-class MyPageView extends StatelessWidget {
+class WalkthroughScreenView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageView.builder(
       itemCount: pages.length,
       itemBuilder: (context, index) {
-        return MyPage(
+        return WalkthroughScreen(
           image: pages[index]['image'],
           text: pages[index]['text'],
           mainText: pages[index]['mainText'],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project/screens/single_restaurant_screen.dart';
+import 'package:flutter_project/screens/walkthrough_screen.dart';
 import 'package:flutter_project/screens/welcome_screen.dart';
 
 void main() {
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: SingleRestaurantScreen(),
+        body: WelcomeScreen(),
       ),
     );
   }
