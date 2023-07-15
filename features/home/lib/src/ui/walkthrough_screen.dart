@@ -1,6 +1,5 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_project/screens/single_restaurant_screen.dart';
 
 class WalkthroughScreen extends StatelessWidget {
   final String image;
@@ -31,13 +30,7 @@ class WalkthroughScreen extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              WelcomeButtonWidget(() {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => SingleRestaurantScreen(),
-                    ));
-              }),
+              WelcomeButtonWidget(() {}),
               SizedBox(height: 30),
             ],
           ),

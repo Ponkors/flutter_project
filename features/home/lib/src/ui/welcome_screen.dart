@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:core_ui/core_ui.dart';
-import 'package:flutter_project/screens/walkthrough_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -41,13 +40,7 @@ class WelcomeScreen extends StatelessWidget {
                       mainText:
                           "It's a pleasure to meet you. We are excited that you're here so let's get started!"),
                   SizedBox(height: 40),
-                  WelcomeButtonWidget(() {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => WalkthroughScreenView(),
-                        ));
-                  }),
+                  WelcomeButtonWidget(() {}),
                   SizedBox(height: 30),
                 ],
               ),
