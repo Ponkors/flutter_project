@@ -21,18 +21,21 @@ class WelcomeScreen extends StatelessWidget {
                   height: 450,
                   decoration: BoxDecoration(
                     color: Color.fromRGBO(255, 243, 222, 1),
+                    /* TODO: Color from AppColor(core_ui package) is not similar like
+                    a color in Figma. This is a temporary fix */
                     shape: BoxShape.circle,
                   ),
                 ),
               ),
+              Positioned.fill(
+                child: WelcomeGraphicWidget(
+                    imagePath:
+                        'assets/images/welcome_screen_images/illustration.png'),
+              ),
               Column(
                 children: [
                   WelcomeCardWidget(),
-                  SizedBox(height: 14),
-                  WelcomeGraphicWidget(
-                      imagePath:
-                          'assets/images/welcome_screen_images/illustration.png'),
-                  SizedBox(height: 40),
+                  Spacer(),
                   WelcomeTextWidget(
                       title: 'Welcome',
                       mainText:
@@ -45,6 +48,7 @@ class WelcomeScreen extends StatelessWidget {
                           builder: (context) => WalkthroughScreenView(),
                         ));
                   }),
+                  SizedBox(height: 30),
                 ],
               ),
             ],

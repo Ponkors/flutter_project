@@ -12,30 +12,36 @@ class WalkthroughScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            WelcomeCardWidget(),
-            Spacer(),
-            WelcomeGraphicWidget(imagePath: image),
-            Spacer(),
-            WelcomeTextWidget(
-              mainText: mainText,
-              title: text,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            WelcomeButtonWidget(() {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SingleRestaurantScreen(),
-                  ));
-            }),
-          ],
-        ),
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: WelcomeGraphicWidget(imagePath: image),
+          ),
+          Column(
+            children: [
+              // Todo: fix a top margin.
+              WelcomeCardWidget(),
+              Spacer(),
+              WelcomeTextWidget(
+                mainText: mainText,
+                title: text,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              WelcomeButtonWidget(() {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SingleRestaurantScreen(),
+                    ));
+              }),
+              SizedBox(height: 30),
+            ],
+          ),
+        ],
       ),
     );
   }
