@@ -21,7 +21,7 @@ dependencies:
   navigation:
     path: ./navigation
 
-  auto_route: ^5.0.4
+#  auto_route: ^5.0.4
 
 
   cupertino_icons: ^1.0.2
@@ -37,8 +37,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  auto_route_generator: 5.0.2
-  build_runner: 2.3.3
+#  auto_route_generator: 5.0.2
+#  build_runner: 2.3.3
 
   flutter_lints: ^2.0.0
 
