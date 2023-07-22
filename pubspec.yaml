@@ -1,60 +1,44 @@
-name: flutter_project
+name: food_app
 description: A new Flutter project.
 
-publish_to: 'none'
+publish_to: "none"
 
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.0.5 <4.0.0'
+  sdk: '>=2.19.6 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  
-  domain:
-    path: ./domain
+
+  features:
+    path: ./features
+  navigation:
+    path: ./navigation
+  data:
+    path: ./data
   core:
     path: ./core
   core_ui:
-    path: ./core_ui
-  navigation:
-    path: ./navigation
-
-#  auto_route: ^5.0.4
-
+    path: ./core_ui/
+  domain:
+    path: ./domain
 
   cupertino_icons: ^1.0.2
   dots_indicator: ^3.0.0
-  firebase_core: ^2.15.0
-  firebase_auth: ^4.7.1
-  provider: ^6.0.5
-  firebase_ui_auth: ^1.6.1
-  firebase_storage: ^11.2.5
-  cloud_firestore: ^4.8.3
+  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-#  auto_route_generator: 5.0.2
-#  build_runner: 2.3.3
-
+  build_runner: ^2.3.3
   flutter_lints: ^2.0.0
 
 flutter:
   uses-material-design: true
-
-  assets:
-    - assets/images/welcome_screen_images/
-    - assets/images/walkthrough_screen_images/
-    - assets/images/app_footer_images/
-    - assets/images/popular_food_list_images/
-    - assets/images/single_restaurant_screen_images/
-    - assets/images/feautured_food_list_images/
-
   fonts:
     - family: Poppins
       fonts:
-        - asset: assets/fonts/poppins/Poppins-Bold.ttf
-        - asset: assets/fonts/poppins/Poppins-Regular.ttf
+        - asset: fonts/poppins/Poppins-Bold.ttf
+        - asset: fonts/poppins/Poppins-Regular.ttf

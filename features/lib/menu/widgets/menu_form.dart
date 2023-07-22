@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:features/menu/widgets/header.dart';
+import 'package:features/menu/widgets/properties.dart';
+import 'package:features/menu/widgets/horizontal_food_list.dart';
+import 'package:features/menu/widgets/food_menu_widget.dart';
+import 'package:features/menu/widgets/vertical_food_list.dart';
 
-class SingleRestaurantScreen extends StatelessWidget {
-  const SingleRestaurantScreen({super.key});
+class MenuForm extends StatelessWidget {
+  const MenuForm({super.key});
 
   @override
   Widget build(BuildContext context) {

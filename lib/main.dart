@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:home/home.dart';
-import 'package:navigation/navigation.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+import 'package:core/core.dart';
+import 'package:flutter/material.dart';
+import 'package:features/features.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: WelcomeScreen(),
+        body: HomeScreen(),
       ),
     );
   }

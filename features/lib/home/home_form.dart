@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:auto_route/auto_route.dart';
 
-class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({super.key});
+class HomeForm extends StatelessWidget {
+  const HomeForm({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,12 @@ class WelcomeScreen extends StatelessWidget {
                       mainText:
                           "It's a pleasure to meet you. We are excited that you're here so let's get started!"),
                   SizedBox(height: 40),
-                  WelcomeButtonWidget(() {}),
+                  GestureDetector(
+                    onTap: () {
+                      AutoRouter.of(context).pushNamed('menu_screen');
+                    },
+                    child: WelcomeButtonWidget(() {}),
+                  ),
                   SizedBox(height: 30),
                 ],
               ),

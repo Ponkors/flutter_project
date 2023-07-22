@@ -1,6 +1,5 @@
 import 'package:core_ui/src/theme/app_colors.dart';
-import 'package:core_ui/src/widgets/horizontal_food_widget.dart';
-import 'package:core_ui/src/widgets/vertical_food_widget.dart';
+import 'package:features/menu/widgets/vertical_food_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 

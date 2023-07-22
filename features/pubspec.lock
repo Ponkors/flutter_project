@@ -9,14 +9,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
-  auto_route:
-    dependency: transitive
-    description:
-      name: auto_route
-      sha256: "12047baeca0e01df93165ef33275b32119d72699ab9a49dc64c20e78f586f96d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.0.4"
   boolean_selector:
     dependency: transitive
     description:
@@ -49,35 +41,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.17.1"
-  core:
-    dependency: "direct main"
-    description:
-      path: "../../core"
-      relative: true
-    source: path
-    version: "0.0.1"
-  core_ui:
-    dependency: "direct main"
-    description:
-      path: "../../core_ui"
-      relative: true
-    source: path
-    version: "0.0.1"
-  domain:
-    dependency: "direct main"
-    description:
-      path: "../../domain"
-      relative: true
-    source: path
-    version: "0.0.1"
-  dots_indicator:
-    dependency: transitive
-    description:
-      name: dots_indicator
-      sha256: "58b6a365744aa62aa1b70c4ea29e5106fbe064f5edaf7e9652e9b856edbfd9bb"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.0"
   fake_async:
     dependency: transitive
     description:
@@ -144,13 +107,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.1"
-  navigation:
-    dependency: "direct main"
-    description:
-      path: "../../navigation"
-      relative: true
-    source: path
-    version: "0.0.1"
   path:
     dependency: transitive
     description:
@@ -222,4 +178,4 @@ packages:
     version: "2.1.4"
 sdks:
   dart: ">=3.0.6 <4.0.0"
-  flutter: ">=3.0.0"
+  flutter: ">=1.17.0"

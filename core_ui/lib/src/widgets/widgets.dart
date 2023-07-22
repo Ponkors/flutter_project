@@ -1,13 +1,6 @@
-export 'welcome_card_widget.dart';
-export 'welcome_text_widget.dart';
-export 'welcome_button_widget.dart';
-export 'welcome_graphic_widget.dart';
 export 'app_footer.dart';
-export 'single_restaurant_header.dart';
-export 'single_restaurant_properties_widget.dart';
-export 'food_menu_widget.dart';
-export 'horizontal_food_list.dart';
-export 'horizontal_food_widget.dart';
-export 'vertical_food_widget.dart';
-export 'vertical_food_list.dart';
 export 'temp_button_widget.dart';
+export 'welcome_button_widget.dart';
+export 'welcome_card_widget.dart';
+export 'welcome_graphic_widget.dart';
+export 'welcome_text_widget.dart';
