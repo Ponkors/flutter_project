@@ -29,8 +29,8 @@ class HomeForm extends StatelessWidget {
               ),
               Positioned.fill(
                 child: WelcomeGraphicWidget(
-                    imagePath:
-                        'assets/images/welcome_screen_images/illustration.png'),
+                  imagePath: ImagePaths.homeImage,
+                ),
               ),
               Column(
                 children: [

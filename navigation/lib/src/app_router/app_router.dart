@@ -8,15 +8,15 @@ part 'app_router.gr.dart';
   replaceInRouteName: 'Screen,Route',
   routes: <AutoRoute>[
     AutoRoute(
-      page: WelcomeScreen,
-      path: 'welcome_screen',
+      page: HomeScreen,
+      path: '/',
       initial: true,
     ),
     AutoRoute(
-      page: WalkthroughScreenView,
-      path: 'walkthrough_screen',
+      page: WelcomeFormScreenView,
+      path: 'welcome_screen',
     ),
-    AutoRoute(page: SingleRestaurantScreen, path: 'single_restaurant_screen')
+    AutoRoute(page: MenuScreen, path: 'menu_screen')
   ],
 )
 // extend the generated private router

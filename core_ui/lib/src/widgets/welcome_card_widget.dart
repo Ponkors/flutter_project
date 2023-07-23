@@ -1,3 +1,4 @@
+import 'package:core_ui/design/app_images.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeCardWidget extends StatelessWidget {
@@ -11,7 +12,7 @@ class WelcomeCardWidget extends StatelessWidget {
       child: Row(
         children: [
           Image.asset(
-            'assets/images/welcome_screen_images/emblem.png',
+            ImagePaths.logoImage,
             height: 65,
             width: 65,
             alignment: Alignment.topLeft,

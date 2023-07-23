@@ -1,4 +1,4 @@
-import 'package:core_ui/src/theme/app_colors.dart';
+import 'package:core_ui/design/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 
