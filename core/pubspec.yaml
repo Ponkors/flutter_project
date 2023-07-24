@@ -16,7 +16,7 @@ dependencies:
     path: ../domain
 
   firebase_core: ^2.14.0
-  cloud_firestore: ^4.8.2
+  cloud_firestore: ^4.8.3
 
 dev_dependencies:
   flutter_test:
