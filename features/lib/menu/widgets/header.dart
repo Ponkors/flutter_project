@@ -1,5 +1,8 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:core_ui/design/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+
 import 'package:dots_indicator/dots_indicator.dart';
 
 class RestaurantHeader extends StatefulWidget {
@@ -9,9 +12,9 @@ class RestaurantHeader extends StatefulWidget {
 
 class _RestaurantHeaderState extends State<RestaurantHeader> {
   List<String> _images = [
-    'assets/images/single_restaurant_screen_images/header-image.png',
-    'assets/images/single_restaurant_screen_images/header-image2.png',
-    'assets/images/single_restaurant_screen_images/header-image3.png',
+    ImagePaths.headerImage1,
+    ImagePaths.headerImage2,
+    ImagePaths.headerImage3,
   ];
   int _currentPage = 0;
 
@@ -48,10 +51,14 @@ class _RestaurantHeaderState extends State<RestaurantHeader> {
             left: 20,
             child: Row(
               children: [
-                IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.arrow_back),
-                    color: AppColors.white)
+                CupertinoButton(
+                  onPressed: () {},
+                  padding: EdgeInsets.zero,
+                  child: Icon(
+                    CupertinoIcons.back,
+                    color: AppColors.white,
+                  ),
+                ),
               ],
             ),
           ),
@@ -60,15 +67,22 @@ class _RestaurantHeaderState extends State<RestaurantHeader> {
             right: 20,
             child: Row(
               children: [
-                IconButton(
+                CupertinoButton(
                   onPressed: () {},
-                  icon: Icon(Icons.share),
-                  color: AppColors.white,
+                  padding: EdgeInsets.zero,
+                  child: Icon(
+                    CupertinoIcons.share,
+                    color: AppColors.white,
+                  ),
                 ),
-                IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.search),
-                    color: AppColors.white),
+                CupertinoButton(
+                  onPressed: () {},
+                  padding: EdgeInsets.zero,
+                  child: Icon(
+                    CupertinoIcons.search,
+                    color: AppColors.white,
+                  ),
+                ),
               ],
             ),
           ),

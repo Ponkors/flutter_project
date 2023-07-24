@@ -1,3 +1,4 @@
+import 'package:core_ui/design/app_images.dart';
 import 'package:flutter/material.dart';
 
 class AppFooter extends StatelessWidget {
@@ -16,7 +17,7 @@ class AppFooter extends StatelessWidget {
             height: 60,
             child: Column(
               children: [
-                Image.asset('assets/images/app_footer_images/home.png'),
+                Image.asset(ImagePaths.homeIcon),
                 Text(
                   'Home',
                   textAlign: TextAlign.center,
@@ -32,7 +33,7 @@ class AppFooter extends StatelessWidget {
             height: 60,
             child: Column(
               children: [
-                Image.asset('assets/images/app_footer_images/search.png'),
+                Image.asset(ImagePaths.searchIcon),
                 Text(
                   'Search',
                   textAlign: TextAlign.center,
@@ -48,7 +49,7 @@ class AppFooter extends StatelessWidget {
             height: 60,
             child: Column(
               children: [
-                Image.asset('assets/images/app_footer_images/orders.png'),
+                Image.asset(ImagePaths.ordersIcon),
                 Text(
                   'Orders',
                   textAlign: TextAlign.center,
@@ -64,7 +65,9 @@ class AppFooter extends StatelessWidget {
             height: 60,
             child: Column(
               children: [
-                Image.asset('assets/images/app_footer_images/profile.png'),
+                Image.asset(
+                  ImagePaths.profileIcon,
+                ),
                 Text(
                   'Profile',
                   textAlign: TextAlign.center,

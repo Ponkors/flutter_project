@@ -1,5 +1,5 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:core_ui/design/app_colors.dart';
-import 'package:core_ui/src/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class RestaurantPropertiesWidget extends StatelessWidget {
@@ -48,8 +48,11 @@ class RestaurantPropertiesWidget extends StatelessWidget {
                           fontWeight: FontWeight.w300),
                     ),
                     SizedBox(width: 10),
-                    Image.asset(
-                        'assets/images/single_restaurant_screen_images/rating-icon.png'),
+                    Icon(
+                      Icons.star,
+                      color: Colors.yellow,
+                      size: 25,
+                    ),
                     SizedBox(width: 10),
                     Text(
                       '200+ Ratings',
@@ -61,12 +64,12 @@ class RestaurantPropertiesWidget extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 50,
                 ),
                 Row(
                   children: [
                     Image.asset(
-                      'assets/images/single_restaurant_screen_images/delivery-icon.png',
+                      ImagePaths.deliveryIcon,
                     ),
                     SizedBox(width: 5),
                     Column(
@@ -95,7 +98,7 @@ class RestaurantPropertiesWidget extends StatelessWidget {
                       width: 24,
                     ),
                     Image.asset(
-                      'assets/images/single_restaurant_screen_images/clock-icon.png',
+                      ImagePaths.clockIcon,
                     ),
                     SizedBox(width: 5),
                     Column(

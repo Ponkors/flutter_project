@@ -1,3 +1,4 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:core_ui/design/app_colors.dart';
 import 'package:features/menu/widgets/horizontal_food_widget.dart';
 import 'package:flutter/material.dart';
@@ -6,17 +7,11 @@ import 'package:flutter/rendering.dart';
 class HorizontalFoodList extends StatefulWidget {
   List<Widget> foods = [
     HorizontalFoodWidget(
-        imagePath:
-            'assets/images/feautured_food_list_images/CookieSandwich.png',
-        foodName: 'Cookie Sandwich'),
+        imagePath: ImagePaths.foodImage, foodName: 'Cookie Sandwich'),
     HorizontalFoodWidget(
-        imagePath:
-            'assets/images/feautured_food_list_images/CookieSandwich.png',
-        foodName: 'Cookie Sandwich'),
+        imagePath: ImagePaths.foodImage, foodName: 'Cookie Sandwich'),
     HorizontalFoodWidget(
-        imagePath:
-            'assets/images/feautured_food_list_images/CookieSandwich.png',
-        foodName: 'Cookie Sandwich'),
+        imagePath: ImagePaths.foodImage, foodName: 'Cookie Sandwich'),
   ];
 
   @override

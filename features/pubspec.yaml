@@ -31,8 +31,6 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
   uses-material-design: true
-  assets:
-    - packages/core_ui/assets/images/home_images/
   fonts:
     - family: Poppins
       fonts:

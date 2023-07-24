@@ -1,3 +1,4 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:core_ui/design/app_colors.dart';
 import 'package:features/menu/widgets/vertical_food_widget.dart';
 import 'package:flutter/material.dart';
@@ -6,19 +7,19 @@ import 'package:flutter/rendering.dart';
 class VerticalFoodList extends StatefulWidget {
   List<Widget> foods = [
     VerticalFoodWidget(
-      imagePath: 'assets/images/popular_food_list_images/ComboBurger.png',
+      imagePath: ImagePaths.foodImage,
       foodName: 'ComboBurger',
       foodContains: 'Shortbread, chocolate turtle cookies, and red velvet.',
       price: 'AUD \$10',
     ),
     VerticalFoodWidget(
-      imagePath: 'assets/images/popular_food_list_images/ComboBurger.png',
+      imagePath: ImagePaths.foodImage,
       foodName: 'ComboBurger',
       foodContains: 'Shortbread, chocolate turtle cookies, and red velvet.',
       price: 'AUD \$10',
     ),
     VerticalFoodWidget(
-      imagePath: 'assets/images/popular_food_list_images/ComboBurger.png',
+      imagePath: ImagePaths.foodImage,
       foodName: 'ComboBurger',
       foodContains: 'Shortbread, chocolate turtle cookies, and red velvet.',
       price: 'AUD \$10',

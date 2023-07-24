@@ -43,9 +43,11 @@ class HomeForm extends StatelessWidget {
                   SizedBox(height: 40),
                   GestureDetector(
                     onTap: () {
-                      AutoRouter.of(context).pushNamed('menu_screen');
+                      AutoRouter.of(context).pushNamed('welcome_screen');
                     },
-                    child: WelcomeButtonWidget(() {}),
+                    child: WelcomeButtonWidget(() {
+                      AutoRouter.of(context).pushNamed('welcome_screen');
+                    }),
                   ),
                   SizedBox(height: 30),
                 ],
