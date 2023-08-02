@@ -50,7 +50,7 @@ class RestaurantPropertiesWidget extends StatelessWidget {
                     SizedBox(width: 10),
                     Icon(
                       Icons.star,
-                      color: Colors.yellow,
+                      color: AppColors.yellow,
                       size: 25,
                     ),
                     SizedBox(width: 10),
@@ -64,7 +64,7 @@ class RestaurantPropertiesWidget extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: 50,
+                  height: 45,
                 ),
                 Row(
                   children: [

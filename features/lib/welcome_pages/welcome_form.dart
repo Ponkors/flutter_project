@@ -25,18 +25,18 @@ class WelcomeForm extends StatelessWidget {
               WelcomeCardWidget(),
               Spacer(),
               WelcomeTextWidget(
+                titleText: text,
                 mainText: mainText,
-                title: text,
               ),
               SizedBox(
                 height: 10,
               ),
               GestureDetector(
                 onTap: () {
-                  AutoRouter.of(context).pushNamed('menu_screen');
+                  AutoRouter.of(context).pushNamed('main_screen');
                 },
                 child: WelcomeButtonWidget(() {
-                  AutoRouter.of(context).pushNamed('menu_screen');
+                  AutoRouter.of(context).pushNamed('main_screen');
                 }),
               ),
               SizedBox(height: 30),

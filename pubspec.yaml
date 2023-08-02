@@ -14,6 +14,8 @@ dependencies:
 
   features:
     path: ./features
+  profile:
+    path: ./future/profile
   navigation:
     path: ./navigation
   data:
@@ -27,6 +29,7 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   dots_indicator: ^3.0.0
+  device_info: 
   
 
 dev_dependencies:

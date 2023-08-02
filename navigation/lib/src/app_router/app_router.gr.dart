@@ -23,16 +23,40 @@ class _$AppRouter extends RootStackRouter {
         child: const HomeScreen(),
       );
     },
-    WelcomeFormRouteView.name: (routeData) {
+    WelcomeRoutes.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: WelcomeFormScreenView(),
+        child: const WelcomeScreens(),
+      );
+    },
+    MainRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const MainScreen(),
       );
     },
     MenuRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
         child: const MenuScreen(),
+      );
+    },
+    SearchRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const SearchScreen(),
+      );
+    },
+    OrdersRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const OrdersScreen(),
+      );
+    },
+    ProfileRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const ProfileScreen(),
       );
     },
   };
@@ -44,12 +68,41 @@ class _$AppRouter extends RootStackRouter {
           path: '/',
         ),
         RouteConfig(
-          WelcomeFormRouteView.name,
-          path: 'welcome_screen',
+          WelcomeRoutes.name,
+          path: 'welcome_screens',
         ),
         RouteConfig(
-          MenuRoute.name,
-          path: 'menu_screen',
+          MainRoute.name,
+          path: 'main_screen',
+          children: [
+            RouteConfig(
+              '#redirect',
+              path: '',
+              parent: MainRoute.name,
+              redirectTo: 'menu_screen',
+              fullMatch: true,
+            ),
+            RouteConfig(
+              MenuRoute.name,
+              path: 'menu_screen',
+              parent: MainRoute.name,
+            ),
+            RouteConfig(
+              SearchRoute.name,
+              path: 'search_screen',
+              parent: MainRoute.name,
+            ),
+            RouteConfig(
+              OrdersRoute.name,
+              path: 'orders_screen',
+              parent: MainRoute.name,
+            ),
+            RouteConfig(
+              ProfileRoute.name,
+              path: 'profile_screen',
+              parent: MainRoute.name,
+            ),
+          ],
         ),
       ];
 }
@@ -67,15 +120,28 @@ class HomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [WelcomeFormScreenView]
-class WelcomeFormRouteView extends PageRouteInfo<void> {
-  const WelcomeFormRouteView()
+/// [WelcomeScreens]
+class WelcomeRoutes extends PageRouteInfo<void> {
+  const WelcomeRoutes()
       : super(
-          WelcomeFormRouteView.name,
-          path: 'welcome_screen',
+          WelcomeRoutes.name,
+          path: 'welcome_screens',
         );
 
-  static const String name = 'WelcomeFormRouteView';
+  static const String name = 'WelcomeRoutes';
+}
+
+/// generated route for
+/// [MainScreen]
+class MainRoute extends PageRouteInfo<void> {
+  const MainRoute({List<PageRouteInfo>? children})
+      : super(
+          MainRoute.name,
+          path: 'main_screen',
+          initialChildren: children,
+        );
+
+  static const String name = 'MainRoute';
 }
 
 /// generated route for
@@ -88,4 +154,40 @@ class MenuRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'MenuRoute';
+}
+
+/// generated route for
+/// [SearchScreen]
+class SearchRoute extends PageRouteInfo<void> {
+  const SearchRoute()
+      : super(
+          SearchRoute.name,
+          path: 'search_screen',
+        );
+
+  static const String name = 'SearchRoute';
+}
+
+/// generated route for
+/// [OrdersScreen]
+class OrdersRoute extends PageRouteInfo<void> {
+  const OrdersRoute()
+      : super(
+          OrdersRoute.name,
+          path: 'orders_screen',
+        );
+
+  static const String name = 'OrdersRoute';
+}
+
+/// generated route for
+/// [ProfileScreen]
+class ProfileRoute extends PageRouteInfo<void> {
+  const ProfileRoute()
+      : super(
+          ProfileRoute.name,
+          path: 'profile_screen',
+        );
+
+  static const String name = 'ProfileRoute';
 }

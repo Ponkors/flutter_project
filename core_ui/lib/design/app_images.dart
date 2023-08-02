@@ -9,6 +9,7 @@ class ImagePaths {
   static const String clockIcon = '${_libImages}clock-icon.png';
   static const String deliveryIcon = '${_libImages}delivery-icon.png';
   static const String foodImage = '${_libImages}food-image.png';
+  static const String foodImage2 = '${_libImages}food-image-vertical.png';
   static const String homeIcon = '${_libImages}home-icon.png';
   static const String ordersIcon = '${_libImages}orders-icon.png';
   static const String searchIcon = '${_libImages}search-icon.png';
@@ -16,4 +17,5 @@ class ImagePaths {
   static const String illustration1 = '${_libImages}illustration1.png';
   static const String illustration2 = '${_libImages}illustration2.png';
   static const String illustration3 = '${_libImages}illustration3.png';
+  static const String categoryFoodItem = '${_libImages}category-food-item.png';
 }

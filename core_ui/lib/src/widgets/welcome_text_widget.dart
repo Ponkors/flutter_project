@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class WelcomeTextWidget extends StatelessWidget {
-  final String title;
+  final String titleText;
   final String mainText;
 
-  WelcomeTextWidget({required this.title, required this.mainText});
+  WelcomeTextWidget({required this.titleText, required this.mainText});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class WelcomeTextWidget extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            title,
+            titleText,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 28,

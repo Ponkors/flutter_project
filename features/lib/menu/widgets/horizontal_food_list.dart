@@ -7,11 +7,11 @@ import 'package:flutter/rendering.dart';
 class HorizontalFoodList extends StatefulWidget {
   List<Widget> foods = [
     HorizontalFoodWidget(
-        imagePath: ImagePaths.foodImage, foodName: 'Cookie Sandwich'),
+        imagePath: ImagePaths.foodImage2, foodName: 'Cookie Sandwich'),
     HorizontalFoodWidget(
-        imagePath: ImagePaths.foodImage, foodName: 'Cookie Sandwich'),
+        imagePath: ImagePaths.foodImage2, foodName: 'Cookie Sandwich'),
     HorizontalFoodWidget(
-        imagePath: ImagePaths.foodImage, foodName: 'Cookie Sandwich'),
+        imagePath: ImagePaths.foodImage2, foodName: 'Cookie Sandwich'),
   ];
 
   @override
