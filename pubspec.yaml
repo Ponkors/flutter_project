@@ -12,10 +12,22 @@ dependencies:
   flutter:
     sdk: flutter
 
-  features:
-    path: ./features
   profile:
-    path: ./future/profile
+    path: ./features/profile
+  orders:
+    path: ./features/orders
+  search:
+    path: ./features/search
+  menu:
+    path: ./features/menu
+  home:
+    path: ./features/home
+  main: 
+    path: ./features/main
+  welcome:
+    path: ./features/welcome
+
+  
   navigation:
     path: ./navigation
   data:

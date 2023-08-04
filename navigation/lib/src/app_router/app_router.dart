@@ -1,11 +1,12 @@
-import 'package:features/orders/orders_screen.dart';
-import 'package:features/search/search_screen.dart';
-import 'package:features/welcome_pages/welcome_screens.dart';
-import 'package:profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:features/features.dart';
+import 'package:home/home.dart';
 import 'package:profile/profile.dart';
+import 'package:orders/orders.dart';
+import 'package:search/search.dart';
+import 'package:menu/menu.dart';
+import 'package:welcome/welcome.dart';
+import 'package:main/main.dart';
 
 part 'app_router.gr.dart';
 
