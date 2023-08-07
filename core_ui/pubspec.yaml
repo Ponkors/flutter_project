@@ -9,6 +9,9 @@ environment:
 
 dependencies:
   dots_indicator: ^3.0.0
+  core:
+    path: ../core
+
   flutter:
     sdk: flutter
   google_fonts: ^5.1.0

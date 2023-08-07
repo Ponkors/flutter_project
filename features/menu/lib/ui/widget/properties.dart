@@ -1,6 +1,7 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:core_ui/design/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class RestaurantPropertiesWidget extends StatelessWidget {
   const RestaurantPropertiesWidget({super.key});
@@ -20,18 +21,12 @@ class RestaurantPropertiesWidget extends StatelessWidget {
               children: [
                 Text(
                   'Mayfield Bakery & Cafe',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: GoogleFonts.gothicA1(textStyle: AppFonts.s24_w600),
                 ),
                 Text(
                   '\$\$ ● Chinese ● American ● Deshi food',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w400,
+                  style: GoogleFonts.gothicA1(
+                    textStyle: AppFonts.s16_w400,
                     color: AppColors.grey,
                   ),
                 ),
@@ -42,10 +37,7 @@ class RestaurantPropertiesWidget extends StatelessWidget {
                   children: [
                     Text(
                       '4.3',
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w300),
+                      style: GoogleFonts.gothicA1(textStyle: AppFonts.s12_w300),
                     ),
                     SizedBox(width: 10),
                     Icon(
@@ -56,11 +48,10 @@ class RestaurantPropertiesWidget extends StatelessWidget {
                     SizedBox(width: 10),
                     Text(
                       '200+ Ratings',
-                      style: TextStyle(
-                          fontSize: 12,
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w300),
-                    ),
+                      style: GoogleFonts.gothicA1(
+                        textStyle: AppFonts.s12_w300,
+                      ),
+                    )
                   ],
                 ),
                 SizedBox(
