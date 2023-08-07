@@ -24,7 +24,7 @@ class WelcomeForm extends StatelessWidget {
               // Todo: fix a top margin.
               WelcomeCardWidget(),
               Spacer(),
-              WelcomeTextWidget(
+              WelcomeText(
                 titleText: text,
                 mainText: mainText,
               ),

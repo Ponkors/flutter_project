@@ -34,7 +34,7 @@ class HomeForm extends StatelessWidget {
             children: [
               WelcomeCardWidget(),
               Spacer(),
-              WelcomeTextWidget(
+              HomeTextWidget(
                 titleText: AppConstants.welcomeTitle,
                 mainText: AppConstants.welcomeText,
               ),

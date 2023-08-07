@@ -1,10 +1,12 @@
+import 'package:core_ui/design/app_fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class WelcomeTextWidget extends StatelessWidget {
+class HomeTextWidget extends StatelessWidget {
   final String titleText;
   final String mainText;
 
-  WelcomeTextWidget({required this.titleText, required this.mainText});
+  HomeTextWidget({required this.titleText, required this.mainText});
 
   @override
   Widget build(BuildContext context) {
@@ -18,21 +20,13 @@ class WelcomeTextWidget extends StatelessWidget {
           Text(
             titleText,
             textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 28,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w700,
-            ),
+            style: GoogleFonts.poppins(textStyle: AppFonts.s28_w700),
           ),
           SizedBox(height: 20),
           Text(
             mainText,
             textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w400,
-            ),
+            style: GoogleFonts.poppins(textStyle: AppFonts.s16_w400),
           )
         ],
       ),

@@ -1,5 +1,7 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class WelcomeCardWidget extends StatelessWidget {
   @override
@@ -11,24 +13,17 @@ class WelcomeCardWidget extends StatelessWidget {
       // color: Colors.red,
       child: Row(
         children: [
-          Image.asset(
-            ImagePaths.logoImage,
+          SizedBox(
             height: 65,
             width: 65,
-            alignment: Alignment.topLeft,
+            child: SvgPicture.asset(ImagePaths.logoImage),
           ),
           SizedBox(width: 2.0),
           Expanded(
             child: Text(
               AppConstants.logoTitle,
-              maxLines: 2,
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 37,
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w700,
-                height: 1.1,
-              ),
+              style: GoogleFonts.poppins(textStyle: AppFonts.s37_w700),
             ),
           ),
         ],

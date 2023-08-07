@@ -1,6 +1,7 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:core_ui/design/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class WelcomeButtonWidget extends StatelessWidget {
   final VoidCallback onPressed;
@@ -20,12 +21,11 @@ class WelcomeButtonWidget extends StatelessWidget {
       ),
       child: Text(
         AppConstants.getStarted,
-        style: TextStyle(
+        style: GoogleFonts.gothicA1(
           color: AppColors.white,
           fontSize: 14,
-          // TODO check fontFamily
-          fontFamily: 'Poppins',
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.w700,
+          letterSpacing: 1.1,
         ),
       ),
     );
