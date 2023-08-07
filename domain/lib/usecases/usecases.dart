@@ -10,4 +10,6 @@ abstract class StreamUseCase<OutputT, InputT> {
   Stream<OutputT> execute(InputT input);
 }
 
-class NoParams {}
+class NoParams {
+  const NoParams();
+}

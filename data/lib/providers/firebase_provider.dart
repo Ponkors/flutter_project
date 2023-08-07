@@ -1,21 +1,22 @@
-// import 'package:core/core.dart';
-// import 'package:data/models/menu_item_model.dart';
+import 'package:core/core.dart';
+import 'package:data/models/menu_item_model.dart';
 
-// class FirebaseProvider {
-//   Future<List<MenuItemModel>> fetchMenuItems() async {
-//     return await _getMenuItems();
-//   }
+class FirebaseProvider {
 
-//   Future<List<MenuItemModel>> _getMenuItems() async {
-//     late final List<MenuItemModel> menuItems = [];
+  Future<List<MenuItemModel>> fetchMenuItems() async {
+    return await _getMenuItems();
+  }
 
-//     final fbMenu = (await FirebaseFirestore.instance.collection('menu').get())
-//         .docs
-//         .toList();
+  Future<List<MenuItemModel>> _getMenuItems() async {
+    late final List<MenuItemModel> menuItems = [];
 
-//     for (var fbItem in fbMenu) {
-//       menuItems.add(MenuItemModel.fromJson(fbItem.data()));
-//     }
-//     return menuItems;
-//   }
-// }
+    final fbMenu = (await FirebaseFirestore.instance.collection('menu').get())
+        .docs
+        .toList();
+
+    for (var fbItem in fbMenu) {
+      menuItems.add(MenuItemModel.fromJson(fbItem.data()));
+    }
+    return menuItems;
+  }
+}
