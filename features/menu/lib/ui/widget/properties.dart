@@ -19,6 +19,9 @@ class RestaurantPropertiesWidget extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(
+                  height: AppDimens.padding_10,
+                ),
                 Text(
                   'Mayfield Bakery & Cafe',
                   style: GoogleFonts.gothicA1(textStyle: AppFonts.s24_w600),
@@ -118,7 +121,7 @@ class RestaurantPropertiesWidget extends StatelessWidget {
                 ),
               ],
             ),
-            TempButtonWidget(() {}),
+            TempButtonWidget((){}, 'Take away'),
           ],
         ),
       ),

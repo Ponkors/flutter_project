@@ -7,6 +7,8 @@ import 'package:search/search.dart';
 import 'package:menu/menu.dart';
 import 'package:welcome/welcome.dart';
 import 'package:main/main.dart';
+import 'package:dish/dish.dart';
+import 'package:domain/domain.dart';
 
 part 'app_router.gr.dart';
 
@@ -21,6 +23,7 @@ part 'app_router.gr.dart';
       AutoRoute(page: OrdersScreen, path: 'orders_screen'),
       AutoRoute(page: ProfileScreen, path: 'profile_screen'),
     ]),
+    AutoRoute(page: DishScreen, path: 'dish'),
   ],
 )
 // extend the generated private router

@@ -12,16 +12,16 @@ class MenuDI {
 
   void _initFirebase() {
     appLocator.registerLazySingleton<FirebaseProvider>(
-          () => FirebaseProvider(),
+      () => FirebaseProvider(),
     );
   }
 
   void _initDishes() {
     appLocator.registerLazySingleton<MenuItemRepository>(
-            () => MenuItemRepository(appLocator.get<FirebaseProvider>()));
+        () => MenuItemRepository(appLocator.get<FirebaseProvider>()));
 
     appLocator.registerLazySingleton<GetMenuListUseCase>(
-          () => GetMenuListUseCase(appLocator.get<MenuItemRepository>()),
+      () => GetMenuListUseCase(appLocator.get<MenuItemRepository>()),
     );
   }
 }

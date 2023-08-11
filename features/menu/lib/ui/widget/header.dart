@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:navigation/navigation.dart';
 
 class RestaurantHeader extends StatefulWidget {
   @override
@@ -52,7 +53,9 @@ class _RestaurantHeaderState extends State<RestaurantHeader> {
             child: Row(
               children: [
                 CupertinoButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.router.pop();
+                  },
                   padding: EdgeInsets.zero,
                   child: Icon(
                     CupertinoIcons.back,

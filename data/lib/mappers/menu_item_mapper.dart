@@ -6,6 +6,10 @@ class MenuItemMapper {
     return MenuItemModel(
       image: entity.image,
       name: entity.name,
+      type: entity.type,
+      ingredients: entity.ingredients,
+      details: entity.details,
+      cost: entity.cost,
     );
   }
 
@@ -13,6 +17,10 @@ class MenuItemMapper {
     return MenuItemEntity(
       image: model.image,
       name: model.name,
+      type: model.type,
+      ingredients: model.ingredients,
+      details: model.details,
+      cost: model.cost,
     );
   }
 }

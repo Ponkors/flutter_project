@@ -5,8 +5,12 @@ class AppConstants {
       'It’s a pleasure to meet you. We are exited that you’re here so let’s get started!';
   static const String getStarted = 'GET STARTED';
 
+  static const String ingredients = 'Ingredients:';
+
   static const String labelHome = 'Home';
   static const String labelSearch = 'Search';
   static const String labelOrders = 'Orders';
   static const String labelProfile = 'Profile';
+
+  static const String addToCart = 'Add To Cart';
 }

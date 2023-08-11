@@ -22,6 +22,10 @@ MenuItemModel _$MenuItemModelFromJson(Map<String, dynamic> json) {
 mixin _$MenuItemModel {
   String get image => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
+  String get ingredients => throw _privateConstructorUsedError;
+  String get details => throw _privateConstructorUsedError;
+  double get cost => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +39,13 @@ abstract class $MenuItemModelCopyWith<$Res> {
           MenuItemModel value, $Res Function(MenuItemModel) then) =
       _$MenuItemModelCopyWithImpl<$Res, MenuItemModel>;
   @useResult
-  $Res call({String image, String name});
+  $Res call(
+      {String image,
+      String name,
+      String type,
+      String ingredients,
+      String details,
+      double cost});
 }
 
 /// @nodoc
@@ -53,6 +63,10 @@ class _$MenuItemModelCopyWithImpl<$Res, $Val extends MenuItemModel>
   $Res call({
     Object? image = null,
     Object? name = null,
+    Object? type = null,
+    Object? ingredients = null,
+    Object? details = null,
+    Object? cost = null,
   }) {
     return _then(_value.copyWith(
       image: null == image
@@ -63,6 +77,22 @@ class _$MenuItemModelCopyWithImpl<$Res, $Val extends MenuItemModel>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      ingredients: null == ingredients
+          ? _value.ingredients
+          : ingredients // ignore: cast_nullable_to_non_nullable
+              as String,
+      details: null == details
+          ? _value.details
+          : details // ignore: cast_nullable_to_non_nullable
+              as String,
+      cost: null == cost
+          ? _value.cost
+          : cost // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 }
@@ -75,7 +105,13 @@ abstract class _$$_MenuItemModelCopyWith<$Res>
       __$$_MenuItemModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String image, String name});
+  $Res call(
+      {String image,
+      String name,
+      String type,
+      String ingredients,
+      String details,
+      double cost});
 }
 
 /// @nodoc
@@ -91,6 +127,10 @@ class __$$_MenuItemModelCopyWithImpl<$Res>
   $Res call({
     Object? image = null,
     Object? name = null,
+    Object? type = null,
+    Object? ingredients = null,
+    Object? details = null,
+    Object? cost = null,
   }) {
     return _then(_$_MenuItemModel(
       image: null == image
@@ -101,6 +141,22 @@ class __$$_MenuItemModelCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      ingredients: null == ingredients
+          ? _value.ingredients
+          : ingredients // ignore: cast_nullable_to_non_nullable
+              as String,
+      details: null == details
+          ? _value.details
+          : details // ignore: cast_nullable_to_non_nullable
+              as String,
+      cost: null == cost
+          ? _value.cost
+          : cost // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -108,7 +164,13 @@ class __$$_MenuItemModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_MenuItemModel implements _MenuItemModel {
-  _$_MenuItemModel({required this.image, required this.name});
+  _$_MenuItemModel(
+      {required this.image,
+      required this.name,
+      required this.type,
+      required this.ingredients,
+      required this.details,
+      required this.cost});
 
   factory _$_MenuItemModel.fromJson(Map<String, dynamic> json) =>
       _$$_MenuItemModelFromJson(json);
@@ -117,10 +179,18 @@ class _$_MenuItemModel implements _MenuItemModel {
   final String image;
   @override
   final String name;
+  @override
+  final String type;
+  @override
+  final String ingredients;
+  @override
+  final String details;
+  @override
+  final double cost;
 
   @override
   String toString() {
-    return 'MenuItemModel(image: $image, name: $name)';
+    return 'MenuItemModel(image: $image, name: $name, type: $type, ingredients: $ingredients, details: $details, cost: $cost)';
   }
 
   @override
@@ -129,12 +199,18 @@ class _$_MenuItemModel implements _MenuItemModel {
         (other.runtimeType == runtimeType &&
             other is _$_MenuItemModel &&
             (identical(other.image, image) || other.image == image) &&
-            (identical(other.name, name) || other.name == name));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.ingredients, ingredients) ||
+                other.ingredients == ingredients) &&
+            (identical(other.details, details) || other.details == details) &&
+            (identical(other.cost, cost) || other.cost == cost));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, image, name);
+  int get hashCode =>
+      Object.hash(runtimeType, image, name, type, ingredients, details, cost);
 
   @JsonKey(ignore: true)
   @override
@@ -153,7 +229,11 @@ class _$_MenuItemModel implements _MenuItemModel {
 abstract class _MenuItemModel implements MenuItemModel {
   factory _MenuItemModel(
       {required final String image,
-      required final String name}) = _$_MenuItemModel;
+      required final String name,
+      required final String type,
+      required final String ingredients,
+      required final String details,
+      required final double cost}) = _$_MenuItemModel;
 
   factory _MenuItemModel.fromJson(Map<String, dynamic> json) =
       _$_MenuItemModel.fromJson;
@@ -162,6 +242,14 @@ abstract class _MenuItemModel implements MenuItemModel {
   String get image;
   @override
   String get name;
+  @override
+  String get type;
+  @override
+  String get ingredients;
+  @override
+  String get details;
+  @override
+  double get cost;
   @override
   @JsonKey(ignore: true)
   _$$_MenuItemModelCopyWith<_$_MenuItemModel> get copyWith =>

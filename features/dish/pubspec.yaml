@@ -1,4 +1,4 @@
-name: menu
+name: dish
 description: A new Flutter package project.
 publish_to: "none"
 version: 0.0.1
@@ -10,7 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  auto_route: ^5.0.4
 
   core:
     path: ../../core
@@ -30,4 +29,3 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-

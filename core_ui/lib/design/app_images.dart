@@ -18,4 +18,8 @@ class ImagePaths {
   static const String illustration2 = '${_libImages}illustration2.png';
   static const String illustration3 = '${_libImages}illustration3.png';
   static const String categoryFoodItem = '${_libImages}category-food-item.png';
+
+  static const String minusIcon = '${_libImages}minus.svg';
+  static const String plusIcon = '${_libImages}plus.svg';
+
 }

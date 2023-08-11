@@ -16,15 +16,15 @@ class ThemeDI {
 
   void _initTheme() {
     appLocator.registerLazySingleton<ThemeRepository>(
-          () => ThemeRepositoryImpl(hiveProvider: appLocator<HiveProvider>()),
+      () => ThemeRepositoryImpl(hiveProvider: appLocator<HiveProvider>()),
     );
 
     appLocator.registerLazySingleton<SetThemeUseCase>(
-          () => SetThemeUseCase(themeRepository: appLocator.get<ThemeRepository>()),
+      () => SetThemeUseCase(themeRepository: appLocator.get<ThemeRepository>()),
     );
 
     appLocator.registerLazySingleton<GetThemeUseCase>(
-          () => GetThemeUseCase(themeRepository: appLocator.get<ThemeRepository>()),
+      () => GetThemeUseCase(themeRepository: appLocator.get<ThemeRepository>()),
     );
   }
 }
