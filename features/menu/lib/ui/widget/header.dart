@@ -1,8 +1,6 @@
 import 'package:core_ui/core_ui.dart';
-import 'package:core_ui/design/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:navigation/navigation.dart';
 

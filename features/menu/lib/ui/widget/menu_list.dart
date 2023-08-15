@@ -16,10 +16,19 @@ class MenuList extends StatefulWidget {
 class _MenuListState extends State<MenuList> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
+    return Container(
         padding: const EdgeInsets.all(AppDimens.padding_25),
-        child: ListView.separated(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(AppDimens.padding_20),
+              child: Text(
+                  AppConstants.mostPopulars,
+                  style: GoogleFonts.gothicA1(textStyle: AppFonts.normal_20),
+              ),
+            ),
+        ListView.separated(
           itemCount: widget._itemModels.length,
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
@@ -40,7 +49,6 @@ class _MenuListState extends State<MenuList> {
             return const Divider(height: AppDimens.padding_10);
           },
         ),
-      ),
-    );
+    ]));
   }
 }

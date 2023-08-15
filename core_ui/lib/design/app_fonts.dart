@@ -18,8 +18,14 @@ class AppFonts {
     letterSpacing: 0.1,
   );
 
+  static const s14_w600 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 0.1,
+  );
+
   static const s24_w600 = TextStyle(fontSize: 24, fontWeight: FontWeight.w600);
-  static const s12_w300 = TextStyle(fontSize: 12, fontWeight: FontWeight.w400);
+  static const s12_w400 = TextStyle(fontSize: 12, fontWeight: FontWeight.w400);
 
   static const bold_37 = TextStyle(
     fontSize: 37,
@@ -40,7 +46,6 @@ class AppFonts {
   static const normal_18 = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w400,
-    letterSpacing: 0.9,
   );
 
   static const normal_16 = TextStyle(

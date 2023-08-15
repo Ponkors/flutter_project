@@ -72,9 +72,8 @@ class DishScreen extends StatelessWidget {
                     ),
                   ]),
             ),
-            const DishCounter(),
             Container(
-              margin: const EdgeInsets.only(bottom: AppDimens.padding_20),
+              margin: const EdgeInsets.symmetric(vertical: AppDimens.padding_60),
               child: Column(
                 children: [
                   AddButton(),

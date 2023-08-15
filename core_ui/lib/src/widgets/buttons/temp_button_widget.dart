@@ -1,4 +1,4 @@
-import 'package:core_ui/design/app_colors.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class TempButtonWidget extends StatelessWidget {
@@ -20,12 +20,7 @@ class TempButtonWidget extends StatelessWidget {
       ),
       child: Text(
         title,
-        style: TextStyle(
-          color: AppColors.white,
-          fontSize: 14,
-          fontFamily: 'Poppins',
-          fontWeight: FontWeight.w600,
-        ),
+          style: GoogleFonts.poppins(textStyle: AppFonts.s14_w600),
       ),
     );
   }

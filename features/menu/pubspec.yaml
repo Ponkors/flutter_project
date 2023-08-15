@@ -23,6 +23,8 @@ dependencies:
   navigation:
     path: ../../navigation
 
+  tuple: ^2.0.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
