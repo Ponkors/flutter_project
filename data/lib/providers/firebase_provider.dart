@@ -1,8 +1,28 @@
 import 'package:core/core.dart';
 import 'package:data/models/menu_item_model.dart';
 import 'package:data/models/horizontal_menu_item_model.dart';
+import 'package:data/models/header_menu_item_model.dart';
 
 class FirebaseProvider {
+
+  Future<List<HeaderMenuItemModel>> fetchHeaderMenuItems() async {
+    return await _getHeaderMenuItems();
+  }
+
+  Future<List<HeaderMenuItemModel>> _getHeaderMenuItems() async {
+    late final List<HeaderMenuItemModel> headerMenuItems = [];
+
+    final fbHeaderMenu = (await FirebaseFirestore.instance.collection('header-images').get())
+      .docs
+      .toList();
+
+    for(var fbHeaderItem in fbHeaderMenu){
+      headerMenuItems.add(HeaderMenuItemModel.fromJson(fbHeaderItem.data()));
+    }
+    return headerMenuItems;
+  }
+
+  // --------------------------------------------------------------------------
 
   Future<List<HorizontalMenuItemModel>> fetchHorizontalMenuItems() async {
     return await _getHorizontalMenuItems();

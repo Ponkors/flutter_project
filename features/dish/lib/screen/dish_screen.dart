@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:navigation/navigation.dart';
 
-import 'package:dish/ui/widget/dish_counter.dart';
-
 class DishScreen extends StatelessWidget {
   final MenuItemEntity _model;
 
@@ -79,19 +77,6 @@ class DishScreen extends StatelessWidget {
                   AddButton(),
                 ],
               ),
-              // Text(
-              //   '${_model.cost.toString()} \$',
-              //   style: GoogleFonts.poppins(textStyle: AppFonts.normal_20)
-              //       .copyWith(color: AppColors.orange),
-              //   textAlign: TextAlign.center,
-              // ),
-            // Align(
-            //     child: GestureDetector(
-            //       onTap: () {
-            //         AutoRouter.of(context).push(const SettingsRoute());
-            //       },
-            //       child: const AddButton(),
-            //     )),
             )
               ],
         ),

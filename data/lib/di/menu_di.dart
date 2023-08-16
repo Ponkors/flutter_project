@@ -1,5 +1,6 @@
 import 'package:core/di/app_di.dart';
 import 'package:data/data.dart';
+import 'package:data/repositories/header_menu_repository_impl.dart';
 import 'package:data/repositories/horizontal_menu_repository_impl.dart';
 import 'package:domain/domain.dart';
 
@@ -30,6 +31,13 @@ class MenuDI {
 
     appLocator.registerLazySingleton<GetHorizontalMenuListUseCase>(
         () => GetHorizontalMenuListUseCase(appLocator.get<HorizontalMenuItemRepository>()),
+    );
+
+    appLocator.registerLazySingleton<HeaderMenuItemRepository>(
+            () => HeaderMenuItemRepository(appLocator.get<FirebaseProvider>()));
+
+    appLocator.registerLazySingleton<GetHeaderMenuListUseCase>(
+            () => GetHeaderMenuListUseCase(appLocator.get<HeaderMenuItemRepository>()),
     );
   }
 }

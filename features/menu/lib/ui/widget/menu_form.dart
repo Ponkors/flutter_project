@@ -1,4 +1,6 @@
+import 'package:core_ui/design/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:menu/bloc/menu_bloc.dart';
 import 'package:menu/ui/widget/food_menu_widget.dart';
@@ -17,42 +19,58 @@ class MenuForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
-        BlocProvider<MenuBloc>(
-          create: (BuildContext context) => MenuBloc(
-            getMenuListUsecase: appLocator.get<GetMenuListUseCase>(),
+        providers: [
+          BlocProvider<MenuBloc>(
+            create: (BuildContext context) => MenuBloc(
+              getMenuListUsecase: appLocator.get<GetMenuListUseCase>(),
+            ),
           ),
-        ),
-        BlocProvider<HorizontalMenuBloc>(
-          create: (BuildContext context) => HorizontalMenuBloc(
-            getHorizontalMenuListUseCase: appLocator.get<GetHorizontalMenuListUseCase>(),
+          BlocProvider<HorizontalMenuBloc>(
+            create: (BuildContext context) => HorizontalMenuBloc(
+              getHorizontalMenuListUseCase:
+                  appLocator.get<GetHorizontalMenuListUseCase>(),
+            ),
           ),
-        ),
-      ],
-      child: BlocBuilder<MenuBloc, MenuState>(
-        builder: (BuildContext menuContext, MenuState menuState) {
+          BlocProvider<HeaderMenuBloc>(
+            create: (BuildContext context) => HeaderMenuBloc(
+              getHeaderMenuListUseCase:
+                  appLocator.get<GetHeaderMenuListUseCase>(),
+            ),
+          ),
+        ],
+        child: BlocBuilder<MenuBloc, MenuState>(
+            builder: (BuildContext menuContext, MenuState menuState) {
           return BlocBuilder<HorizontalMenuBloc, HorizontalMenuState>(
-            builder: (BuildContext horizontalMenuContext, HorizontalMenuState horizontalMenuState) {
-              if (menuState.error != null) {}
-              if (!menuState.isLoading) {
-                return Scaffold(
-                  body: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        RestaurantHeader(),
-                        RestaurantPropertiesWidget(),
-                        HorizontalMenuList(horizontalMenuState.dishesList),
-                        ScrollableFoodMenu(),
-                        VerticalMenuList(menuState.dishesList),
-                      ],
-                    ),
-                  ),
-                );
-              }
-              return Center(
+            builder: (BuildContext horizontalMenuContext,
+                HorizontalMenuState horizontalMenuState) {
+              return BlocBuilder<HeaderMenuBloc, HeaderMenuState>(
+                builder: (BuildContext headerMenuContext,
+                    HeaderMenuState headerMenuState) {
+                  if (menuState.error != null) {}
+                  if (!menuState.isLoading) {
+                    return Scaffold(
+                      body: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            RestaurantHeader(headerMenuState.imagesList),
+                            RestaurantPropertiesWidget(),
+                            HorizontalMenuList(horizontalMenuState.dishesList),
+                            ScrollableFoodMenu(),
+                            VerticalMenuList(menuState.dishesList),
+                          ],
+                        ),
+                      ),
+                    );
+                  }
+                  return Center(
+                      child:CupertinoActivityIndicator(
+                          radius: 16,
+                          color: AppColors.grey),
+                    /*
                 child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
-                /*
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                  Theme.of(context).primaryColor),
+
                 Or use iOS activity indicator (also can add a algorithm that
                 check,  if we use an Android platform = CircularProgressIndicator,
                         if we use an iOS platform = CupertinoActivityIndicator
@@ -61,17 +79,14 @@ class MenuForm extends StatelessWidget {
                   radius: 16,
                   color: Theme.of(context).primaryColor)
                   */
-                ),
+                  );
+                },
               );
             },
           );
-        },
-      ),
-    );
+        }));
   }
 }
-
-
 
 /*
 import 'package:flutter/material.dart';
@@ -126,15 +141,6 @@ class MenuForm extends StatelessWidget {
 
 
  */
-
-
-
-
-
-
-
-
-
 
 // import 'package:navigation/navigation.dart';
 // import 'package:flutter/material.dart';

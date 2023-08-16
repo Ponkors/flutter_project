@@ -1,12 +1,37 @@
 part of 'menu_bloc.dart';
 
 
-class CombinedMenuState {
-  final List<MenuState> menuState;
-  final List<HorizontalMenuState> horizontalMenuState;
+// class CombinedMenuState {
+//   final List<MenuState> menuState;
+//   final List<HorizontalMenuState> horizontalMenuState;
+//
+//   CombinedMenuState(this.menuState, this.horizontalMenuState);
+// }
 
-  CombinedMenuState(this.menuState, this.horizontalMenuState);
+class HeaderMenuState {
+  final bool isLoading;
+  final List<HeaderMenuItemEntity> imagesList;
+  final Object? error;
+
+  const HeaderMenuState({
+    this.isLoading = true,
+    this.imagesList = const [],
+    this.error,
+  });
+
+  HeaderMenuState copyWith({
+    List<HeaderMenuItemEntity>? imagesList,
+    bool? isLoading,
+    Object? error,
+  }) {
+    return HeaderMenuState(
+      imagesList: imagesList ?? this.imagesList,
+      isLoading: isLoading ?? this.isLoading,
+      error: error ?? this.error,
+    );
+  }
 }
+
 
 class HorizontalMenuState {
   final bool isLoading;
