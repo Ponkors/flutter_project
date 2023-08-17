@@ -12,28 +12,33 @@ class CategoryFoodItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Container(
+      width: 160,
+      height: 300,
+      child:
+      Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Image.asset(
           imagePath,
           width: 160,
           height: 140,
+          fit: BoxFit.cover,
         ),
+         SizedBox(height: 10),
         Text(foodName,
-            style: TextStyle(
-                fontSize: 18,
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w300)),
+            style: GoogleFonts.poppins(
+              textStyle: AppFonts.s16_w400,
+            )
+        ),
         Text(
           '\$\$ ● Chinese',
-          style: TextStyle(
-              color: AppColors.grey,
-              fontFamily: 'Poppins',
-              fontSize: 14,
-              fontWeight: FontWeight.w400),
+          style: GoogleFonts.poppins(
+            textStyle: AppFonts.s14_w400,
+            color: AppColors.grey
+          ),
         ),
       ],
-    );
+    ));
   }
 }

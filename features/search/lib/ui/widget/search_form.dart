@@ -12,8 +12,8 @@ class SearchForm extends StatelessWidget {
     return Scaffold(
         body: Column(children: [
       Container(
-          width: double.infinity,
-          height: 90,
+          width: MediaQuery.of(context).size.width,
+          height: 100,
           // color: Colors.red,
           margin: EdgeInsets.only(left: 20, right: 20, top: 70),
           child: Column(
@@ -22,12 +22,7 @@ class SearchForm extends StatelessWidget {
             children: [
               Text(
                 AppConstants.labelSearch,
-                style: TextStyle(
-                  fontSize: 28,
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w600,
-                  height: 1.1,
-                ),
+                style: GoogleFonts.poppins(textStyle: AppFonts.s28_w700),
               ),
               SizedBox(
                 height: 10,
@@ -35,6 +30,9 @@ class SearchForm extends StatelessWidget {
               SearchField(),
             ],
           )),
+      SizedBox(
+        height: 20,
+      ),
       CategoryFoodList(),
     ]));
   }

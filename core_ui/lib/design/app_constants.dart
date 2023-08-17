@@ -15,4 +15,7 @@ class AppConstants {
   static const String ingredients = 'Ingredients:';
   static const String featuredItems = 'Featured Items';
   static const String mostPopulars = 'Most Populars';
+
+  static const String searchDefaultText = 'Search on foodly';
+  static const String topRestaurants = 'Top Restaurants';
 }

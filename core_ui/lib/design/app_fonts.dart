@@ -24,6 +24,12 @@ class AppFonts {
     letterSpacing: 0.1,
   );
 
+  static const s14_w400 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 0.1,
+  );
+
   static const s24_w600 = TextStyle(fontSize: 24, fontWeight: FontWeight.w600);
   static const s12_w400 = TextStyle(fontSize: 12, fontWeight: FontWeight.w400);
 

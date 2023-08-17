@@ -38,22 +38,20 @@ class _CategoryFoodListState extends State<CategoryFoodList> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              'Top Restaurants',
-              style: TextStyle(
-                fontSize: 20,
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w300,
+              AppConstants.topRestaurants,
+              style: GoogleFonts.poppins(
+                textStyle: AppFonts.s16_w400,
               ),
             ),
             Expanded(
-              // Wrap with Expanded to take available space
               child: GridView.builder(
-                physics: ScrollPhysics(),
+                physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  crossAxisSpacing: 0,
-                  mainAxisSpacing: 0,
+                  crossAxisSpacing: 30,
+                  mainAxisSpacing: 10,
+                  childAspectRatio: 0.8
                 ),
                 itemCount: widget.foods.length,
                 itemBuilder: (context, index) {

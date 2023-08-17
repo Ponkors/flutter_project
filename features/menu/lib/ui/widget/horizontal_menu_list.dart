@@ -39,12 +39,14 @@ class _HorizontalMenuListState extends State<HorizontalMenuList> {
             int index = entry.key;
             HorizontalMenuItemEntity itemModel = entry.value;
             return Padding(
-              padding: EdgeInsets.only(right: AppDimens.padding_20), // Добавляет отступ между элементами, суммарно будет 15
+              padding: EdgeInsets.only(right: AppDimens.padding_20),
               child: Column(
                 children: [
                   GestureDetector(
                     onTap: () {
-                      // ToDo
+                      // AutoRouter.of(context).push(
+                      //   DishRoute(model: itemModel),
+                      // );
                     },
                     child: HorizontalMenuItem(
                       name: itemModel.name,

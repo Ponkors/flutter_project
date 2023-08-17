@@ -20,8 +20,10 @@ class _SearchFieldState extends State<SearchField> {
         });
       },
       child: Container(
-        height: 48,
-        child: TextField(
+        height: 48, // Because TextField height is 48.
+        child: SizedBox(
+          height: 50,
+          child: TextField(
           controller: _searchController,
           onTap: () {
             setState(() {
@@ -39,12 +41,9 @@ class _SearchFieldState extends State<SearchField> {
               Icons.search,
               color: _isSearching ? AppColors.orange : AppColors.grey,
             ),
-            hintText: _isSearching ? "" : "Search on foodly",
-            hintStyle: TextStyle(
-              color: AppColors.grey,
-              fontSize: 16,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w400,
+            hintText: _isSearching ? "" : AppConstants.searchDefaultText,
+            hintStyle: GoogleFonts.poppins(
+              textStyle: AppFonts.normal_16
             ),
             border: UnderlineInputBorder(
               borderRadius: BorderRadius.circular(10),
@@ -59,6 +58,6 @@ class _SearchFieldState extends State<SearchField> {
           ),
         ),
       ),
-    );
+    ));
   }
 }
