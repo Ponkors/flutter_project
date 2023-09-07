@@ -24,8 +24,10 @@ class MainForm extends StatelessWidget {
             unselectedItemColor: AppColors.grey,
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                activeIcon:
-                    Icon(Icons.local_dining_outlined, color: AppColors.orange),
+                activeIcon: Icon(
+                    Icons.local_dining_outlined,
+                    color: AppColors.orange,
+                ),
                 icon: Icon(
                   Icons.local_dining_outlined,
                   color: AppColors.grey,
@@ -33,8 +35,10 @@ class MainForm extends StatelessWidget {
                 label: AppConstants.labelHome,
               ),
               BottomNavigationBarItem(
-                activeIcon:
-                    Icon(Icons.search_outlined, color: AppColors.orange),
+                activeIcon: Icon(
+                    Icons.search_outlined,
+                    color: AppColors.orange,
+                ),
                 icon: Icon(
                   Icons.search_outlined,
                   color: AppColors.grey,
@@ -42,7 +46,10 @@ class MainForm extends StatelessWidget {
                 label: AppConstants.labelSearch,
               ),
               BottomNavigationBarItem(
-                activeIcon: Icon(Icons.book_outlined, color: AppColors.orange),
+                activeIcon: Icon(
+                    Icons.book_outlined,
+                    color: AppColors.orange,
+                ),
                 icon: Icon(
                   Icons.book_outlined,
                   color: AppColors.grey,
@@ -50,8 +57,10 @@ class MainForm extends StatelessWidget {
                 label: AppConstants.labelOrders,
               ),
               BottomNavigationBarItem(
-                activeIcon:
-                    Icon(Icons.emoji_people_outlined, color: AppColors.orange),
+                activeIcon: Icon(
+                    Icons.emoji_people_outlined,
+                    color: AppColors.orange,
+                ),
                 icon: Icon(
                   Icons.emoji_people_outlined,
                   color: AppColors.grey,
@@ -60,6 +69,7 @@ class MainForm extends StatelessWidget {
               ),
             ],
           );
-        });
+        }
+    );
   }
 }

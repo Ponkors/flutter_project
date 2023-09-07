@@ -1,7 +1,6 @@
 name: core_ui
 description: Project Core UI module
 version: 0.0.1
-homepage:
 
 environment:
   sdk: '>=3.0.5 <4.0.0'

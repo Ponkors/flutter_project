@@ -38,17 +38,17 @@ class _MenuItemState extends State<MenuItem> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
-              children: [
+              children: <Widget>[
                 Text(
                   widget.name,
-                  style: GoogleFonts.poppins(textStyle: AppFonts.normal_18)
-                  ,
+                  style: GoogleFonts.poppins(
+                      textStyle: AppFonts.normal_18),
                 ),
                 Text(
                   widget.ingredients,
                   softWrap: true,
-                  style: GoogleFonts.poppins(textStyle: AppFonts.normal_16)
-                  ,
+                  style: GoogleFonts.poppins(
+                      textStyle: AppFonts.normal_16),
                 ),
                 Container(
                   margin: const EdgeInsets.only(
@@ -59,34 +59,20 @@ class _MenuItemState extends State<MenuItem> {
                     children: <Widget>[
                       Text(
                         '\$\$ ● Chinese',
-                        style:
-                        GoogleFonts.poppins(textStyle: AppFonts.normal_14)
-                          .copyWith(color: AppColors.grey),
+                        style: GoogleFonts.poppins(
+                            textStyle: AppFonts.normal_14).copyWith(
+                            color: AppColors.grey
+                        ),
                       ),
                       SizedBox(width: AppDimens.size_40),
                       Text(
                         'AUD\$${widget.cost}',
                         textAlign: TextAlign.right,
-                        style:
-                        GoogleFonts.poppins(textStyle: AppFonts.bold_16)
-                            .copyWith(color: AppColors.orange),
+                        style: GoogleFonts.poppins(
+                            textStyle: AppFonts.bold_16).copyWith(
+                            color: AppColors.orange
+                        ),
                       ),
-                      // Container(
-                      //   width: AppDimens.size_30,
-                      //   height: AppDimens.size_30,
-                      //   margin:
-                      //   const EdgeInsets.only(left: AppDimens.padding_10),
-                      //   child: ElevatedButton(
-                      //     onPressed: null,
-                      //     style: ElevatedButton.styleFrom(
-                      //       padding: EdgeInsets.zero,
-                      //     ),
-                      //     child: const Icon(
-                      //       Icons.expand_less,
-                      //       size: AppDimens.size_20,
-                      //     ),
-                      //   ),
-                      // ),
                     ],
                   ),
                 ),

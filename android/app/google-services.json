@@ -2,7 +2,8 @@
   "project_info": {
     "project_number": "1037472218474",
     "project_id": "pt-project-4f7ef",
-    "storage_bucket": "pt-project-4f7ef.appspot.com"
+    "storage_bucket": "pt-project-4f7ef.appspot.com",
+    "configuration_version": "1"
   },
   "client": [
     {
@@ -42,5 +43,4 @@
       }
     }
   ],
-  "configuration_version": "1"
 }

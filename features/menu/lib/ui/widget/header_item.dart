@@ -1,4 +1,3 @@
-import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class HeaderImageItem extends StatefulWidget {
@@ -15,7 +14,7 @@ class HeaderImageItem extends StatefulWidget {
 
 class _HeaderImageItemState extends State<HeaderImageItem> {
   @override
-  Widget build (BuildContext context) {
+  Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
       child: Image.network(

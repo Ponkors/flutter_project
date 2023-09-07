@@ -14,7 +14,6 @@ class _ScrollableFoodMenuState extends State<ScrollableFoodMenu> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // Или Expanded
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.06,
       child: Scaffold(
@@ -30,9 +29,12 @@ class _ScrollableFoodMenuState extends State<ScrollableFoodMenu> {
                 });
               },
               child: Container(
-                width: 160,
+                width: AppDimens.size_160,
                 height: MediaQuery.of(context).size.height,
-                padding: EdgeInsets.only(left: 20, top: 10),
+                padding: EdgeInsets.only(
+                    left: AppDimens.padding_20,
+                    top: AppDimens.padding_10,
+                ),
                 child: Text(
                   foodMenu[index],
                   style: TextStyle(

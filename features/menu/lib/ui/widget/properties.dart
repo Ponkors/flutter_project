@@ -8,43 +8,47 @@ class RestaurantPropertiesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        padding: EdgeInsets.only(left: 20, right: 20),
+        padding: EdgeInsets.only(
+            left: AppDimens.padding_20,
+            right: AppDimens.padding_20,
+        ),
         child: Stack(
           alignment: Alignment.bottomRight,
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  height: AppDimens.padding_10,
-                ),
+                SizedBox(height: AppDimens.padding_10),
                 Text(
                   'Mayfield Bakery & Cafe',
-                  style: GoogleFonts.gothicA1(textStyle: AppFonts.s24_w600)
-                    .copyWith(color: AppColors.black),
+                  style: GoogleFonts.gothicA1(
+                      textStyle:AppFonts.s24_w600).copyWith(
+                      color: AppColors.black
+                  ),
                 ),
                 Text(
                   '\$\$ ● Chinese ● American ● Deshi food',
                   style: GoogleFonts.poppins(
-                    textStyle: AppFonts.s16_w400)
-                      .copyWith(color: AppColors.grey)
+                      textStyle: AppFonts.s16_w400).copyWith(
+                      color: AppColors.grey
+                  ),
                 ),
-                SizedBox(
-                  height: 16,
-                ),
+                SizedBox(height: AppDimens.padding_16),
                 Row(
                   children: [
                     Text(
                       '4.3',
-                      style: GoogleFonts.gothicA1(textStyle: AppFonts.s12_w400),
+                      style: GoogleFonts.gothicA1(
+                          textStyle: AppFonts.s12_w400
+                      ),
                     ),
-                    SizedBox(width: 10),
+                    SizedBox(width: AppDimens.padding_10),
                     Icon(
                       Icons.star,
                       color: AppColors.yellow,
-                      size: 25,
+                      size: AppDimens.size_25,
                     ),
-                    SizedBox(width: 10),
+                    SizedBox(width: AppDimens.padding_10),
                     Text(
                       '200+ Ratings',
                       style: GoogleFonts.gothicA1(
@@ -54,38 +58,36 @@ class RestaurantPropertiesWidget extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: 45,
+                  height: AppDimens.padding_45,
                 ),
                 Row(
                   children: [
                     Image.asset(
                       ImagePaths.deliveryIcon,
                     ),
-                    SizedBox(width: 5),
+                    SizedBox(width: AppDimens.padding_5),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           'Free',
                           style: GoogleFonts.poppins(
-                            textStyle: AppFonts.s16_w400
+                              textStyle: AppFonts.s16_w400
                           ),
                         ),
                         Text(
                           'Delivery',
                           style: GoogleFonts.poppins(
-                              textStyle: AppFonts.s12_w400)
-                              .copyWith(color: AppColors.grey),
+                              textStyle: AppFonts.s12_w400).copyWith(
+                              color: AppColors.grey),
                         ),
                       ],
                     ),
-                    SizedBox(
-                      width: 24,
-                    ),
+                    SizedBox(width: AppDimens.padding_25),
                     Image.asset(
                       ImagePaths.clockIcon,
                     ),
-                    SizedBox(width: 5),
+                    SizedBox(width: AppDimens.padding_5),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -98,8 +100,8 @@ class RestaurantPropertiesWidget extends StatelessWidget {
                         Text(
                           'Minutes',
                           style: GoogleFonts.poppins(
-                              textStyle: AppFonts.s12_w400)
-                                .copyWith(color: AppColors.grey),
+                              textStyle: AppFonts.s12_w400).copyWith(
+                              color: AppColors.grey),
                         ),
                       ],
                     ),

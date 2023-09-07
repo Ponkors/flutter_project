@@ -16,11 +16,12 @@ class AddButton extends StatelessWidget {
           onPrimary: AppColors.white,
           elevation: 0,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(AppDimens.radius_10),
           ),
           textStyle: GoogleFonts.poppins(
-            textStyle: AppFonts.buttons_14
-                .copyWith(color: AppColors.white),
+            textStyle: AppFonts.buttons_14.copyWith(
+                color: AppColors.white,
+            ),
           ),
         ),
         child: Text(

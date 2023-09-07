@@ -4,80 +4,26 @@ import 'package:core/core.dart';
 part 'menu_state.dart';
 part 'menu_event.dart';
 
-// class CombinedMenuItems {
-//   final List<MenuBloc> menuBloc;
-//   final List<HorizontalMenuBloc> horizontalMenuBloc;
-//
-//   CombinedMenuItems(this.menuBloc, this.horizontalMenuBloc);
-// }
-
-
-class HeaderMenuBloc extends Bloc<HeaderMenuEvent, HeaderMenuState> {
+class MenuBloc extends Bloc<MenuEvent, MenuState> {
+  final GetMenuListUseCase _getMenuListUseCase;
   final GetHeaderMenuListUseCase _getHeaderMenuListUseCase;
-
-  HeaderMenuBloc({
-    required GetHeaderMenuListUseCase getHeaderMenuListUseCase,
-  }) : _getHeaderMenuListUseCase = getHeaderMenuListUseCase,
-        super(const HeaderMenuState()) {
-    on<LoadHeaderMenuList>(_getHeaderMenu);
-    add(LoadHeaderMenuList(0));
-  }
-
-  Future<void> _getHeaderMenu(LoadHeaderMenuList event, Emitter<HeaderMenuState> emit) async {
-    try {
-      emit(
-        state.copyWith(isLoading: true, error: null),
-      );
-      final List<HeaderMenuItemEntity> dishes =
-      await _getHeaderMenuListUseCase.execute(event.page);
-      emit(state.copyWith(
-          imagesList: [...state.imagesList, ...dishes], isLoading: false));
-    } catch (e) {
-      emit(
-        state.copyWith(error: e, isLoading: false),
-      );
-    }
-  }
-}
-
-class HorizontalMenuBloc extends Bloc<HorizontalMenuEvent, HorizontalMenuState> {
   final GetHorizontalMenuListUseCase _getHorizontalMenuListUseCase;
 
-  HorizontalMenuBloc({
-    required GetHorizontalMenuListUseCase getHorizontalMenuListUseCase,
-  }) : _getHorizontalMenuListUseCase = getHorizontalMenuListUseCase,
-       super(const HorizontalMenuState()) {
-    on<LoadHorizontalMenuList>(_getHorizontalMenu);
-    add(LoadHorizontalMenuList(0));
-  }
-
-  Future<void> _getHorizontalMenu(LoadHorizontalMenuList event, Emitter<HorizontalMenuState> emit) async {
-    try {
-      emit(
-        state.copyWith(isLoading: true, error: null),
-      );
-      final List<HorizontalMenuItemEntity> dishes =
-      await _getHorizontalMenuListUseCase.execute(event.page);
-      emit(state.copyWith(
-          dishesList: [...state.dishesList, ...dishes], isLoading: false));
-    } catch (e) {
-      emit(
-        state.copyWith(error: e, isLoading: false),
-      );
-    }
-  }
-}
-
-
-class MenuBloc extends Bloc<MenuEvent, MenuState> {
-  final GetMenuListUseCase _getMenuListUsecase;
-
   MenuBloc({
-    required GetMenuListUseCase getMenuListUsecase,
-  })  : _getMenuListUsecase = getMenuListUsecase,
+    required GetMenuListUseCase getMenuListUseCase,
+    required GetHeaderMenuListUseCase getHeaderMenuListUseCase,
+    required GetHorizontalMenuListUseCase getHorizontalMenuListUseCase,
+
+  })  : _getMenuListUseCase = getMenuListUseCase,
+        _getHeaderMenuListUseCase = getHeaderMenuListUseCase,
+        _getHorizontalMenuListUseCase = getHorizontalMenuListUseCase,
         super(const MenuState()) {
     on<LoadMenuList>(_getMenu);
+    on<LoadHeaderMenuList>(_getHeaderMenu);
+    on<LoadHorizontalMenuList>(_getHorizontalMenu);
     add(LoadMenuList(0));
+    add(LoadHeaderMenuList(0));
+    add(LoadHorizontalMenuList(0));
   }
 
   Future<void> _getMenu(LoadMenuList event, Emitter<MenuState> emit) async {
@@ -86,9 +32,46 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
         state.copyWith(isLoading: true, error: null),
       );
       final List<MenuItemEntity> dishes =
-      await _getMenuListUsecase.execute(event.page);
+      await _getMenuListUseCase.execute(event.page);
       emit(state.copyWith(
-          dishesList: [...state.dishesList, ...dishes], isLoading: false));
+          dishesList: [...state.dishesList, ...dishes],
+          isLoading: false));
+    } catch (e) {
+      emit(
+        state.copyWith(error: e, isLoading: false),
+      );
+    }
+  }
+
+  Future<void> _getHeaderMenu(LoadHeaderMenuList event, Emitter<MenuState> emit) async {
+    try {
+      emit(
+        state.copyWith(isLoading: true, error: null),
+      );
+      final List<HeaderMenuItemEntity> headerImagesList =
+      await _getHeaderMenuListUseCase.execute(event.page);
+      emit(state.copyWith(
+        headerImagesList: [...state.headerImagesList, ...headerImagesList],
+        isLoading: false,
+      ));
+    } catch (e) {
+      emit(
+        state.copyWith(error: e, isLoading: false),
+      );
+    }
+  }
+
+  Future<void> _getHorizontalMenu(LoadHorizontalMenuList event, Emitter<MenuState> emit) async {
+    try {
+      emit(
+        state.copyWith(isLoading: true, error: null),
+      );
+      final List<HorizontalMenuItemEntity> horizontalDishesList =
+      await _getHorizontalMenuListUseCase.execute(event.page);
+      emit(state.copyWith(
+        horizontalDishesList: [...state.horizontalDishesList, ...horizontalDishesList],
+        isLoading: false,
+      ));
     } catch (e) {
       emit(
         state.copyWith(error: e, isLoading: false),

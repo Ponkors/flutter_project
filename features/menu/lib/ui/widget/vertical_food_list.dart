@@ -19,12 +19,11 @@ class _VerticalMenuListState extends State<VerticalMenuList> {
     return Container(
       width: MediaQuery.of(context).size.width,
       margin: const EdgeInsets.all(AppDimens.padding_20),
-      child: SingleChildScrollView( // Using SingleChildScrollView
-        child: Column( // Using Column instead of ListView.separated
+      child: SingleChildScrollView(
+        child: Column(
           children: widget._itemModels.asMap().entries.map((entry) {
             int index = entry.key;
             MenuItemEntity itemModel = entry.value;
-
             return Column(
               children: [
                 GestureDetector(

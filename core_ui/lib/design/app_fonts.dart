@@ -1,3 +1,4 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class AppFonts {
@@ -30,8 +31,15 @@ class AppFonts {
     letterSpacing: 0.1,
   );
 
-  static const s24_w600 = TextStyle(fontSize: 24, fontWeight: FontWeight.w600);
-  static const s12_w400 = TextStyle(fontSize: 12, fontWeight: FontWeight.w400);
+  static const s24_w600 = TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.w600,
+  );
+
+  static const s12_w400 = TextStyle(
+      fontSize: 12,
+      fontWeight: FontWeight.w400,
+  );
 
   static const bold_37 = TextStyle(
     fontSize: 37,
