@@ -1,6 +1,5 @@
-import 'package:core_ui/design/app_fonts.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class HomeTextWidget extends StatelessWidget {
   final String titleText;
@@ -11,10 +10,16 @@ class HomeTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 25, right: 25),
-      padding: EdgeInsets.only(left: 25, right: 25),
-      height: 140,
-      width: 400,
+      margin: EdgeInsets.only(
+          left: AppDimens.padding_25,
+          right: AppDimens.padding_25,
+      ),
+      padding: EdgeInsets.only(
+          left: AppDimens.padding_25,
+          right: AppDimens.padding_25,
+      ),
+      height: AppDimens.size_140,
+      width: AppDimens.size_400,
       child: Column(
         children: [
           Text(
@@ -22,12 +27,12 @@ class HomeTextWidget extends StatelessWidget {
             textAlign: TextAlign.center,
             style: GoogleFonts.poppins(textStyle: AppFonts.s28_w700),
           ),
-          SizedBox(height: 20),
+          SizedBox(height: AppDimens.padding_20),
           Text(
             mainText,
             textAlign: TextAlign.center,
             style: GoogleFonts.poppins(textStyle: AppFonts.s16_w400),
-          )
+          ),
         ],
       ),
     );

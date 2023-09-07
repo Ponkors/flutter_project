@@ -14,9 +14,9 @@ class TempButtonWidget extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         primary: AppColors.orange,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(AppDimens.radius_10),
         ),
-        minimumSize: Size(115, 40),
+        minimumSize: Size(AppDimens.size_115, AppDimens.size_40),
       ),
       child: Text(
         title,

@@ -35,7 +35,7 @@ class RestaurantPropertiesWidget extends StatelessWidget {
                 ),
                 SizedBox(height: AppDimens.padding_16),
                 Row(
-                  children: [
+                  children: <Widget> [
                     Text(
                       '4.3',
                       style: GoogleFonts.gothicA1(
@@ -57,11 +57,9 @@ class RestaurantPropertiesWidget extends StatelessWidget {
                     )
                   ],
                 ),
-                SizedBox(
-                  height: AppDimens.padding_45,
-                ),
+                SizedBox(height: AppDimens.padding_45),
                 Row(
-                  children: [
+                  children:[
                     Image.asset(
                       ImagePaths.deliveryIcon,
                     ),

@@ -12,5 +12,4 @@ class GetHorizontalMenuListUseCase extends FutureUseCase<List<HorizontalMenuItem
   Future<List<HorizontalMenuItemEntity>> execute(int input) async {
     return await horizontalMenuItemRepository.getHorizontalMenuList(input);
   }
-
 }

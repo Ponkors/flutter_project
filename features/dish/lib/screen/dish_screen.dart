@@ -17,7 +17,7 @@ class DishScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: ListView(
-          children: [
+          children: <Widget> [
             Stack(
               children: <Widget>[
                 Image.network(
@@ -26,8 +26,8 @@ class DishScreen extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                 ),
                 Positioned(
-                  top: 30,
-                  left: 20,
+                  top: AppDimens.padding_30,
+                  left: AppDimens.padding_20,
                   child: CupertinoButton(
                       onPressed: () {
                         context.router.pop();
@@ -47,7 +47,7 @@ class DishScreen extends StatelessWidget {
               margin: const EdgeInsets.only(top: AppDimens.padding_10),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: <Widget>[
                     Text(
                       _model.name,
                       style: GoogleFonts.poppins(textStyle: AppFonts.normal_20),
@@ -68,17 +68,18 @@ class DishScreen extends StatelessWidget {
                       _model.ingredients,
                       style: GoogleFonts.poppins(textStyle: AppFonts.normal_16),
                     ),
-                  ]),
+                  ],
+              ),
             ),
             Container(
               margin: const EdgeInsets.symmetric(vertical: AppDimens.padding_60),
               child: Column(
-                children: [
+                children: <Widget>[
                   AddButton(),
                 ],
               ),
-            )
-              ],
+            ),
+          ],
         ),
       ),
     );

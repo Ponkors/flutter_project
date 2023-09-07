@@ -40,10 +40,6 @@ class FirebaseProvider {
       horizontalMenuItems.add(HorizontalMenuItemModel.fromJson(fbHorizontalItem.data()));
     }
     return horizontalMenuItems;
-    // for (var fbHorizontalItem in fbHorizontalMenu) {
-    //   horizontalMenuItems.add(HorizontalMenuItemModel.fromJson(fbHorizontalItem.data()));
-    // }
-    // return horizontalMenuItems;
   }
 
   // --------------------------------------------------------------------------

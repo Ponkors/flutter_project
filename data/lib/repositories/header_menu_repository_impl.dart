@@ -10,7 +10,10 @@ class HeaderMenuItemRepository implements IHeaderMenuItemRepository {
 
   @override
   Future<List<HeaderMenuItemEntity>> getHeaderMenuList(int page) async {
-    final List<HeaderMenuItemModel> result = await _firebaseProvider.fetchHeaderMenuItems();
-    return result.map((HeaderMenuItemModel e) => HeaderMenuItemMapper.toEntity(e)).toList();
+    final List<HeaderMenuItemModel> result =
+        await _firebaseProvider.fetchHeaderMenuItems();
+    return result
+        .map((HeaderMenuItemModel e) => HeaderMenuItemMapper.toEntity(e))
+        .toList();
   }
 }

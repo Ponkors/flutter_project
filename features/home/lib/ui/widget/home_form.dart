@@ -11,13 +11,13 @@ class HomeForm extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Stack(
-        children: [
+        children: <Widget>[
           Positioned(
-            left: -100,
+            left: -AppDimens.size_100,
             top: -50,
             child: Container(
-              width: 450,
-              height: 450,
+              width: AppDimens.size_450,
+              height: AppDimens.size_450,
               decoration: BoxDecoration(
                 color: Color.fromRGBO(255, 243, 222, 1),
                 /* TODO: Color from AppColor(core_ui package) is not similar like
@@ -32,23 +32,24 @@ class HomeForm extends StatelessWidget {
             ),
           ),
           Column(
-            children: [
+            children: <Widget>[
               WelcomeCardWidget(),
               Spacer(),
               HomeTextWidget(
                 titleText: AppConstants.welcomeTitle,
                 mainText: AppConstants.welcomeText,
               ),
-              SizedBox(height: 40),
+              SizedBox(height: AppDimens.size_40),
               GestureDetector(
                 onTap: () {
                   AutoRouter.of(context).pushNamed('welcome_screens');
                 },
                 child: WelcomeButtonWidget(() {
                   AutoRouter.of(context).pushNamed('welcome_screens');
-                }),
+                }
+                ),
               ),
-              SizedBox(height: 30),
+              SizedBox(height: AppDimens.size_30),
             ],
           ),
         ],

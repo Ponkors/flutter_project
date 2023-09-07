@@ -12,5 +12,4 @@ class GetHeaderMenuListUseCase extends FutureUseCase<List<HeaderMenuItemEntity>,
   Future<List<HeaderMenuItemEntity>> execute(int input) async {
     return await headerMenuItemRepository.getHeaderMenuList(input);
   }
-
 }

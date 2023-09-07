@@ -10,7 +10,10 @@ class HorizontalMenuItemRepository implements IHorizontalMenuItemRepository {
 
   @override
   Future<List<HorizontalMenuItemEntity>> getHorizontalMenuList(int page) async {
-    final List<HorizontalMenuItemModel> result = await _firebaseProvider.fetchHorizontalMenuItems();
-    return result.map((HorizontalMenuItemModel e) => HorizontalMenuItemMapper.toEntity(e)).toList();
+    final List<HorizontalMenuItemModel> result =
+        await _firebaseProvider.fetchHorizontalMenuItems();
+    return result
+        .map((HorizontalMenuItemModel e) => HorizontalMenuItemMapper.toEntity(e))
+        .toList();
   }
 }
