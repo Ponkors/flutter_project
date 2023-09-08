@@ -19,7 +19,7 @@ class _HorizontalMenuListState extends State<HorizontalMenuList> {
     return Container(
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: <Widget>[
               Padding(
                 padding: const EdgeInsets.all(AppDimens.padding_20),
                 child: Text(
@@ -41,10 +41,10 @@ class _HorizontalMenuListState extends State<HorizontalMenuList> {
                           HorizontalMenuItemEntity itemModel = entry.value;
                           return Padding(
                             padding: EdgeInsets.only(
-                                right: AppDimens.padding_20
+                                right: AppDimens.padding_20,
                             ),
                             child: Column(
-                              children: [
+                              children: <Widget>[
                                 HorizontalMenuItem(
                                   name: itemModel.name,
                                   ingredients: itemModel.ingredients,

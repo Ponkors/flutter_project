@@ -44,7 +44,8 @@ class MenuForm extends StatelessWidget {
             return const Center(
               child:CupertinoActivityIndicator(
                 radius: AppDimens.radius_16,
-                color: AppColors.grey),
+                color: AppColors.grey,
+              ),
           );
         },
       ),

@@ -14,7 +14,7 @@ class RestaurantPropertiesWidget extends StatelessWidget {
         ),
         child: Stack(
           alignment: Alignment.bottomRight,
-          children: [
+          children:[
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
