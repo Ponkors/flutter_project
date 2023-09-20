@@ -1,5 +1,4 @@
 import 'package:core_ui/core_ui.dart';
-import 'package:core_ui/design/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,9 +14,12 @@ class WelcomeButtonWidget extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         primary: AppColors.orange,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(AppDimens.size_10),
         ),
-        minimumSize: Size(335, 48),
+        minimumSize: Size(
+            AppDimens.size_335,
+            AppDimens.size_48,
+        ),
       ),
       child: Text(
         AppConstants.getStarted,

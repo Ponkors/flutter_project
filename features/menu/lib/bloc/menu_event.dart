@@ -1,18 +1,18 @@
 part of 'menu_bloc.dart';
 
 
-abstract class MenuEvent {}
-class LoadMenuList extends MenuEvent {
-  final int page;
-  LoadMenuList(this.page);
+abstract class DishesEvent {
+  const DishesEvent();
 }
 
-class LoadHeaderMenuList extends MenuEvent {
-  final int page;
-  LoadHeaderMenuList(this.page);
+class InitListOfDishes extends DishesEvent {
+  InitListOfDishes();
 }
 
-class LoadHorizontalMenuList extends MenuEvent {
-  final int page;
-  LoadHorizontalMenuList(this.page);
+class LoadListOfDishes extends DishesEvent {
+  LoadListOfDishes();
+}
+
+class CheckInternetConnection extends DishesEvent{
+  CheckInternetConnection();
 }

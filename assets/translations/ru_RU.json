@@ -1,0 +1,26 @@
+{
+  "homePage":{
+    "foodDelivery":"Доставка еды",
+    "home":"Главная",
+    "cart":"Заказы",
+    "orderHistory":"История заказов",
+    "settings":"Настройки"
+  },
+  "homeScreen":{
+    "add":"Добавить",
+    "dishAddedToTheCart":"Блюдо было добавлено в список заказов!"
+  },
+  "selectDishScreen":{
+    "ingredients":"Инградиенты",
+    "cost":"Цена",
+    "showMore":"Больше",
+    "showLess":"Меньше",
+    "descriptionNotAvailable":"Подробности не доступны"
+  },
+  "cartScreen":{
+    "yourShoppingCartIsEmpty":"Ваш список заказов пуст",
+    "chooseDishes":"Выбрать блюдо",
+    "totalPrice":"Цена",
+    "makeAnOrder":"Сделать заказ"
+  }
+}

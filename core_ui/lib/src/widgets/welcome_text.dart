@@ -30,7 +30,7 @@ class WelcomeText extends StatelessWidget {
             mainText,
             textAlign: TextAlign.center,
             style: GoogleFonts.gothicA1(
-              color: AppColors.grey,
+              color: AppColors.black,
               textStyle: AppFonts.s16_w400,
             ),
           )

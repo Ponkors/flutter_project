@@ -1,35 +1,60 @@
+import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:domain/domain.dart';
+import 'package:menu/menu.dart';
 import 'package:navigation/navigation.dart';
-import 'package:core_ui/design/app_themes.dart';
-import 'package:device_info/device_info.dart';
+import 'package:orders/orders.dart';
+import 'package:settings/settings.dart';
 
-class FlutterApp extends StatefulWidget {
-  const FlutterApp({super.key});
-
-  @override
-  State<FlutterApp> createState() => _FlutterAppState();
-}
-
-class _FlutterAppState extends State<FlutterApp> {
-  final _appRouter = AppRouter();
+class FoodApp extends StatelessWidget {
+  const FoodApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerDelegate: _appRouter.delegate(),
-      routeInformationParser: _appRouter.defaultRouteParser(),
-      debugShowCheckedModeBanner: false,
-      theme: determineTheme(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<SettingsBloc>(
+          create: (_) => SettingsBloc(
+            checkThemeTypeUseCase: getIt.get<CheckThemeTypeUseCase>(),
+            checkThemeModeUseCase: getIt.get<CheckThemeModeUseCase>(),
+            checkFontSizeUseCase: getIt.get<CheckFontSizeUseCase>(),
+            setThemeTypeUseCase: getIt.get<SetThemeTypeUseCase>(),
+            setThemeModeUseCase: getIt.get<SetThemeModeUseCase>(),
+            setFontSizeUseCase: getIt.get<SetFontSizeUseCase>(),
+          ),
+        ),
+        BlocProvider<CartBloc>(
+          create: (_) => CartBloc(
+            getCartDishesUseCase: getIt.get<GetCartDishesUseCase>(),
+            addCartDishUseCase: getIt.get<AddCartDishUseCase>(),
+            removeCartDishUseCase: getIt.get<RemoveCartDishUseCase>(),
+          ),
+        ),
+      ],
+      child: BlocBuilder<SettingsBloc, SettingsState>(
+        builder: (BuildContext context, SettingsState state) {
+          return MaterialApp.router(
+            builder: (BuildContext context, Widget? child) {
+              final MediaQueryData mediaQueryData = MediaQuery.of(context);
+              return MediaQuery(
+                data: mediaQueryData.copyWith(
+                  textScaleFactor: state.textScale,
+                ),
+                child: child!,
+              );
+            },
+            routerDelegate: getIt.get<AppRouter>().delegate(),
+            routeInformationParser: getIt.get<AppRouter>().defaultRouteParser(),
+            title: 'Toomang FoodService',
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+            theme: state.systemTheme ? ThemeData.light() : state.themeData,
+            darkTheme: state.systemTheme ? ThemeData.dark() : state.themeData,
+          );
+        },
+      ),
     );
-  }
-
-  ThemeData determineTheme() {
-    var brightness = MediaQuery.of(context).platformBrightness;
-    if (brightness == Brightness.dark) {
-      return ThemeData.dark();
-    } else {
-      return ThemeData.light();
-    }
   }
 }

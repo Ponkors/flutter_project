@@ -1,3 +1,16 @@
-import 'package:get_it/get_it.dart';
+import 'package:core/core.dart';
+import 'package:navigation/navigation.dart';
 
-final GetIt appLocator = GetIt.instance;
+final AppDI appDi = AppDI();
+
+class AppDI {
+  void initDependencies() {
+    _setupNavigationDependencies();
+  }
+
+  void _setupNavigationDependencies() {
+    getIt.registerSingleton<AppRouter>(
+      AppRouter(),
+    );
+  }
+}

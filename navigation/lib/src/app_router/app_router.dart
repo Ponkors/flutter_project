@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:home/home.dart';
-import 'package:profile/profile.dart';
 import 'package:orders/orders.dart';
-import 'package:search/search.dart';
+import 'package:history/history.dart';
 import 'package:menu/menu.dart';
+import 'package:settings/screen/settings_screen.dart';
 import 'package:welcome/welcome.dart';
-import 'package:main/main.dart';
-import 'package:dish/dish.dart';
 import 'package:domain/domain.dart';
+import 'package:settings/settings.dart';
 
 part 'app_router.gr.dart';
 
@@ -17,13 +16,14 @@ part 'app_router.gr.dart';
   routes: <AutoRoute>[
     AutoRoute(page: HomeScreen, path: '/', initial: true),
     AutoRoute(page: WelcomeScreens, path: 'welcome_screens'),
-    AutoRoute(page: MainScreen, path: 'main_screen', initial: true, children: [
+    AutoRoute(page: PreMenuScreen, path: 'home_page', initial: true, children: [
       AutoRoute(page: MenuScreen, path: 'menu_screen', initial: true),
-      AutoRoute(page: SearchScreen, path: 'search_screen'),
       AutoRoute(page: OrdersScreen, path: 'orders_screen'),
-      AutoRoute(page: ProfileScreen, path: 'profile_screen'),
+      AutoRoute(page: HistoryScreen, path: 'history_screen'),
+      AutoRoute(page: SettingsScreen, path: 'settings_screen'),
     ]),
-    AutoRoute(page: DishScreen, path: 'dish'),
+    AutoRoute(
+        page: SelectDishScreen, path: 'select_dish_screen', initial: true),
   ],
 )
 // extend the generated private router

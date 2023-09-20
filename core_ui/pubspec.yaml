@@ -1,20 +1,29 @@
 name: core_ui
-description: Project Core UI module
+description: Project Core_UI module.
 version: 0.0.1
+publist_to: 'none'
 
 environment:
-  sdk: '>=3.0.5 <4.0.0'
+  sdk: ">=3.0.0 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
-  dots_indicator: ^3.0.0
-  core:
-    path: ../core
-
   flutter:
     sdk: flutter
+  core:
+    path: ../core
+  domain:
+    path: ../domain
+  menu:
+    path: ../features/menu
+  orders:
+    path: ../features/orders
+  navigation:
+    path: ../navigation
   google_fonts: ^5.1.0
   flutter_svg: ^2.0.7
+  readmore: ^2.2.0
+  cached_network_image: ^3.2.2
 
 dev_dependencies:
   flutter_test:

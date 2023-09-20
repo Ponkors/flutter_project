@@ -1,56 +1,41 @@
 name: food_app
 description: A new Flutter project.
-
 publish_to: "none"
-
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.19.6 <3.0.0'
+  sdk: '>=3.0.0 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-
-  profile:
-    path: ./features/profile
-  orders:
-    path: ./features/orders
-  search:
-    path: ./features/search
-  menu:
-    path: ./features/menu
-  home:
-    path: ./features/home
-  main: 
-    path: ./features/main
-  welcome:
-    path: ./features/welcome
-
-  
-  navigation:
-    path: ./navigation
-  data:
-    path: ./data
   core:
     path: ./core
   core_ui:
-    path: ./core_ui/
+    path: ./core_ui
   domain:
     path: ./domain
-
+  navigation:
+    path: ./navigation
+  home:
+    path: ./features/home
+  menu:
+    path: ./features/menu
+  settings:
+    path: ./features/settings
+  orders:
+    path: ./features/orders
+  history:
+    path: ./features/history
   cupertino_icons: ^1.0.2
-  dots_indicator: ^3.0.0
-  device_info:
-  hive: ^2.2.3
-  hive_flutter: ^1.1.0
-  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: ^2.3.3
   flutter_lints: ^2.0.0
 
 flutter:
   uses-material-design: true
+  generate: true
+  assets:
+    - assets/translations/

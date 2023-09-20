@@ -1,0 +1,26 @@
+{
+  "homePage":{
+    "foodDelivery":"Dostawa Żywności",
+    "home":"Spis treści",
+    "cart":"Koszyk",
+    "orderHistory":"Historia Zamówień",
+    "settings":"Ustawienia"
+  },
+  "homeScreen":{
+    "add":"Dodaj",
+    "dishAddedToTheCart":"Danie zostało dodane do koszyka!"
+  },
+  "selectDishScreen":{
+    "ingredients":"Składniki",
+    "cost":"Koszt",
+    "showMore":"Pokaż Więcej",
+    "showLess":"Pokaż Mniej",
+    "descriptionNotAvailable":"Opis Niedostępny"
+  },
+  "ordersScreen":{
+    "yourShoppingCartIsEmpty":"Twój koszyk jest pusty",
+    "chooseDishes":"Wybierz dania",
+    "totalPrice":"Cena Całkowita",
+    "makeAnOrder":"Złóż zamówienie"
+  }
+}

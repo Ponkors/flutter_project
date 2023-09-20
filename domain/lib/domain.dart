@@ -1,16 +1,9 @@
 library domain;
 
-export './entities/menu_item_entity.dart';
-export './entities/horizontal_menu_item_entity.dart';
-export './entities/header_menu_item_entity.dart';
-export './repositories/menu_item_repository.dart';
-export './repositories/horizontal_menu_item_repository.dart';
-export './repositories/header_menu_item_repository.dart';
-export './repositories/theme_repository.dart';
-
-export './usecases/usecases.dart';
-export './usecases/get_menu_list.dart';
-export './usecases/get_horizontal_menu_list.dart';
-export './usecases/get_header_menu_list.dart';
-export './usecases/themes/get_theme_usecase.dart';
-export './usecases/themes/set_theme_usecase.dart';
+export 'models/dish/dish_model.dart';
+export 'models/cart/cart_model.dart';
+export 'models/cart/cart&dish_model.dart';
+export 'repositories/dish_repository.dart';
+export 'repositories/cart_repository.dart';
+export 'repositories/settings_repository.dart';
+export 'usecases/export_usecases.dart';

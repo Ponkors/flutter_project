@@ -29,19 +29,19 @@ class _$AppRouter extends RootStackRouter {
         child: const WelcomeScreens(),
       );
     },
-    MainRoute.name: (routeData) {
+    PreMenuRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const MainScreen(),
+        child: const PreMenuScreen(),
       );
     },
-    DishRoute.name: (routeData) {
-      final args = routeData.argsAs<DishRouteArgs>();
+    SelectDishRoute.name: (routeData) {
+      final args = routeData.argsAs<SelectDishRouteArgs>();
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: DishScreen(
+        child: SelectDishScreen(
+          dish: args.dish,
           key: args.key,
-          model: args.model,
         ),
       );
     },
@@ -51,22 +51,22 @@ class _$AppRouter extends RootStackRouter {
         child: const MenuScreen(),
       );
     },
-    SearchRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const SearchScreen(),
-      );
-    },
     OrdersRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
         child: const OrdersScreen(),
       );
     },
-    ProfileRoute.name: (routeData) {
+    HistoryRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const ProfileScreen(),
+        child: const HistoryScreen(),
+      );
+    },
+    SettingsRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const SettingsScreen(),
       );
     },
   };
@@ -82,41 +82,41 @@ class _$AppRouter extends RootStackRouter {
           path: 'welcome_screens',
         ),
         RouteConfig(
-          MainRoute.name,
-          path: 'main_screen',
+          PreMenuRoute.name,
+          path: 'home_page',
           children: [
             RouteConfig(
               '#redirect',
               path: '',
-              parent: MainRoute.name,
+              parent: PreMenuRoute.name,
               redirectTo: 'menu_screen',
               fullMatch: true,
             ),
             RouteConfig(
               MenuRoute.name,
               path: 'menu_screen',
-              parent: MainRoute.name,
-            ),
-            RouteConfig(
-              SearchRoute.name,
-              path: 'search_screen',
-              parent: MainRoute.name,
+              parent: PreMenuRoute.name,
             ),
             RouteConfig(
               OrdersRoute.name,
               path: 'orders_screen',
-              parent: MainRoute.name,
+              parent: PreMenuRoute.name,
             ),
             RouteConfig(
-              ProfileRoute.name,
-              path: 'profile_screen',
-              parent: MainRoute.name,
+              HistoryRoute.name,
+              path: 'history_screen',
+              parent: PreMenuRoute.name,
+            ),
+            RouteConfig(
+              SettingsRoute.name,
+              path: 'settings_screen',
+              parent: PreMenuRoute.name,
             ),
           ],
         ),
         RouteConfig(
-          DishRoute.name,
-          path: 'dish',
+          SelectDishRoute.name,
+          path: 'select_dish_screen',
         ),
       ];
 }
@@ -146,49 +146,49 @@ class WelcomeRoutes extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [MainScreen]
-class MainRoute extends PageRouteInfo<void> {
-  const MainRoute({List<PageRouteInfo>? children})
+/// [PreMenuScreen]
+class PreMenuRoute extends PageRouteInfo<void> {
+  const PreMenuRoute({List<PageRouteInfo>? children})
       : super(
-          MainRoute.name,
-          path: 'main_screen',
+          PreMenuRoute.name,
+          path: 'home_page',
           initialChildren: children,
         );
 
-  static const String name = 'MainRoute';
+  static const String name = 'PreMenuRoute';
 }
 
 /// generated route for
-/// [DishScreen]
-class DishRoute extends PageRouteInfo<DishRouteArgs> {
-  DishRoute({
+/// [SelectDishScreen]
+class SelectDishRoute extends PageRouteInfo<SelectDishRouteArgs> {
+  SelectDishRoute({
+    required DishModel dish,
     Key? key,
-    required MenuItemEntity model,
   }) : super(
-          DishRoute.name,
-          path: 'dish',
-          args: DishRouteArgs(
+          SelectDishRoute.name,
+          path: 'select_dish_screen',
+          args: SelectDishRouteArgs(
+            dish: dish,
             key: key,
-            model: model,
           ),
         );
 
-  static const String name = 'DishRoute';
+  static const String name = 'SelectDishRoute';
 }
 
-class DishRouteArgs {
-  const DishRouteArgs({
+class SelectDishRouteArgs {
+  const SelectDishRouteArgs({
+    required this.dish,
     this.key,
-    required this.model,
   });
+
+  final DishModel dish;
 
   final Key? key;
 
-  final MenuItemEntity model;
-
   @override
   String toString() {
-    return 'DishRouteArgs{key: $key, model: $model}';
+    return 'SelectDishRouteArgs{dish: $dish, key: $key}';
   }
 }
 
@@ -205,18 +205,6 @@ class MenuRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [SearchScreen]
-class SearchRoute extends PageRouteInfo<void> {
-  const SearchRoute()
-      : super(
-          SearchRoute.name,
-          path: 'search_screen',
-        );
-
-  static const String name = 'SearchRoute';
-}
-
-/// generated route for
 /// [OrdersScreen]
 class OrdersRoute extends PageRouteInfo<void> {
   const OrdersRoute()
@@ -229,13 +217,25 @@ class OrdersRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [ProfileScreen]
-class ProfileRoute extends PageRouteInfo<void> {
-  const ProfileRoute()
+/// [HistoryScreen]
+class HistoryRoute extends PageRouteInfo<void> {
+  const HistoryRoute()
       : super(
-          ProfileRoute.name,
-          path: 'profile_screen',
+          HistoryRoute.name,
+          path: 'history_screen',
         );
 
-  static const String name = 'ProfileRoute';
+  static const String name = 'HistoryRoute';
+}
+
+/// generated route for
+/// [SettingsScreen]
+class SettingsRoute extends PageRouteInfo<void> {
+  const SettingsRoute()
+      : super(
+          SettingsRoute.name,
+          path: 'settings_screen',
+        );
+
+  static const String name = 'SettingsRoute';
 }

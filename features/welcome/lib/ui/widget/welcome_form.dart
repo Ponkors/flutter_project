@@ -1,7 +1,6 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:dots_indicator/dots_indicator.dart';
 
 class WelcomeForm extends StatelessWidget {
   final String image;
@@ -37,7 +36,7 @@ class WelcomeForm extends StatelessWidget {
                   AutoRouter.of(context).pushNamed('main_screen');
                 },
                 child: WelcomeButtonWidget(() {
-                  AutoRouter.of(context).pushNamed('main_screen');
+                  AutoRouter.of(context).pushNamed('home_page');
                 }),
               ),
               SizedBox(height: 30),

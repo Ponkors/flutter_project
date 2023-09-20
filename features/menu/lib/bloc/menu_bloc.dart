@@ -1,81 +1,74 @@
 import 'package:domain/domain.dart';
 import 'package:core/core.dart';
+import 'dart:async';
 
 part 'menu_state.dart';
 part 'menu_event.dart';
 
-class MenuBloc extends Bloc<MenuEvent, MenuState> {
-  final GetMenuListUseCase _getMenuListUseCase;
-  final GetHeaderMenuListUseCase _getHeaderMenuListUseCase;
-  final GetHorizontalMenuListUseCase _getHorizontalMenuListUseCase;
+class DishesBloc extends Bloc<DishesEvent, DishesState> {
+  final FetchAllDishesUseCase _fetchAllDishesUseCase;
+  StreamSubscription<ConnectivityResult>? streamSubscription;
 
-  MenuBloc({
-    required GetMenuListUseCase getMenuListUseCase,
-    required GetHeaderMenuListUseCase getHeaderMenuListUseCase,
-    required GetHorizontalMenuListUseCase getHorizontalMenuListUseCase,
+  DishesBloc({
+    required FetchAllDishesUseCase fetchAllDishesUseCase,
+  })  : _fetchAllDishesUseCase = fetchAllDishesUseCase,
+        super(DishesState()) {
+    on<InitListOfDishes>(_initDishes);
+    on<LoadListOfDishes>(_loadDishes);
+    on<CheckInternetConnection>(_checkInternetConnection);
 
-  })  : _getMenuListUseCase = getMenuListUseCase,
-        _getHeaderMenuListUseCase = getHeaderMenuListUseCase,
-        _getHorizontalMenuListUseCase = getHorizontalMenuListUseCase,
-        super(const MenuState()) {
-    on<LoadMenuList>(_getMenu);
-    on<LoadHeaderMenuList>(_getHeaderMenu);
-    on<LoadHorizontalMenuList>(_getHorizontalMenu);
-    add(LoadMenuList(0));
-    add(LoadHeaderMenuList(0));
-    add(LoadHorizontalMenuList(0));
+    add(InitListOfDishes());
+
+    streamSubscription = Connectivity()
+        .onConnectivityChanged
+        .listen((ConnectivityResult result) {
+      add(CheckInternetConnection());
+    });
   }
 
-  Future<void> _getMenu(LoadMenuList event, Emitter<MenuState> emit) async {
-    try {
+  Future<void> _initDishes(
+      InitListOfDishes event,
+      Emitter<DishesState> emit,
+      ) async {
+    add(CheckInternetConnection());
+    if (state.listOfDishes.isEmpty) {
       emit(
-        state.copyWith(isLoading: true, error: null),
+        state.copyWith(isLoading: true),
       );
-      final List<MenuItemEntity> dishes =
-      await _getMenuListUseCase.execute(event.page);
-      emit(state.copyWith(
-          dishesList: [...state.dishesList, ...dishes],
-          isLoading: false));
-    } catch (e) {
+      add(LoadListOfDishes());
+    } else {
       emit(
-        state.copyWith(error: e, isLoading: false),
+        state.copyWith(isLoading: false),
       );
     }
   }
 
-  Future<void> _getHeaderMenu(LoadHeaderMenuList event, Emitter<MenuState> emit) async {
+  Future<void> _loadDishes(
+      LoadListOfDishes event,
+      Emitter<DishesState> emit,
+      ) async {
     try {
-      emit(
-        state.copyWith(isLoading: true, error: null),
+      final List<DishModel> dishes = await _fetchAllDishesUseCase.execute(
+        const NoParams(),
       );
-      final List<HeaderMenuItemEntity> headerImagesList =
-      await _getHeaderMenuListUseCase.execute(event.page);
-      emit(state.copyWith(
-        headerImagesList: [...state.headerImagesList, ...headerImagesList],
-        isLoading: false,
-      ));
+      emit(
+        state.copyWith(listOfDishes: dishes),
+      );
     } catch (e) {
       emit(
-        state.copyWith(error: e, isLoading: false),
+        state.copyWith(exception: e),
       );
     }
   }
 
-  Future<void> _getHorizontalMenu(LoadHorizontalMenuList event, Emitter<MenuState> emit) async {
-    try {
-      emit(
-        state.copyWith(isLoading: true, error: null),
-      );
-      final List<HorizontalMenuItemEntity> horizontalDishesList =
-      await _getHorizontalMenuListUseCase.execute(event.page);
-      emit(state.copyWith(
-        horizontalDishesList: [...state.horizontalDishesList, ...horizontalDishesList],
-        isLoading: false,
-      ));
-    } catch (e) {
-      emit(
-        state.copyWith(error: e, isLoading: false),
-      );
-    }
+  Future<void> _checkInternetConnection(
+      CheckInternetConnection event,
+      Emitter<DishesState> emit,
+      ) async {
+    final bool haveInternetConnection =
+    await InternetConnectionInfo.checkInternetConnection();
+    emit(
+      state.copyWith(haveInternetConnection: haveInternetConnection),
+    );
   }
 }

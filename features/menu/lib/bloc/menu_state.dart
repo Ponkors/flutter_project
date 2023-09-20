@@ -1,33 +1,30 @@
 part of 'menu_bloc.dart';
 
-class MenuState {
+class DishesState {
   final bool isLoading;
-  final List<MenuItemEntity> dishesList;
-  final List<HeaderMenuItemEntity> headerImagesList;
-  final List<HorizontalMenuItemEntity> horizontalDishesList;
-  final Object? error;
+  final List<DishModel> listOfDishes;
+  final Object? exception;
+  final bool haveInternetConnection;
 
-  const MenuState({
+  DishesState({
     this.isLoading = true,
-    this.dishesList = const [],
-    this.headerImagesList = const [],
-    this.horizontalDishesList = const [],
-    this.error,
+    this.listOfDishes = const [],
+    this.exception,
+    this.haveInternetConnection = true,
   });
 
-  MenuState copyWith({
-    List<MenuItemEntity>? dishesList,
-    List<HeaderMenuItemEntity>? headerImagesList,
-    List<HorizontalMenuItemEntity>? horizontalDishesList,
+  DishesState copyWith({
     bool? isLoading,
-    Object? error,
+    List<DishModel>? listOfDishes,
+    Object? exception,
+    bool? haveInternetConnection,
   }) {
-    return MenuState(
-      dishesList: dishesList ?? this.dishesList,
-      headerImagesList: headerImagesList ?? this.headerImagesList,
-      horizontalDishesList: horizontalDishesList ?? this.horizontalDishesList,
+    return DishesState(
       isLoading: isLoading ?? this.isLoading,
-      error: error ?? this.error,
+      listOfDishes: listOfDishes ?? this.listOfDishes,
+      exception: exception ?? this.exception,
+      haveInternetConnection:
+        haveInternetConnection ?? this.haveInternetConnection,
     );
   }
 }

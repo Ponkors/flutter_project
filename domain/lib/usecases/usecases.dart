@@ -1,13 +1,9 @@
-abstract class UseCase<OutputT, InputT> {
-  OutputT execute(InputT input);
+abstract class Usecase<Input, Output> {
+  Future<Output> execute(Input input);
 }
 
-abstract class FutureUseCase<OutputT, InputT> {
-  Future<OutputT> execute(InputT input);
-}
-
-abstract class StreamUseCase<OutputT, InputT> {
-  Stream<OutputT> execute(InputT input);
+abstract class FutureUseCase<Input, Output> {
+  Future<Output> execute(Input input);
 }
 
 class NoParams {
