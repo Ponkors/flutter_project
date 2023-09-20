@@ -1,5 +1,4 @@
 import 'package:domain/domain.dart';
-import 'package:domain/repositories/cart_repository.dart';
 
 class RemoveCartDishUseCase implements FutureUseCase<CartDish, void> {
   final CartRepository _cartRepository;

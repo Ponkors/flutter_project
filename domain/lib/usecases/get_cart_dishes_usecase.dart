@@ -1,5 +1,4 @@
 import 'package:domain/domain.dart';
-import 'package:domain/repositories/cart_repository.dart';
 
 class GetCartDishesUseCase implements FutureUseCase<NoParams, List<CartDish>>{
   final CartRepository _cartRepository;
