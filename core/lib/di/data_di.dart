@@ -1,7 +1,9 @@
 import 'package:core/core.dart';
 import 'package:data/data.dart';
 import 'package:domain/domain.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 final GetIt getIt = GetIt.instance;
 final DataDI dataDI = DataDI();
@@ -11,6 +13,8 @@ class DataDI {
     _initFirebaseOptions();
     _initFirebase();
     _initDataProvider();
+    _initGoogleSignIn();
+    _initAuthenticationDataProvider();
     _initLocalDataProvider();
     _initDishes();
     _initHive();
@@ -18,6 +22,7 @@ class DataDI {
     _initSettings();
     _initSettingsPreferencesProvider();
     _initCart();
+    _initAuthentication();
   }
 
   void _initFirebaseOptions() {
@@ -30,7 +35,19 @@ class DataDI {
     await Firebase.initializeApp(
       options: getIt<FirebaseOptions>(),
     );
+    getIt.registerLazySingleton<FirebaseFirestore>(
+      () => FirebaseFirestore.instance,
+    );
+    getIt.registerLazySingleton<FirebaseAuth>(
+      () => FirebaseAuth.instance,
+    );
     FirebaseFirestore.instance.clearPersistence();
+  }
+
+  Future<void> _initGoogleSignIn() async {
+    getIt.registerLazySingleton<GoogleSignIn>(
+      () => GoogleSignIn(),
+    );
   }
 
   void _initHiveAdapter() {
@@ -39,6 +56,9 @@ class DataDI {
     );
     getIt.registerLazySingleton<CartDishEntityAdapter>(
       () => CartDishEntityAdapter(),
+    );
+    getIt.registerLazySingleton<UserEntityAdapter>(
+      () => UserEntityAdapter(),
     );
   }
 
@@ -49,6 +69,9 @@ class DataDI {
     );
     Hive.registerAdapter(
       getIt.get<CartDishEntityAdapter>(),
+    );
+    Hive.registerAdapter(
+      getIt.get<UserEntityAdapter>(),
     );
   }
 
@@ -67,6 +90,19 @@ class DataDI {
     );
     getIt.registerLazySingleton<CartLocalDataProvider>(
       () => CartLocalDataProvider(),
+    );
+    getIt.registerLazySingleton<AuthenticationLocalDataProvider>(
+      () => AuthenticationLocalDataProviderImpl(),
+    );
+  }
+
+  void _initAuthenticationDataProvider() {
+    getIt.registerLazySingleton<AuthenticationDataProvider>(
+      () => AuthenticationDataProviderImpl(
+        googleSignIn: getIt.get<GoogleSignIn>(),
+        firebaseAuth: getIt.get<FirebaseAuth>(),
+        firebaseFirestore: getIt.get<FirebaseFirestore>(),
+      ),
     );
   }
 
@@ -158,6 +194,45 @@ class DataDI {
     getIt.registerLazySingleton<SetThemeTypeUseCase>(
           () => SetThemeTypeUseCase(
         settingsRepository: getIt.get<SettingsRepository>(),
+      ),
+    );
+  }
+
+  void _initAuthentication() {
+    getIt.registerLazySingleton<AuthenticationRepository>(
+          () => AuthenticationRepositoryImpl(
+        authenticationDataProvider: getIt.get<AuthenticationDataProvider>(),
+        authenticationLocalDataProvider: getIt.get<AuthenticationLocalDataProvider>(),
+      ),
+    );
+    getIt.registerLazySingleton<SignInUseCase>(
+          () => SignInUseCase(
+        authenticationRepository: getIt.get<AuthenticationRepository>(),
+      ),
+    );
+    getIt.registerLazySingleton<SignUpUseCase>(
+          () => SignUpUseCase(
+        authenticationRepository: getIt.get<AuthenticationRepository>(),
+      ),
+    );
+    getIt.registerLazySingleton<SignOutUseCase>(
+          () => SignOutUseCase(
+        authenticationRepository: getIt.get<AuthenticationRepository>(),
+      ),
+    );
+    getIt.registerLazySingleton<SignInWithGoogleUseCase>(
+          () => SignInWithGoogleUseCase(
+        authenticationRepository: getIt.get<AuthenticationRepository>(),
+      ),
+    );
+    getIt.registerLazySingleton<ResetPasswordUseCase>(
+          () => ResetPasswordUseCase(
+        authenticationRepository: getIt.get<AuthenticationRepository>(),
+      ),
+    );
+    getIt.registerLazySingleton<GetUserFromStorageUseCase>(
+          () => GetUserFromStorageUseCase(
+        authenticationRepository: getIt.get<AuthenticationRepository>(),
       ),
     );
   }
