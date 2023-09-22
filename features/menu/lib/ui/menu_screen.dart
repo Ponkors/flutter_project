@@ -4,6 +4,7 @@ import 'package:core_ui/core_ui.dart';
 import 'package:navigation/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:menu/menu.dart';
+import 'package:authentication/authentication.dart';
 
 class MenuScreen extends StatelessWidget {
   const MenuScreen({super.key});
@@ -11,6 +12,9 @@ class MenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final DishesBloc bloc = BlocProvider.of<DishesBloc>(context);
+    final AuthenticationBloc authenticationBloc = BlocProvider.of(context);
+    final ThemeData themeData = Theme.of(context);
+    final MediaQueryData mediaQueryData= MediaQuery.of(context);
     return RefreshIndicator(
       child: SafeArea(
         child: Scaffold(

@@ -1,5 +1,7 @@
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:domain/domain.dart';
+import 'package:history/history.dart';
 import 'package:flutter/material.dart';
 import 'package:navigation/navigation.dart';
 import 'package:orders/orders.dart';
@@ -9,8 +11,10 @@ class OrdersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final CartBloc cartBloc = BlocProvider.of(context);
+    final OrdersHistoryBloc ordersHistoryBloc = BlocProvider.of(context);
     return Scaffold(
-      body: BlocBuilder<CartBloc, CartState> (
+      body: BlocBuilder<CartBloc, CartState>(
         builder: (_, CartState state) {
           if (state.cart.dishes.isNotEmpty) {
             return Column(
@@ -29,7 +33,22 @@ class OrdersScreen extends StatelessWidget {
                 ),
                 TotalPrice(
                   totalPrice: state.cart.totalPrice,
-                  onPressed: () {},
+                  onPressed: () {
+                    ordersHistoryBloc.add(
+                      AddOrder(
+                        order: OrdersHistoryModel(
+                          id: state.userUid,
+                          cart: state.cart,
+                          dateTime: DateTime.now(),
+                        ),
+                      ),
+                    );
+                    _showSnackBar(
+                        context,
+                        'Accepted Order'
+                    );
+                    cartBloc.add(ClearCart());
+                  },
                   itemCount: state.cart.dishes.length,
                 ),
               ],
@@ -45,5 +64,19 @@ class OrdersScreen extends StatelessWidget {
       ),
     );
   }
+  void _showSnackBar(BuildContext context, String message) {
+    final ThemeData themeData = Theme.of(context);
+    final SnackBar snackBar = SnackBar(
+      content: Text(
+        'Accepted Order',
+        style: themeData.textTheme.titleMedium!.copyWith(
+          color: AppColors.white,
+        ),
+      ),
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: themeData.primaryColor,
+      duration: const Duration(milliseconds: 1500),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
 }
-

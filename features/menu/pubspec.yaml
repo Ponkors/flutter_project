@@ -22,6 +22,8 @@ dependencies:
     path: ../orders
   history:
     path: ../history
+  authentication:
+    path: ../authentication
   another_flushbar: ^1.12.30
 
 dev_dependencies:
