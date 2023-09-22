@@ -3,7 +3,9 @@ part of 'data_provider.dart';
 class DataProviderImpl implements DataProvider {
   final FirebaseFirestore _firebaseFirestore;
 
-  DataProviderImpl(this._firebaseFirestore);
+  const DataProviderImpl({
+    required FirebaseFirestore firebaseFirestore,
+  }) : _firebaseFirestore = firebaseFirestore;
 
   @override
   Future<List<DishEntity>> getAllDishes() async {
@@ -11,9 +13,9 @@ class DataProviderImpl implements DataProvider {
     await _firebaseFirestore.collection('menu').get();
     return dataRef.docs
         .map((
-        QueryDocumentSnapshot<Map<String, dynamic>> dish,
+          QueryDocumentSnapshot<Map<String, dynamic>> dish,
         ) =>
-        DishEntity.fromFirebase(dish))
+            DishEntity.fromFirebase(dish))
         .toList();
   }
 }

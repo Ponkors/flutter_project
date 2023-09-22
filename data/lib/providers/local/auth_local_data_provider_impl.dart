@@ -1,7 +1,7 @@
 part of 'auth_local_data_provider.dart';
 
 class AuthenticationLocalDataProviderImpl implements AuthenticationLocalDataProvider {
-  AuthenticationLocalDataProviderImpl();
+  const AuthenticationLocalDataProviderImpl();
 
   @override
   Future<UserEntity> getUserFromLocal() async {

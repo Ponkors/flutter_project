@@ -17,16 +17,16 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    HomeRoute.name: (routeData) {
+    StartRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const HomeScreen(),
+        child: const StartScreen(),
       );
     },
-    WelcomeRoutes.name: (routeData) {
+    SignInRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const WelcomeScreens(),
+        child: const SignInScreen(),
       );
     },
     PreMenuRoute.name: (routeData) {
@@ -57,10 +57,10 @@ class _$AppRouter extends RootStackRouter {
         child: const OrdersScreen(),
       );
     },
-    HistoryRoute.name: (routeData) {
+    OrdersHistoryRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const HistoryScreen(),
+        child: const OrdersHistoryScreen(),
       );
     },
     SettingsRoute.name: (routeData) {
@@ -74,12 +74,18 @@ class _$AppRouter extends RootStackRouter {
   @override
   List<RouteConfig> get routes => [
         RouteConfig(
-          HomeRoute.name,
+          '/#redirect',
           path: '/',
+          redirectTo: 'start_screen',
+          fullMatch: true,
         ),
         RouteConfig(
-          WelcomeRoutes.name,
-          path: 'welcome_screens',
+          StartRoute.name,
+          path: 'start_screen',
+        ),
+        RouteConfig(
+          SignInRoute.name,
+          path: 'signIn_screen',
         ),
         RouteConfig(
           PreMenuRoute.name,
@@ -103,8 +109,8 @@ class _$AppRouter extends RootStackRouter {
               parent: PreMenuRoute.name,
             ),
             RouteConfig(
-              HistoryRoute.name,
-              path: 'history_screen',
+              OrdersHistoryRoute.name,
+              path: 'orders_history_screen',
               parent: PreMenuRoute.name,
             ),
             RouteConfig(
@@ -122,27 +128,27 @@ class _$AppRouter extends RootStackRouter {
 }
 
 /// generated route for
-/// [HomeScreen]
-class HomeRoute extends PageRouteInfo<void> {
-  const HomeRoute()
+/// [StartScreen]
+class StartRoute extends PageRouteInfo<void> {
+  const StartRoute()
       : super(
-          HomeRoute.name,
-          path: '/',
+          StartRoute.name,
+          path: 'start_screen',
         );
 
-  static const String name = 'HomeRoute';
+  static const String name = 'StartRoute';
 }
 
 /// generated route for
-/// [WelcomeScreens]
-class WelcomeRoutes extends PageRouteInfo<void> {
-  const WelcomeRoutes()
+/// [SignInScreen]
+class SignInRoute extends PageRouteInfo<void> {
+  const SignInRoute()
       : super(
-          WelcomeRoutes.name,
-          path: 'welcome_screens',
+          SignInRoute.name,
+          path: 'signIn_screen',
         );
 
-  static const String name = 'WelcomeRoutes';
+  static const String name = 'SignInRoute';
 }
 
 /// generated route for
@@ -217,15 +223,15 @@ class OrdersRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [HistoryScreen]
-class HistoryRoute extends PageRouteInfo<void> {
-  const HistoryRoute()
+/// [OrdersHistoryScreen]
+class OrdersHistoryRoute extends PageRouteInfo<void> {
+  const OrdersHistoryRoute()
       : super(
-          HistoryRoute.name,
-          path: 'history_screen',
+          OrdersHistoryRoute.name,
+          path: 'orders_history_screen',
         );
 
-  static const String name = 'HistoryRoute';
+  static const String name = 'OrdersHistoryRoute';
 }
 
 /// generated route for

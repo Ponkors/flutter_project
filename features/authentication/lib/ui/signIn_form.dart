@@ -1,5 +1,6 @@
 import 'package:authentication/bloc/submit_status.dart';
 import 'package:authentication/ui/app_text_field.dart';
+import 'package:authentication/ui/logIn_switch.dart';
 import 'package:authentication/ui/submit_button.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
@@ -7,14 +8,14 @@ import 'package:flutter/material.dart';
 import 'package:navigation/navigation.dart';
 import 'package:authentication/authentication.dart';
 
-class AuthenticationSingInForm extends StatefulWidget {
-  const AuthenticationSingInForm({super.key});
+class SignInForm extends StatefulWidget {
+  const SignInForm({super.key});
 
   @override
-  State<AuthenticationSingInForm> createState() => _AuthenticationSingInFormState();
+  State<SignInForm> createState() => _SignInFormState();
 }
 
-class _AuthenticationSingInFormState extends State<AuthenticationSingInForm> {
+class _SignInFormState extends State<SignInForm> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -81,14 +82,14 @@ class _AuthenticationSingInFormState extends State<AuthenticationSingInForm> {
               SizedBox(height: AppDimens.size_10),
               BlocListener<AuthenticationBloc, AuthenticationState>(
                 listener: (BuildContext context, AuthenticationState state) {
-                  final SubmitStatusForm formStatus = bloc.state.statusForm;
-                  if (formStatus is SubmissionFailed) {
+                  final SubmissionStatusForm formStatus = bloc.state.statusForm;
+                  if (formStatus is SubmissionFormFailed) {
                     _showSnackBar(
                       context,
                       formStatus.exception.toString(),
                     );
                   }
-                  if (formStatus is SubmissionSuccess) {
+                  if (formStatus is SubmissionFormSuccess) {
                     bloc.add(
                       NavigateToMenuPage(),
                     );
@@ -113,6 +114,13 @@ class _AuthenticationSingInFormState extends State<AuthenticationSingInForm> {
                 ),
               ),
               const SizedBox(height: AppDimens.size_20),
+              LogInSwitch(
+                title: 'authScreens.haveAccount'.tr(),
+                label: 'authScreens.signIn'.tr(),
+                onPressed: () {
+                  bloc.add(ChangeSignInPage());
+                },
+              ),
             ],
           ),
         ),

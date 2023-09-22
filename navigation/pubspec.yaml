@@ -32,6 +32,8 @@ dependencies:
     path: ../features/settings
   history:
     path: ../features/history
+  authentication:
+    path: ../features/authentication
   auto_route: ^5.0.4
 
 dev_dependencies:

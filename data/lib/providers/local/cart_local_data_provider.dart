@@ -47,4 +47,9 @@ class CartLocalDataProvider {
     final List<CartDishEntity> cartDishEntity = cartDishBox.values.toList();
     return cartDishEntity;
   }
+
+  Future<void> clearCart() async {
+    final Box<CartDishEntity> cartDishBox = await Hive.openBox('cart');
+    cartDishBox.clear();
+  }
 }

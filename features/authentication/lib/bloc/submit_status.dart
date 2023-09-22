@@ -1,13 +1,13 @@
-abstract class SubmitStatusForm {
-  const SubmitStatusForm();
+abstract class SubmissionStatusForm {
+  const SubmissionStatusForm();
 }
 
-class InitSubmitStatus extends SubmitStatusForm {
+class InitSubmitStatus extends SubmissionStatusForm {
   const InitSubmitStatus();
 }
-class SubmissionSuccess extends SubmitStatusForm {}
-class SubmissionFailed extends SubmitStatusForm {
+class SubmissionFormSuccess extends SubmissionStatusForm {}
+class SubmissionFormFailed extends SubmissionStatusForm {
   final String? exception;
-  SubmissionFailed(this.exception);
+  SubmissionFormFailed(this.exception);
 }
-class FormSubmitting extends SubmitStatusForm {}
+class FormSubmitting extends SubmissionStatusForm {}

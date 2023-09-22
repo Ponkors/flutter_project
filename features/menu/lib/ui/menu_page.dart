@@ -18,7 +18,7 @@ class PreMenuScreen extends StatelessWidget {
         routes: const <PageRouteInfo<dynamic>>[
           MenuRoute(),
           OrdersRoute(),
-          HistoryRoute(),
+          OrdersHistoryRoute(),
           SettingsRoute(),
         ],
         appBarBuilder: (_, TabsRouter tabsRouter) {

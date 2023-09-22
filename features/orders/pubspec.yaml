@@ -16,6 +16,10 @@ dependencies:
     path: ../../core_ui
   domain:
     path: ../../domain
+  authentication:
+    path: ../authentication
+  history:
+    path: ../history
   navigation:
     path: ../../navigation
 

@@ -50,8 +50,16 @@ class NavigateToMenuPage extends AuthenticationEvent {
   NavigateToMenuPage();
 }
 
-class NavigateToLoginScreen extends AuthenticationEvent {
-  NavigateToLoginScreen();
+class NavigateToSignInScreen extends AuthenticationEvent {
+  NavigateToSignInScreen();
+}
+
+class ChangeSignInPage extends AuthenticationEvent {
+  ChangeSignInPage();
+}
+
+class ChangeResetPasswordPage extends AuthenticationEvent {
+  ChangeResetPasswordPage();
 }
 
 

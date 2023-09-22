@@ -5,34 +5,44 @@ part 'cart_event.dart';
 part 'cart_state.dart';
 
 class CartBloc extends Bloc<CartEvent, CartState> {
+  final GetCartDishesUseCase _getCartDishesUseCase;
+  final GetUserFromStorageUseCase _getUserFromStorageUseCase;
   final AddCartDishUseCase _addCartDishUseCase;
   final RemoveCartDishUseCase _removeCartDishUseCase;
-  final GetCartDishesUseCase _getCartDishesUseCase;
+  final ClearCartUseCase _clearCartUseCase;
   CartBloc({
+    required GetCartDishesUseCase getCartDishesUseCase,
+    required GetUserFromStorageUseCase getUserFromStorageUseCase,
     required AddCartDishUseCase addCartDishUseCase,
     required RemoveCartDishUseCase removeCartDishUseCase,
-    required GetCartDishesUseCase getCartDishesUseCase,
-  }) : _addCartDishUseCase = addCartDishUseCase,
+    required ClearCartUseCase clearCartUseCase,
+  }) : _getCartDishesUseCase = getCartDishesUseCase,
+       _getUserFromStorageUseCase = getUserFromStorageUseCase,
+       _addCartDishUseCase = addCartDishUseCase,
        _removeCartDishUseCase = removeCartDishUseCase,
-       _getCartDishesUseCase = getCartDishesUseCase,
-       super(CartState.empty(
-        const CartModel(
-          dishes: [],
-          totalPrice: 0,
-        ),
-      )) {
+       _clearCartUseCase = clearCartUseCase,
+       super(CartState.empty()) {
     on<InitCart>(_initCart);
     on<AddDishToCart>(_addDishToCart);
     on<RemoveDishFromCart>(_removeDishFromCart);
+    on<ClearCart>(_clearCart);
     add(InitCart());
   }
 
   Future<void> _initCart(
-      InitCart event,
-      Emitter<CartState> emit,
-      ) async {
+    InitCart event,
+    Emitter<CartState> emit,
+  ) async {
     final List<CartDish> dishesInCart = await _getCartDishesUseCase.execute(
       const NoParams(),
+    );
+    final UserModel userFromStorage = await _getUserFromStorageUseCase.execute(
+      const NoParams(),
+    );
+    emit(
+      state.copyWith(
+        userUid: userFromStorage.identifierId,
+      ),
     );
     if (dishesInCart.isEmpty) {
       emit(state.copyWith(cart: state.cart));
@@ -43,17 +53,19 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       }
       emit(
         state.copyWith(
-          cart:
-          state.cart.copyWith(dishes: dishesInCart, totalPrice: totalPrice),
+          cart: state.cart.copyWith(
+            dishes: dishesInCart,
+            totalPrice: totalPrice,
+          ),
         ),
       );
     }
   }
 
   Future<void> _addDishToCart(
-      AddDishToCart event,
-      Emitter<CartState> emit,
-      ) async {
+    AddDishToCart event,
+    Emitter<CartState> emit,
+  ) async {
     await _addCartDishUseCase.execute(event.dish);
     final List<CartDish> updatedCartItems = await _getCartDishesUseCase.execute(
       const NoParams(),
@@ -69,9 +81,9 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   }
 
   Future<void> _removeDishFromCart(
-      RemoveDishFromCart event,
-      Emitter<CartState> emit,
-      ) async {
+    RemoveDishFromCart event,
+    Emitter<CartState> emit,
+  ) async {
     await _removeCartDishUseCase.execute(event.cartDish);
     final List<CartDish> updatedCartItems = await _getCartDishesUseCase.execute(
       const NoParams(),
@@ -81,6 +93,23 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         cart: CartModel(
           dishes: updatedCartItems,
           totalPrice: state.cart.totalPrice - event.cartDish.dish.cost,
+        ),
+      ),
+    );
+  }
+
+  Future<void> _clearCart(
+    ClearCart event,
+    Emitter<CartState> emit,
+  ) async {
+    await _clearCartUseCase.execute(
+      const NoParams(),
+    );
+    emit(
+      state.copyWith(
+        cart: const CartModel(
+          dishes: [],
+          totalPrice: 0,
         ),
       ),
     );

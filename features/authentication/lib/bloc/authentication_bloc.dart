@@ -41,7 +41,9 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     on<SignInWithGoogleSubmitted>(_signInWithGoogle);
     on<ResetPasswordSubmitted>(_resetPassword);
     on<NavigateToMenuPage>(_navigateToMenuPage);
-    on<NavigateToLoginScreen>(_navigateToLoginScreen);
+    on<NavigateToSignInScreen>(_navigateToSignInScreen);
+    on<ChangeSignInPage>(_changeSignPage);
+    on<ChangeResetPasswordPage>(_changeResetPasswordPage);
   }
 
   Future<void> _initAuthentication(
@@ -71,7 +73,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
       ) async {
     emit(
       state.copyWith(
-        submitStatus: FormSubmitting(),
+        statusForm: FormSubmitting(),
       ),
     );
     try {
@@ -85,14 +87,14 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
 
       emit(
         state.copyWith(
-          submitStatus: SubmissionSuccess(),
+          statusForm: SubmissionFormSuccess(),
           userModel: userModel,
         ),
       );
     } on FirebaseAuthException catch (error) {
       emit(
         state.copyWith(
-          submitStatus: SubmissionFailed(error.message),
+          statusForm: SubmissionFormFailed(error.message),
         ),
       );
     }
@@ -104,7 +106,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
       ) async {
     emit(
       state.copyWith(
-        submitStatus: FormSubmitting(),
+        statusForm: FormSubmitting(),
       ),
     );
     try {
@@ -117,14 +119,14 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
       );
       emit(
         state.copyWith(
-          submitStatus: SubmissionSuccess(),
+          statusForm: SubmissionFormSuccess(),
           userModel: userModel,
         ),
       );
     } on FirebaseAuthException catch (error) {
       emit(
         state.copyWith(
-          submitStatus: SubmissionFailed(error.message),
+          statusForm: SubmissionFormFailed(error.message),
         ),
       );
     }
@@ -160,7 +162,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     } catch (error) {
       emit(
         state.copyWith(
-          submitStatus: SubmissionFailed(error.toString()),
+          statusForm: SubmissionFormFailed(error.toString()),
         ),
       );
     }
@@ -174,13 +176,13 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
       await _resetPasswordUseCase.execute(event.email);
       emit(
         state.copyWith(
-          submitStatus: SubmissionSuccess(),
+          statusForm: SubmissionFormSuccess(),
         ),
       );
     } on FirebaseAuthException catch (error) {
       emit(
         state.copyWith(
-          submitStatus: SubmissionFailed(error.message),
+          statusForm: SubmissionFormFailed(error.message),
         ),
       );
     }
@@ -193,11 +195,33 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     _appRouter.replace(const PreMenuRoute());
   }
 
-  void _navigateToLoginScreen(
-      NavigateToLoginScreen event,
+  void _navigateToSignInScreen(
+      NavigateToSignInScreen event,
+      Emitter<AuthenticationState> emit,
+  ) {
+    _appRouter.replace(const SignInRoute());
+  }
+
+
+  void _changeSignPage(
+      ChangeSignInPage event,
       Emitter<AuthenticationState> emit,
       ) {
-    // _appRouter.replace(LoginRoute());
-    //TODO route
+    emit(
+      state.copyWith(
+        isSignInPage: !state.isSignInPage,
+      ),
+    );
+  }
+
+  void _changeResetPasswordPage(
+      ChangeResetPasswordPage event,
+      Emitter<AuthenticationState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        isResetPasswordPage: !state.isResetPasswordPage,
+      ),
+    );
   }
 }

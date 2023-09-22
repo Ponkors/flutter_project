@@ -31,4 +31,9 @@ class CartRepositoryImpl implements CartRepository {
     CartDishMapper.toEntity(cartDish);
     await _cartLocalDataProvider.removeDishFromCart(cartDishEntity);
   }
+
+  @override
+  Future<void> clearCart() async {
+    await _cartLocalDataProvider.clearCart();
+  }
 }

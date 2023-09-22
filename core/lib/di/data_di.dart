@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:data/data.dart';
+import 'package:data/providers/remote/orders_history_data_provider_impl.dart';
 import 'package:domain/domain.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
@@ -23,6 +24,7 @@ class DataDI {
     _initSettingsPreferencesProvider();
     _initCart();
     _initAuthentication();
+    _initOrdersHistory();
   }
 
   void _initFirebaseOptions() {
@@ -54,11 +56,17 @@ class DataDI {
     getIt.registerLazySingleton<DishEntityAdapter>(
       () => DishEntityAdapter(),
     );
+    getIt.registerLazySingleton<CartEntityAdapter>(
+      () => CartEntityAdapter(),
+    );
     getIt.registerLazySingleton<CartDishEntityAdapter>(
       () => CartDishEntityAdapter(),
     );
     getIt.registerLazySingleton<UserEntityAdapter>(
       () => UserEntityAdapter(),
+    );
+    getIt.registerLazySingleton<OrdersHistoryEntityAdapter>(
+      () => OrdersHistoryEntityAdapter(),
     );
   }
 
@@ -68,18 +76,28 @@ class DataDI {
       getIt.get<DishEntityAdapter>(),
     );
     Hive.registerAdapter(
+      getIt.get<CartEntityAdapter>(),
+    );
+    Hive.registerAdapter(
       getIt.get<CartDishEntityAdapter>(),
     );
     Hive.registerAdapter(
       getIt.get<UserEntityAdapter>(),
     );
+    Hive.registerAdapter(
+      getIt.get<OrdersHistoryEntityAdapter>(),
+    );
   }
-
 
   void _initDataProvider() {
     getIt.registerLazySingleton<DataProvider>(
       () => DataProviderImpl(
-        FirebaseFirestore.instance,
+        firebaseFirestore: getIt.get<FirebaseFirestore>(),
+      ),
+    );
+    getIt.registerLazySingleton<OrdersHistoryDataProvider>(
+      () => OrdersHistoryDataProviderImpl(
+        firebaseFirestore: getIt.get<FirebaseFirestore>(),
       ),
     );
   }
@@ -90,6 +108,9 @@ class DataDI {
     );
     getIt.registerLazySingleton<CartLocalDataProvider>(
       () => CartLocalDataProvider(),
+    );
+    getIt.registerLazySingleton<LocalOrdersHistoryDataProvider>(
+          () => LocalOrdersHistoryDataProviderImpl(),
     );
     getIt.registerLazySingleton<AuthenticationLocalDataProvider>(
       () => AuthenticationLocalDataProviderImpl(),
@@ -128,22 +149,43 @@ class DataDI {
         cartLocalDataProvider: getIt.get<CartLocalDataProvider>(),
       ),
     );
-
     getIt.registerLazySingleton<GetCartDishesUseCase>(
           () => GetCartDishesUseCase(
         cartRepository: getIt.get<CartRepository>(),
       ),
     );
-
     getIt.registerLazySingleton<AddCartDishUseCase>(
       () => AddCartDishUseCase(
         cartRepository: getIt.get<CartRepository>(),
       ),
     );
-
     getIt.registerLazySingleton<RemoveCartDishUseCase>(
       () => RemoveCartDishUseCase(
         cartRepository: getIt.get<CartRepository>(),
+      ),
+    );
+    getIt.registerLazySingleton<ClearCartUseCase>(
+      () => ClearCartUseCase(
+        cartRepository: getIt.get<CartRepository>(),
+      ),
+    );
+  }
+
+  void _initOrdersHistory() {
+    getIt.registerLazySingleton<OrdersHistoryRepository>(
+      () => OrdersHistoryRepositoryImpl(
+        ordersHistoryDataProvider: getIt.get<OrdersHistoryDataProvider>(),
+        localOrdersHistoryDataProvider: getIt.get<LocalOrdersHistoryDataProvider>(),
+      ),
+    );
+    getIt.registerLazySingleton<FetchOrdersHistoryUseCase>(
+          () => FetchOrdersHistoryUseCase(
+        ordersHistoryRepository: getIt.get<OrdersHistoryRepository>(),
+      ),
+    );
+    getIt.registerLazySingleton<AddOrdersHistoryUseCase>(
+      () => AddOrdersHistoryUseCase(
+        ordersHistoryRepository: getIt.get<OrdersHistoryRepository>()
       ),
     );
   }
@@ -210,6 +252,11 @@ class DataDI {
         authenticationRepository: getIt.get<AuthenticationRepository>(),
       ),
     );
+    getIt.registerLazySingleton<SignInWithGoogleUseCase>(
+          () => SignInWithGoogleUseCase(
+        authenticationRepository: getIt.get<AuthenticationRepository>(),
+      ),
+    );
     getIt.registerLazySingleton<SignUpUseCase>(
           () => SignUpUseCase(
         authenticationRepository: getIt.get<AuthenticationRepository>(),
@@ -217,11 +264,6 @@ class DataDI {
     );
     getIt.registerLazySingleton<SignOutUseCase>(
           () => SignOutUseCase(
-        authenticationRepository: getIt.get<AuthenticationRepository>(),
-      ),
-    );
-    getIt.registerLazySingleton<SignInWithGoogleUseCase>(
-          () => SignInWithGoogleUseCase(
         authenticationRepository: getIt.get<AuthenticationRepository>(),
       ),
     );

@@ -1,19 +1,43 @@
+import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
-import 'package:flutter/widgets.dart';
+import 'package:navigation/navigation.dart';
+import 'package:history/history.dart';
+import 'package:flutter/material.dart';
 
-class HistoryScreen extends StatelessWidget {
-  const HistoryScreen({super.key});
+class OrdersHistoryScreen extends StatelessWidget {
+  const OrdersHistoryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        AppConstants.labelHistory,
-        style: TextStyle(
-            fontFamily: 'Poppins',
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-            color: AppColors.black),
+    return Scaffold(
+      body: BlocBuilder<OrdersHistoryBloc, OrdersHistoryState>(
+        builder: (_, OrdersHistoryState state) {
+          if (state.isLoading) {
+            return const LoadingIndicator();
+          }
+          if (state.orderItems.isNotEmpty) {
+            return Column(
+              children: <Widget>[
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: state.orderItems.length,
+                    itemBuilder: (_, index) {
+                      return OrdersHistoryItem(
+                        ordersHistoryItem: state.orderItems[index],
+                      );
+                    },
+                  ),
+                ),
+              ],
+            );
+          } else {
+            return OrdersHistoryEmpty(
+              onPressed: () {
+                context.navigateTo(const MenuRoute());
+              },
+            );
+          }
+        },
       ),
     );
   }

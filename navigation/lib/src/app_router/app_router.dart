@@ -1,3 +1,4 @@
+import 'package:authentication/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:home/home.dart';
@@ -14,12 +15,14 @@ part 'app_router.gr.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'Screen,Route',
   routes: <AutoRoute>[
-    AutoRoute(page: HomeScreen, path: '/', initial: true),
-    AutoRoute(page: WelcomeScreens, path: 'welcome_screens'),
+    AutoRoute(page: StartScreen, path: 'start_screen', initial: true),
+    AutoRoute(page: SignInScreen, path: 'signIn_screen'),
+    // AutoRoute(page: HomeScreen, path: '/', initial: true),
+    // AutoRoute(page: WelcomeScreens, path: 'welcome_screens'),
     AutoRoute(page: PreMenuScreen, path: 'home_page', initial: true, children: [
       AutoRoute(page: MenuScreen, path: 'menu_screen', initial: true),
       AutoRoute(page: OrdersScreen, path: 'orders_screen'),
-      AutoRoute(page: HistoryScreen, path: 'history_screen'),
+      AutoRoute(page: OrdersHistoryScreen, path: 'orders_history_screen'),
       AutoRoute(page: SettingsScreen, path: 'settings_screen'),
     ]),
     AutoRoute(

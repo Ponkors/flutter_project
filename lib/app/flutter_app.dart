@@ -2,10 +2,10 @@ import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:domain/domain.dart';
-import 'package:menu/menu.dart';
 import 'package:navigation/navigation.dart';
 import 'package:orders/orders.dart';
 import 'package:settings/settings.dart';
+import 'package:authentication/authentication.dart';
 
 class FoodApp extends StatelessWidget {
   const FoodApp({super.key});
@@ -13,7 +13,7 @@ class FoodApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
+      providers: <BlocProvider>[
         BlocProvider<SettingsBloc>(
           create: (_) => SettingsBloc(
             checkThemeTypeUseCase: getIt.get<CheckThemeTypeUseCase>(),
@@ -29,7 +29,20 @@ class FoodApp extends StatelessWidget {
             getCartDishesUseCase: getIt.get<GetCartDishesUseCase>(),
             addCartDishUseCase: getIt.get<AddCartDishUseCase>(),
             removeCartDishUseCase: getIt.get<RemoveCartDishUseCase>(),
+            clearCartUseCase: getIt.get<ClearCartUseCase>(),
+            getUserFromStorageUseCase: getIt.get<GetUserFromStorageUseCase>(),
           ),
+        ),
+        BlocProvider<AuthenticationBloc>(
+          create: (_) => AuthenticationBloc(
+            signInUseCase: getIt.get<SignInUseCase>(),
+            signUpUseCase: getIt.get<SignUpUseCase>(),
+            signOutUseCase: getIt.get<SignOutUseCase>(),
+            signInWithGoogleUseCase: getIt.get<SignInWithGoogleUseCase>(),
+            resetPasswordUseCase: getIt.get<ResetPasswordUseCase>(),
+            getUserFromStorageUseCase: getIt.get<GetUserFromStorageUseCase>(),
+            appRouter: getIt.get<AppRouter>(),
+          )..add(InitAuthentication()),
         ),
       ],
       child: BlocBuilder<SettingsBloc, SettingsState>(

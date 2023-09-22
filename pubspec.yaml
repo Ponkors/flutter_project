@@ -27,6 +27,8 @@ dependencies:
     path: ./features/orders
   history:
     path: ./features/history
+  authentication:
+    path: ./features/authentication
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
