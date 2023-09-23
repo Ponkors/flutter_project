@@ -14,6 +14,9 @@ class OrdersScreen extends StatelessWidget {
     final CartBloc cartBloc = BlocProvider.of(context);
     final OrdersHistoryBloc ordersHistoryBloc = BlocProvider.of(context);
     return Scaffold(
+      appBar: CustomAppBar(
+        title: 'menuPage.cart'.tr(),
+      ),
       body: BlocBuilder<CartBloc, CartState>(
         builder: (_, CartState state) {
           if (state.cart.dishes.isNotEmpty) {
@@ -45,7 +48,7 @@ class OrdersScreen extends StatelessWidget {
                     );
                     _showSnackBar(
                         context,
-                        'Accepted Order'
+                        'cartScreen.acceptedOrder'.tr(),
                     );
                     cartBloc.add(ClearCart());
                   },
@@ -68,7 +71,7 @@ class OrdersScreen extends StatelessWidget {
     final ThemeData themeData = Theme.of(context);
     final SnackBar snackBar = SnackBar(
       content: Text(
-        'Accepted Order',
+        message,
         style: themeData.textTheme.titleMedium!.copyWith(
           color: AppColors.white,
         ),

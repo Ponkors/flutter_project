@@ -33,16 +33,16 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               AppTextField(
-                hintText: 'authScreens.email'.tr(),
+                hintText: 'authenticationScreen.email'.tr(),
                 icon: const Icon(
                   Icons.email_outlined,
                 ),
                 obscureText: false,
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return 'authScreens.emailIsRequired'.tr();
+                    return 'authenticationScreen.emailRequired'.tr();
                   } else if (!value.contains('@')) {
-                    return 'authScreens.invalidEmailFormat'.tr();
+                    return 'authenticationScreen.emailFormatWrong'.tr();
                   }
                   return null;
                 },
@@ -63,7 +63,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
                   if (formStatus is SubmissionFormSuccess) {
                     _showSnackBar(
                       context,
-                      'authScreens.checkEmail'.tr(),
+                      'authenticationScreen.checkEmail'.tr(),
                     );
                     bloc.add(
                       NavigateToSignInScreen(),
@@ -83,7 +83,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
                       );
                     }
                   },
-                  label: 'authScreens.resetPassword'.tr(),
+                  label: 'authenticationScreen.resetPassword'.tr(),
                 ),
               ),
               const SizedBox(
@@ -97,8 +97,9 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
                         bloc.add(ChangeResetPasswordPage());
                       },
                       child: Text(
-                        'authScreens.signIn'.tr(),
-                      )),
+                        'authenticationScreen.signIn'.tr(),
+                      ),
+                  ),
                 ],
               ),
             ],

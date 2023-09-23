@@ -11,3 +11,4 @@ export 'special_app_image.dart';
 export 'loading_indicator.dart';
 export 'bottom_navigation_bar.dart';
 export 'cache_app_image.dart';
+export 'custom_appbar.dart';

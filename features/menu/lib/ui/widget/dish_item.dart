@@ -87,7 +87,7 @@ class DishItem extends StatelessWidget {
                               ),
                             ),
                             behavior: SnackBarBehavior.floating,
-                            backgroundColor: AppColors.orange,
+                            backgroundColor: themeData.primaryColor,
                             duration: const Duration(seconds: 2),
                           );
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);

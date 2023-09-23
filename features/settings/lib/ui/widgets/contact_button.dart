@@ -20,7 +20,7 @@ class ContactUsButton extends StatelessWidget {
           return ElevatedButton(
             onPressed: goToLink,
             child: Text(
-              'settingsScreen.contactUs'.tr(),
+              'settingsScreen.contactButton'.tr(),
               style: GoogleFonts.poppins(
                 textStyle: AppFonts.normal_16,
               ),

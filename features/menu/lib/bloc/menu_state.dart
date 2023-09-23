@@ -6,7 +6,7 @@ class DishesState {
   final List<String> categories;
   final List<DishModel> dishesOfEnteredCategory;
   final Object? exception;
-  final bool haveInternetConnection;
+  final bool? haveInternetConnection;
 
   DishesState({
     this.isLoading = true,

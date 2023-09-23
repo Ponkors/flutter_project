@@ -16,14 +16,22 @@ class OrdersHistoryItem extends StatelessWidget {
     final ThemeData themeData = Theme.of(context);
     return Card(
       margin: const EdgeInsets.symmetric(
-        horizontal: AppDimens.size_2,
         vertical: AppDimens.size_5,
+        horizontal: AppDimens.size_10,
       ),
       child: ExpansionTile(
         tilePadding: const EdgeInsets.all(AppDimens.padding_10),
-        title: Text('totalPrice'),
+        title: Text(
+          'Check amount: \$${ordersHistoryItem.cart.totalPrice}',
+          style: GoogleFonts.poppins(
+            textStyle: AppFonts.normal_18,
+          ),
+        ),
         subtitle: Text(
-          DateFormat('dd/MM/YYYY hh:mm').format(ordersHistoryItem.dateTime),
+          DateFormat('dd/MM/yyyy hh:mm').format(ordersHistoryItem.dateTime),
+          style: GoogleFonts.poppins(
+            textStyle: AppFonts.normal_14,
+          ),
         ),
         children: <Widget>[
           ...List.generate(
@@ -34,10 +42,27 @@ class OrdersHistoryItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      cartDish.dish.title,
+                      '  ●  ' + cartDish.dish.title,
+                      style: GoogleFonts.poppins(
+                        textStyle: AppFonts.normal_16,
+                      )
                     ),
-                    Text(
-                      '${cartDish.quantity}x \$${cartDish.dish.cost}',
+                    Row(
+                      children: <Widget>[
+                        Text(
+                          '\$${cartDish.dish.cost} x ${cartDish.quantity}',
+                          style: GoogleFonts.poppins(
+                            textStyle: AppFonts.normal_16,
+                          ),
+                        ),
+                        SizedBox(width: AppDimens.size_20),
+                        Text(
+                          '\$${cartDish.quantity * cartDish.dish.cost}',
+                          style: GoogleFonts.poppins(
+                            textStyle: AppFonts.s16_w400,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 );

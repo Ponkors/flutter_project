@@ -33,16 +33,16 @@ class _SignUpFormState extends State<SignUpForm> {
           child: Column(
             children: <Widget>[
               AppTextField(
-                hintText: 'authScreens.userName'.tr(),
+                hintText: 'authenticationScreen.userName'.tr(),
                 icon: const Icon(
                   Icons.person,
                 ),
                 obscureText: false,
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return 'authScreens.userNameIsRequired'.tr();
-                  } else if (value.length < 3) {
-                    return 'authScreens.invalidUserName'.tr();
+                    return 'authenticationScreen.userNameIsRequired'.tr();
+                  } else if (value.length < 5) {
+                    return 'authenticationScreen.invalidUserName'.tr();
                   }
                   return null;
                 },
@@ -50,30 +50,31 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
               const SizedBox(height: AppDimens.size_20),
               AppTextField(
-                hintText: 'authScreens.email'.tr(),
+                hintText: 'authenticationScreen.email'.tr(),
                 icon: const Icon(
                   Icons.email,
                 ),
                 obscureText: false,
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return 'authScreens.emailIsRequired'.tr();
+                    return 'authenticationScreen.emailRequired'.tr();
                   } else if (!value.contains('@')) {
-                    return 'authScreens.invalidEmailFormat'.tr();
+                    return 'authenticationScreen.emailFormatWrong'.tr();
                   }
                   return null;
                 },
                 textEditingController: emailController,
               ),
+              const SizedBox(height: AppDimens.size_20),
               AppTextField(
-                hintText: 'authScreens.password'.tr(),
+                hintText: 'authenticationScreen.password'.tr(),
                 icon: const Icon(
                   Icons.password,
                 ),
                 obscureText: false,
                 validator: (value) {
                   return value!.length < 6
-                      ? 'authScreens.invalidPassword'.tr()
+                      ? 'authenticationScreen.invalidPassword'.tr()
                       : null;
                 },
                 textEditingController: passwordController,
@@ -107,13 +108,13 @@ class _SignUpFormState extends State<SignUpForm> {
                       );
                     }
                   },
-                  label: 'authScreens.signUp'.tr(),
+                  label: 'authenticationScreen.signUp'.tr(),
                 ),
               ),
               const SizedBox(height: AppDimens.size_20),
               LogInSwitch(
-                title: 'authScreens.haveAccount'.tr(),
-                label: 'authScreens.signIn'.tr(),
+                title: 'authenticationScreen.haveAccount'.tr(),
+                label: 'authenticationScreen.signIn'.tr(),
                 onPressed: () {
                   bloc.add(ChangeSignInPage());
                 },

@@ -1,4 +1,5 @@
 import 'package:authentication/authentication.dart';
+import 'package:authentication/ui/reset_password_form.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:home/home.dart';
@@ -15,7 +16,7 @@ part 'app_router.gr.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'Screen,Route',
   routes: <AutoRoute>[
-    AutoRoute(page: StartScreen, path: 'start_screen', initial: true),
+    AutoRoute(page: CheckAuthenticationScreen, path: 'start_screen', initial: true),
     AutoRoute(page: SignInScreen, path: 'signIn_screen'),
     // AutoRoute(page: HomeScreen, path: '/', initial: true),
     // AutoRoute(page: WelcomeScreens, path: 'welcome_screens'),

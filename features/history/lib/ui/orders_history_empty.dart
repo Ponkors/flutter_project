@@ -21,7 +21,7 @@ class OrdersHistoryEmpty extends StatelessWidget {
             size: AppDimens.size_110,
           ),
           Text(
-            'Orders History is Empty'.tr(),
+            'orderHistoryScreen.orderHistoryEmpty'.tr(),
             style: GoogleFonts.poppins(
               textStyle: AppFonts.normal_20,
             ),

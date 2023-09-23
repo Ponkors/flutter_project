@@ -13,13 +13,11 @@ class DishCardButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData themeData = Theme.of(context);
-
     return FilledButton(
       onPressed: onPressed,
       style: FilledButton.styleFrom(
         minimumSize: const Size(AppDimens.size_60, AppDimens.size_30),
-        textStyle: themeData.textTheme.labelMedium,
+        textStyle: AppFonts.normal_14,
       ),
       child: Text(label),
     );

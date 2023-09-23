@@ -17,10 +17,10 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    StartRoute.name: (routeData) {
+    CheckAuthenticationRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const StartScreen(),
+        child: const CheckAuthenticationScreen(),
       );
     },
     SignInRoute.name: (routeData) {
@@ -80,7 +80,7 @@ class _$AppRouter extends RootStackRouter {
           fullMatch: true,
         ),
         RouteConfig(
-          StartRoute.name,
+          CheckAuthenticationRoute.name,
           path: 'start_screen',
         ),
         RouteConfig(
@@ -128,15 +128,15 @@ class _$AppRouter extends RootStackRouter {
 }
 
 /// generated route for
-/// [StartScreen]
-class StartRoute extends PageRouteInfo<void> {
-  const StartRoute()
+/// [CheckAuthenticationScreen]
+class CheckAuthenticationRoute extends PageRouteInfo<void> {
+  const CheckAuthenticationRoute()
       : super(
-          StartRoute.name,
+          CheckAuthenticationRoute.name,
           path: 'start_screen',
         );
 
-  static const String name = 'StartRoute';
+  static const String name = 'CheckAuthenticationRoute';
 }
 
 /// generated route for

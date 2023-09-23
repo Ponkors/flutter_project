@@ -13,38 +13,43 @@ class FontSizeSlider extends StatelessWidget {
     final MediaQueryData mediaQuery = MediaQuery.of(context);
     return BlocBuilder<SettingsBloc, SettingsState>(
       builder: (_, SettingsState state) {
-        return Card(
-          shadowColor: AppColors.lightGrey,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(AppDimens.radius_16),
-            ),
+        return Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: AppDimens.padding_20,
           ),
-          child: Container(
-            width: mediaQuery.size.width * 0.9,
-            margin: const EdgeInsets.symmetric(
-              horizontal: AppDimens.padding_20,
+          child: Card(
+            shadowColor: AppColors.lightGrey,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(AppDimens.radius_16),
+              ),
             ),
-            child: Column(
-              children: <Widget>[
-                Text(
-                  'settingsScreen.changeFontSize'.tr(),
-                  style: GoogleFonts.poppins(
-                    textStyle: AppFonts.normal_16,
+            child: Container(
+              width: mediaQuery.size.width * 0.9,
+              margin: const EdgeInsets.symmetric(
+                horizontal: AppDimens.padding_10,
+              ),
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    'settingsScreen.changeFontSize'.tr(),
+                    style: GoogleFonts.poppins(
+                      textStyle: AppFonts.normal_16,
+                    ),
                   ),
-                ),
-                Slider(
-                  value: state.textScale,
-                  min: 0.5,
-                  max: 1,
-                  divisions: 6,
-                  onChanged: (double textScaleValue) {
-                    bloc.add(
-                      ChangeFontSize(textScale: textScaleValue),
-                    );
-                  },
-                ),
-              ],
+                  Slider(
+                    value: state.textScale,
+                    min: 0.5,
+                    max: 1.1,
+                    divisions: 3,
+                    onChanged: (double textScaleValue) {
+                      bloc.add(
+                        ChangeFontSize(textScale: textScaleValue),
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         );

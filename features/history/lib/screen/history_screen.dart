@@ -10,6 +10,9 @@ class OrdersHistoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppBar(
+        title: 'menuPage.orderHistory'.tr(),
+      ),
       body: BlocBuilder<OrdersHistoryBloc, OrdersHistoryState>(
         builder: (_, OrdersHistoryState state) {
           if (state.isLoading) {

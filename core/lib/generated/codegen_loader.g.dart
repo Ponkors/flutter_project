@@ -39,8 +39,10 @@ class CodegenLoader extends AssetLoader{
       "chooseDishes": "Go to menu",
       "totalPrice": "Total Price",
       "makeAnOrder": "Make An Order",
+      "check": "Preliminary check",
+      "acceptedOrder": "Accepted order, wait call soon.",
       "dishPositionCount": "Positions",
-      "check": "Preliminary check"
+      "cost:": "Price: "
     },
     "settingsScreen": {
       "useSystemTheme": "System theme:",
@@ -49,29 +51,29 @@ class CodegenLoader extends AssetLoader{
       "darkTheme": "Dark night --",
       "changeFontSize": "Move the slider to change the font size",
       "selectLanguage": "Language",
-      "contactUs": "Contact us"
+      "contactButton": "Contact with employer"
     },
-    "authScreens": {
+    "authenticationScreen": {
       "email": "Email",
       "password": "Password",
       "userName": "User name",
-      "emailIsRequired": "Email is required",
+      "emailRequired": "Email is required",
       "userNameIsRequired": "User name is required",
-      "invalidEmailFormat": "Invalid email format",
-      "invalidUserName": "The user name must be at least 3 characters long",
+      "emailFormatWrong": "Invalid email format",
+      "invalidUserName": "The user name must be at least 5 characters long",
       "invalidPassword": "The password must be at least 6 characters long",
       "forgotPassword": "Forgot password?",
       "signIn": "Sign In",
       "signUp": "Sign Up",
       "or": "Or",
       "signInWithGoogle": "Sign In with Google",
-      "dontHaveAccount": "Don't have an account?",
+      "haventAccount": "Don't have an account?",
       "haveAccount": "Already have an account?",
       "resetPassword": "Reset password",
       "checkEmail": "New password has been pass. Check your email."
     },
     "orderHistoryScreen": {
-      "orderHistoryEmpty": "Your order history is empty"
+      "orderHistoryEmpty": "Your order history is empty",
     }
   };
   static const Map<String,dynamic> pl_PL = {
@@ -99,8 +101,10 @@ class CodegenLoader extends AssetLoader{
       "chooseDishes": "Przejdź do menu",
       "totalPrice": "Cena Całkowita",
       "makeAnOrder": "Złóż zamówienie",
+      "check": "Wstępna kontrola",
+      "acceptedOrder": "Zamówienie przyjęte. Czekaj zadzwoń.",
       "dishPositionCount": "Pozycje",
-      "check": "Wstępna kontrola"
+      "cost": "Koszt: "
     },
     "settingsScreen": {
       "useSystemTheme": "Temat systemu:",
@@ -109,7 +113,7 @@ class CodegenLoader extends AssetLoader{
       "darkTheme": "Ciemna noc --",
       "changeFontSize": "Przesuń suwak, aby zmienić rozmiar czcionki",
       "selectLanguage": "Język",
-      "contactUs": "Skontaktuj się z nami"
+      "contactButton": "Kontakt z pracodawcą"
     },
     "authScreens": {
       "email": "Email",

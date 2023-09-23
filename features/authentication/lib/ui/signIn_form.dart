@@ -51,7 +51,7 @@ class _SignInFormState extends State<SignInForm> {
               ),
               SizedBox(height: AppDimens.size_10),
               AppTextField(
-                hintText: 'Password',
+                hintText: 'authenticationScreen.password'.tr(),
                 icon: Icon(
                   Icons.password,
                 ),
@@ -74,7 +74,7 @@ class _SignInFormState extends State<SignInForm> {
                       //);
                     },
                     child: Text(
-                      'Forgot Password',
+                      'authenticationScreen.forgotPassword'.tr(),
                     ),
                   ),
                 ],
@@ -100,7 +100,7 @@ class _SignInFormState extends State<SignInForm> {
                   return previous.statusForm != current.statusForm;
                 },
                 child: SubmitButton(
-                  label: 'Sign In',
+                  label: 'authenticationScreen.signIn'.tr(),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       bloc.add(
@@ -115,8 +115,8 @@ class _SignInFormState extends State<SignInForm> {
               ),
               const SizedBox(height: AppDimens.size_20),
               LogInSwitch(
-                title: 'authScreens.haveAccount'.tr(),
-                label: 'authScreens.signIn'.tr(),
+                title: 'authenticationScreen.haventAccount'.tr(),
+                label: 'authenticationScreen.signUp'.tr(),
                 onPressed: () {
                   bloc.add(ChangeSignInPage());
                 },
