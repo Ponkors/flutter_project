@@ -30,10 +30,11 @@ class SelectDishScreen extends StatelessWidget {
                   child: Container(
                     width: AppDimens.size_350,
                     height: AppDimens.size_350,
-                    child: Image.network(
-                      dish.imageURL,
-                      fit: BoxFit.cover,
-                    ),
+                    child: CacheAppImage(
+                      imageURL: dish.imageURL,
+                      width: mediaQueryData.size.width * 0.3,
+                      height: mediaQueryData.size.height * 0.3,
+                    )
                   )
                 ),
               ),
@@ -65,7 +66,9 @@ class SelectDishScreen extends StatelessWidget {
                         height: AppDimens.size_10,
                       ),
                       Text(
-                        'Description:',
+                        '${'selectDishScreen.description'.tr()}: ${dish.description}',
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                         style: GoogleFonts.poppins(
                           textStyle: AppFonts.normal_18,
                           color: AppColors.orange,
@@ -75,7 +78,7 @@ class SelectDishScreen extends StatelessWidget {
                         height: AppDimens.size_10,
                       ),
                       Text(
-                        '${'selectDishScreen.cost'.tr()}: \$${dish.cost}',
+                        '${'selectDishScreen.cost'.tr()} \$${dish.cost}',
                         style: GoogleFonts.poppins(
                           textStyle: AppFonts.normal_20,
                           color: AppColors.orange,

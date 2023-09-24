@@ -80,7 +80,7 @@ class CartItem extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'Price: \$${cartItem.dish.cost}',
+                      '${'selectDishScreen.cost'.tr()} \$${cartItem.dish.cost}',
                       style: GoogleFonts.poppins(
                         textStyle: AppFonts.normal_18,
                         color: AppColors.orange,

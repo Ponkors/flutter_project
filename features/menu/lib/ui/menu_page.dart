@@ -27,12 +27,27 @@ class PreMenuScreen extends StatelessWidget {
         ),
       ],
       child: AutoTabsScaffold(
+        animationCurve: Curves.linear,
+        animationDuration: const Duration(
+          milliseconds: 250,
+        ),
         routes: const <PageRouteInfo<dynamic>>[
           MenuRoute(),
           OrdersRoute(),
           OrdersHistoryRoute(),
           SettingsRoute(),
         ],
+        builder: (_, Widget? child, Animation<double> animation) {
+          return SlideTransition(
+            position: animation.drive(
+              Tween<Offset>(
+                begin: const Offset(0, 1),
+                end: const Offset(0, 0),
+              ),
+            ),
+            child: child,
+          );
+        },
         bottomNavigationBuilder: (_, TabsRouter tabsRouter) {
           return CustomBottomNavigationBar(
             currentIndex: tabsRouter.activeIndex,

@@ -25,6 +25,7 @@ class DataDI {
     _initCart();
     _initAuthentication();
     _initOrdersHistory();
+    // _initAdminPanel();
   }
 
   void _initFirebaseOptions() {

@@ -31,7 +31,8 @@ class CodegenLoader extends AssetLoader{
     "selectDishScreen": {
       "add": "Add to cart",
       "ingredients": "Ingredients",
-      "cost": "Cost"
+      "cost": "Price:",
+      "description": "Description:"
     },
     "cartScreen": {
       "yourShoppingCartIsEmpty": "Your shopping cart is still empty.",
@@ -93,7 +94,7 @@ class CodegenLoader extends AssetLoader{
     "selectDishScreen": {
       "add": "Dodaj do koszyka",
       "ingredients": "Składniki",
-      "cost": "Koszt"
+      "cost": "Koszt",
     },
     "cartScreen": {
       "yourShoppingCartIsEmpty": "Twój koszyk jest pusty.",

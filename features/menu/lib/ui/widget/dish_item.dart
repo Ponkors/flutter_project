@@ -66,13 +66,13 @@ class DishItem extends StatelessWidget {
                   Row(
                     children: <Widget>[
                       Text(
-                        'Price: \$${dish.cost}',
+                        '${'selectDishScreen.cost'.tr()}: \$${dish.cost}',
                         style: GoogleFonts.poppins(
                           textStyle: AppFonts.normal_18,
                           color: AppColors.orange,
                         ),
                       ),
-                      SizedBox(width: AppDimens.size_40),
+                      SizedBox(width: AppDimens.size_30),
                       DishCardButton(
                         label: '${'menuScreen.add'.tr()}',
                         onPressed: () {

@@ -7,6 +7,7 @@ class CacheAppImage extends StatelessWidget {
   final double height;
   final double width;
 
+
   const CacheAppImage({
     required this.imageURL,
     required this.height,
@@ -21,6 +22,7 @@ class CacheAppImage extends StatelessWidget {
         imageUrl: imageURL,
         height: height,
         width: width,
+        fit: BoxFit.cover,
         placeholder: (
           BuildContext context,
           String url,
