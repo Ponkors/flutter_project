@@ -1,5 +1,5 @@
 enum CustomBottomNavigationBarItem {
-  home,
+  menu,
   cart,
   orderHistory,
   settings,

@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 extension CustomBottomNavigationBarItemEx on CustomBottomNavigationBarItem {
   String get label {
     switch (this) {
-      case CustomBottomNavigationBarItem.home:
-        return 'menuPage.home'.tr();
+      case CustomBottomNavigationBarItem.menu:
+        return 'menuPage.menu'.tr();
       case CustomBottomNavigationBarItem.cart:
         return 'menuPage.cart'.tr();
       case CustomBottomNavigationBarItem.orderHistory:
@@ -19,8 +19,8 @@ extension CustomBottomNavigationBarItemEx on CustomBottomNavigationBarItem {
 
   Icon get icon {
     switch (this) {
-      case CustomBottomNavigationBarItem.home:
-        return const Icon(Icons.home);
+      case CustomBottomNavigationBarItem.menu:
+        return const Icon(Icons.menu_book);
       case CustomBottomNavigationBarItem.cart:
         return const Icon(Icons.shopping_cart);
       case CustomBottomNavigationBarItem.orderHistory:

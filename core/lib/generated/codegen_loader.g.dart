@@ -17,7 +17,7 @@ class CodegenLoader extends AssetLoader{
   static const Map<String,dynamic> en_US = {
     "menuPage": {
       "foodDelivery": "Tamang FoodService",
-      "home": "Home",
+      "menu": "Menu",
       "cart": "Cart",
       "orderHistory": "Order History",
       "settings": "Settings",
