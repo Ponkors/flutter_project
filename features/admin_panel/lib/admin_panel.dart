@@ -1,7 +1,5 @@
 library admin_panel;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'bloc/admin_panel_bloc.dart';
+export 'screens/admin_panel_screen.dart';
+export 'screens/admin_users_screen.dart';

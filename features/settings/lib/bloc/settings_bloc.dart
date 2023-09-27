@@ -28,12 +28,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       _setThemeModeUseCase = setThemeModeUseCase,
       _setFontSizeUseCase = setFontSizeUseCase,
       super(
-        SettingsState.empty(
-            AppTheme.lightTheme,
-            false,
-            false,
-            1.1,
-        ),
+        SettingsState.empty(),
       ) {
     on<InitSettings>(_initSettings);
     on<ChangeThemeType>(_changeThemeType);

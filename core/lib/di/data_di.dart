@@ -1,43 +1,29 @@
 import 'package:core/core.dart';
 import 'package:data/data.dart';
-import 'package:data/providers/remote/orders_history_data_provider_impl.dart';
 import 'package:domain/domain.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 final GetIt getIt = GetIt.instance;
 final DataDI dataDI = DataDI();
 
 class DataDI {
   Future<void> initDependencies() async {
-    _initFirebaseOptions();
     _initFirebase();
     _initDataProvider();
-    _initGoogleSignIn();
+    _initHiveProdiver();
     _initAuthenticationDataProvider();
-    _initLocalDataProvider();
     _initDishes();
     _initHive();
     _initHiveAdapter();
     _initSettings();
-    _initSettingsPreferencesProvider();
     _initCart();
     _initAuthentication();
     _initOrdersHistory();
-    // _initAdminPanel();
-  }
-
-  void _initFirebaseOptions() {
-    getIt.registerLazySingleton<FirebaseOptions>(
-      () => DefaultFirebaseOptions.currentPlatform,
-    );
+    _initAdminPanel();
   }
 
   Future<void> _initFirebase() async {
-    await Firebase.initializeApp(
-      options: getIt<FirebaseOptions>(),
-    );
     getIt.registerLazySingleton<FirebaseFirestore>(
       () => FirebaseFirestore.instance,
     );
@@ -45,12 +31,6 @@ class DataDI {
       () => FirebaseAuth.instance,
     );
     FirebaseFirestore.instance.clearPersistence();
-  }
-
-  Future<void> _initGoogleSignIn() async {
-    getIt.registerLazySingleton<GoogleSignIn>(
-      () => GoogleSignIn(),
-    );
   }
 
   void _initHiveAdapter() {
@@ -91,52 +71,36 @@ class DataDI {
   }
 
   void _initDataProvider() {
-    getIt.registerLazySingleton<DataProvider>(
-      () => DataProviderImpl(
-        firebaseFirestore: getIt.get<FirebaseFirestore>(),
-      ),
-    );
-    getIt.registerLazySingleton<OrdersHistoryDataProvider>(
-      () => OrdersHistoryDataProviderImpl(
+    getIt.registerLazySingleton<FirebaseFirestoreDataProvider>(
+      () => FirebaseFirestoreDataProviderImpl(
         firebaseFirestore: getIt.get<FirebaseFirestore>(),
       ),
     );
   }
 
-  void _initLocalDataProvider() {
-    getIt.registerLazySingleton<LocalDataProvider>(
-      () => LocalDataProviderImpl(),
-    );
-    getIt.registerLazySingleton<CartLocalDataProvider>(
-      () => CartLocalDataProvider(),
-    );
-    getIt.registerLazySingleton<LocalOrdersHistoryDataProvider>(
-          () => LocalOrdersHistoryDataProviderImpl(),
-    );
-    getIt.registerLazySingleton<AuthenticationLocalDataProvider>(
-      () => AuthenticationLocalDataProviderImpl(),
+  void _initHiveProdiver() {
+    getIt.registerLazySingleton<HiveProvider>(
+      () => HiveProviderImpl(),
     );
   }
 
   void _initAuthenticationDataProvider() {
-    getIt.registerLazySingleton<AuthenticationDataProvider>(
-      () => AuthenticationDataProviderImpl(
-        googleSignIn: getIt.get<GoogleSignIn>(),
+    getIt.registerLazySingleton<FirebaseAuthProvider>(
+      () => FirebaseAuthProviderImpl(
         firebaseAuth: getIt.get<FirebaseAuth>(),
-        firebaseFirestore: getIt.get<FirebaseFirestore>(),
+        firebaseFirestoreDataProvider: getIt.get<FirebaseFirestoreDataProvider>(),
+        hiveProvider: getIt.get<HiveProvider>(),
       ),
     );
   }
 
   void _initDishes() {
     getIt.registerLazySingleton<DishesRepository>(
-          () => DishesRepositoryImpl(
-        dataProvider: getIt.get<DataProvider>(),
-        localDataProvider: getIt.get<LocalDataProvider>(),
+      () => DishesRepositoryImpl(
+        firebaseFirestoreDataProvider: getIt.get<FirebaseFirestoreDataProvider>(),
+        hiveProvider: getIt.get<HiveProvider>(),
       ),
     );
-
-
     getIt.registerLazySingleton<FetchAllDishesUseCase>(
       () => FetchAllDishesUseCase(
         dishesRepository: getIt.get<DishesRepository>(),
@@ -147,7 +111,7 @@ class DataDI {
   void _initCart() {
     getIt.registerLazySingleton<CartRepository>(
       () => CartRepositoryImpl(
-        cartLocalDataProvider: getIt.get<CartLocalDataProvider>(),
+        hiveProvider: getIt.get<HiveProvider>(),
       ),
     );
     getIt.registerLazySingleton<GetCartDishesUseCase>(
@@ -175,8 +139,8 @@ class DataDI {
   void _initOrdersHistory() {
     getIt.registerLazySingleton<OrdersHistoryRepository>(
       () => OrdersHistoryRepositoryImpl(
-        ordersHistoryDataProvider: getIt.get<OrdersHistoryDataProvider>(),
-        localOrdersHistoryDataProvider: getIt.get<LocalOrdersHistoryDataProvider>(),
+        firebaseFirestoreDataProvider: getIt.get<FirebaseFirestoreDataProvider>(),
+        hiveProvider: getIt.get<HiveProvider>(),
       ),
     );
     getIt.registerLazySingleton<FetchOrdersHistoryUseCase>(
@@ -191,16 +155,10 @@ class DataDI {
     );
   }
 
-  void _initSettingsPreferencesProvider() {
-    getIt.registerLazySingleton<SettingsPreferencesProvider>(
-      () => SettingsPreferencesProvider()
-    );
-  }
-
   void _initSettings() {
     getIt.registerLazySingleton<SettingsRepository>(
           () => SettingsRepositoryImpl(
-        settingsPreferencesProvider: getIt.get<SettingsPreferencesProvider>(),
+        hiveProvider: getIt.get<HiveProvider>(),
       ),
     );
 
@@ -244,17 +202,12 @@ class DataDI {
   void _initAuthentication() {
     getIt.registerLazySingleton<AuthenticationRepository>(
           () => AuthenticationRepositoryImpl(
-        authenticationDataProvider: getIt.get<AuthenticationDataProvider>(),
-        authenticationLocalDataProvider: getIt.get<AuthenticationLocalDataProvider>(),
+        firebaseAuthProvider: getIt.get<FirebaseAuthProvider>(),
+        hiveProvider: getIt.get<HiveProvider>(),
       ),
     );
     getIt.registerLazySingleton<SignInUseCase>(
           () => SignInUseCase(
-        authenticationRepository: getIt.get<AuthenticationRepository>(),
-      ),
-    );
-    getIt.registerLazySingleton<SignInWithGoogleUseCase>(
-          () => SignInWithGoogleUseCase(
         authenticationRepository: getIt.get<AuthenticationRepository>(),
       ),
     );
@@ -276,6 +229,45 @@ class DataDI {
     getIt.registerLazySingleton<GetUserFromStorageUseCase>(
           () => GetUserFromStorageUseCase(
         authenticationRepository: getIt.get<AuthenticationRepository>(),
+      ),
+    );
+  }
+
+  void _initAdminPanel() {
+    getIt.registerLazySingleton<AdminPanelRepository>(
+          () => AdminPanelRepositoryImpl(
+        firebaseFirestoreDataProvider:
+        getIt.get<FirebaseFirestoreDataProvider>(),
+      ),
+    );
+    getIt.registerLazySingleton<UpdateDishUseCase>(
+          () => UpdateDishUseCase(
+        adminPanelRepository: getIt.get<AdminPanelRepository>(),
+      ),
+    );
+    getIt.registerLazySingleton<FetchAllUsersUseCase>(
+          () => FetchAllUsersUseCase(
+        adminPanelRepository: getIt.get<AdminPanelRepository>(),
+      ),
+    );
+    getIt.registerLazySingleton<UpdateUserRoleUseCase>(
+          () => UpdateUserRoleUseCase(
+        adminPanelRepository: getIt.get<AdminPanelRepository>(),
+      ),
+    );
+    getIt.registerLazySingleton<FetchAllOrdersUseCase>(
+          () => FetchAllOrdersUseCase(
+        adminPanelRepository: getIt.get<AdminPanelRepository>(),
+      ),
+    );
+    getIt.registerLazySingleton<DeleteDishUseCase>(
+          () => DeleteDishUseCase(
+        adminPanelRepository: getIt.get<AdminPanelRepository>(),
+      ),
+    );
+    getIt.registerLazySingleton<UpdateOrderStatusUseCase>(
+          () => UpdateOrderStatusUseCase(
+        adminPanelRepository: getIt.get<AdminPanelRepository>(),
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:domain/domain.dart';
 
-class FetchOrdersHistoryUseCase implements FutureUseCase<String, List<OrdersHistoryModel>> {
+class FetchOrdersHistoryUseCase implements FutureUseCase<String,
+    List<OrdersHistoryModel>> {
   final OrdersHistoryRepository _ordersHistoryRepository;
 
   FetchOrdersHistoryUseCase({

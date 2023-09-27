@@ -35,6 +35,12 @@ class _$AppRouter extends RootStackRouter {
         child: const PreMenuScreen(),
       );
     },
+    AdminPanelRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const AdminPanelScreen(),
+      );
+    },
     SelectDishRoute.name: (routeData) {
       final args = routeData.argsAs<SelectDishRouteArgs>();
       return MaterialPageX<dynamic>(
@@ -67,6 +73,12 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
         routeData: routeData,
         child: const SettingsScreen(),
+      );
+    },
+    AdminUsersRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const AdminUsersScreen(),
       );
     },
   };
@@ -121,6 +133,17 @@ class _$AppRouter extends RootStackRouter {
           ],
         ),
         RouteConfig(
+          AdminPanelRoute.name,
+          path: '/admin-panel-screen',
+          children: [
+            RouteConfig(
+              AdminUsersRoute.name,
+              path: 'admin-users-screen',
+              parent: AdminPanelRoute.name,
+            )
+          ],
+        ),
+        RouteConfig(
           SelectDishRoute.name,
           path: 'select_dish_screen',
         ),
@@ -162,6 +185,19 @@ class PreMenuRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'PreMenuRoute';
+}
+
+/// generated route for
+/// [AdminPanelScreen]
+class AdminPanelRoute extends PageRouteInfo<void> {
+  const AdminPanelRoute({List<PageRouteInfo>? children})
+      : super(
+          AdminPanelRoute.name,
+          path: '/admin-panel-screen',
+          initialChildren: children,
+        );
+
+  static const String name = 'AdminPanelRoute';
 }
 
 /// generated route for
@@ -244,4 +280,16 @@ class SettingsRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SettingsRoute';
+}
+
+/// generated route for
+/// [AdminUsersScreen]
+class AdminUsersRoute extends PageRouteInfo<void> {
+  const AdminUsersRoute()
+      : super(
+          AdminUsersRoute.name,
+          path: 'admin-users-screen',
+        );
+
+  static const String name = 'AdminUsersRoute';
 }

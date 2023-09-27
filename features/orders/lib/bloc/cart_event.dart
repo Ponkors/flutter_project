@@ -25,3 +25,7 @@ class RemoveDishFromCart extends CartEvent {
 class ClearCart extends CartEvent {
   ClearCart();
 }
+
+class NavigateToBackScreen extends CartEvent {
+  const NavigateToBackScreen();
+}

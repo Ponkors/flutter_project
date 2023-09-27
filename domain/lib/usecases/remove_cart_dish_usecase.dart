@@ -1,6 +1,6 @@
 import 'package:domain/domain.dart';
 
-class RemoveCartDishUseCase implements FutureUseCase<CartDish, void> {
+class RemoveCartDishUseCase implements FutureUseCase<RemoveCartParameters, void> {
   final CartRepository _cartRepository;
 
   RemoveCartDishUseCase({
@@ -8,7 +8,20 @@ class RemoveCartDishUseCase implements FutureUseCase<CartDish, void> {
   }) : _cartRepository = cartRepository;
 
   @override
-  Future<void> execute(CartDish cartDish) async {
-    return _cartRepository.removeDishFromCart(cartDish);
+  Future<void> execute(RemoveCartParameters removeCartParameters) async {
+    return _cartRepository.removeDishFromCart(
+      cart: removeCartParameters.cart,
+      userId: removeCartParameters.userId,
+    );
   }
+}
+
+class RemoveCartParameters {
+  final CartDish cart;
+  final String userId;
+
+  const RemoveCartParameters({
+    required this.cart,
+    required this.userId,
+  });
 }

@@ -1,3 +1,4 @@
+import 'package:admin_panel/admin_panel.dart';
 import 'package:authentication/authentication.dart';
 import 'package:authentication/ui/reset_password_form.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,9 @@ part 'app_router.gr.dart';
       AutoRoute(page: OrdersScreen, path: 'orders_screen'),
       AutoRoute(page: OrdersHistoryScreen, path: 'orders_history_screen'),
       AutoRoute(page: SettingsScreen, path: 'settings_screen'),
+    ]),
+    AutoRoute(page: AdminPanelScreen, children: <AutoRoute>[
+      AutoRoute(page: AdminUsersScreen),
     ]),
     AutoRoute(
         page: SelectDishScreen, path: 'select_dish_screen', initial: true),

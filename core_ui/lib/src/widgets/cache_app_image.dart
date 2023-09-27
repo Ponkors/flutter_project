@@ -1,3 +1,4 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'loading_indicator.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -5,33 +6,36 @@ import 'package:cached_network_image/cached_network_image.dart';
 class CacheAppImage extends StatelessWidget {
   final String imageURL;
   final double height;
-  final double width;
+  final BoxFit fit;
 
 
   const CacheAppImage({
     required this.imageURL,
     required this.height,
-    required this.width,
-    super.key
-  });
+    this.fit = BoxFit.cover,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ClipRect(
-      child: CachedNetworkImage(
-        imageUrl: imageURL,
-        height: height,
-        width: width,
-        fit: BoxFit.cover,
-        placeholder: (
-          BuildContext context,
-          String url,
-        ) {
-          return const SizedBox(
-            child: LoadingIndicator(),
-          );
-        },
-      ),
+      child: Container(
+        width: AppDimens.size_140,
+        height: AppDimens.size_140,
+        child: CachedNetworkImage(
+          imageUrl: imageURL,
+          height: height,
+          fit: fit,
+          placeholder: (
+              BuildContext context,
+              String url,
+              ) {
+            return const SizedBox(
+              child: LoadingIndicator(),
+            );
+          },
+        ),
+      )
     );
   }
 }

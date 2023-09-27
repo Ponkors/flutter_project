@@ -21,7 +21,7 @@ class DishCardButton extends StatelessWidget {
         textStyle: AppFonts.normal_14,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppDimens.radius_10),
-        )
+        ),
       ),
       child: Text(label),
     );

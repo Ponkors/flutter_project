@@ -1,5 +1,4 @@
 import 'package:domain/domain.dart';
-import 'package:domain/repositories/settings_repository.dart';
 
 class CheckThemeTypeUseCase implements FutureUseCase<NoParams, bool> {
   final SettingsRepository _settingsRepository;

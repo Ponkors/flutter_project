@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
+import 'package:navigation/navigation.dart';
 
 part 'cart_event.dart';
 part 'cart_state.dart';
@@ -10,22 +11,26 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   final AddCartDishUseCase _addCartDishUseCase;
   final RemoveCartDishUseCase _removeCartDishUseCase;
   final ClearCartUseCase _clearCartUseCase;
+  final AppRouter _appRouter;
   CartBloc({
     required GetCartDishesUseCase getCartDishesUseCase,
     required GetUserFromStorageUseCase getUserFromStorageUseCase,
     required AddCartDishUseCase addCartDishUseCase,
     required RemoveCartDishUseCase removeCartDishUseCase,
     required ClearCartUseCase clearCartUseCase,
+    required AppRouter appRouter,
   }) : _getCartDishesUseCase = getCartDishesUseCase,
        _getUserFromStorageUseCase = getUserFromStorageUseCase,
        _addCartDishUseCase = addCartDishUseCase,
        _removeCartDishUseCase = removeCartDishUseCase,
        _clearCartUseCase = clearCartUseCase,
+       _appRouter = appRouter,
        super(CartState.empty()) {
     on<InitCart>(_initCart);
     on<AddDishToCart>(_addDishToCart);
     on<RemoveDishFromCart>(_removeDishFromCart);
     on<ClearCart>(_clearCart);
+    on<NavigateToBackScreen>(_navigateToBackScreen);
     add(InitCart());
   }
 
@@ -33,11 +38,12 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     InitCart event,
     Emitter<CartState> emit,
   ) async {
-    final List<CartDish> dishesInCart = await _getCartDishesUseCase.execute(
-      const NoParams(),
-    );
+    emit(CartState.empty());
     final UserModel userFromStorage = await _getUserFromStorageUseCase.execute(
       const NoParams(),
+    );
+    final List<CartDish> dishesInCart = await _getCartDishesUseCase.execute(
+      userFromStorage.identifierId,
     );
     emit(
       state.copyWith(
@@ -66,9 +72,12 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     AddDishToCart event,
     Emitter<CartState> emit,
   ) async {
-    await _addCartDishUseCase.execute(event.dish);
+    await _addCartDishUseCase.execute(AddToCartParameters(
+      dish: event.dish,
+      userId: state.userUid,
+    ));
     final List<CartDish> updatedCartItems = await _getCartDishesUseCase.execute(
-      const NoParams(),
+      state.userUid,
     );
     emit(
       state.copyWith(
@@ -84,9 +93,12 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     RemoveDishFromCart event,
     Emitter<CartState> emit,
   ) async {
-    await _removeCartDishUseCase.execute(event.cartDish);
+    await _removeCartDishUseCase.execute(RemoveCartParameters(
+      cart: event.cartDish,
+      userId: state.userUid,
+    ));
     final List<CartDish> updatedCartItems = await _getCartDishesUseCase.execute(
-      const NoParams(),
+      state.userUid,
     );
     emit(
       state.copyWith(
@@ -103,7 +115,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     Emitter<CartState> emit,
   ) async {
     await _clearCartUseCase.execute(
-      const NoParams(),
+      state.userUid,
     );
     emit(
       state.copyWith(
@@ -114,4 +126,12 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       ),
     );
   }
+
+  void _navigateToBackScreen(
+    NavigateToBackScreen event,
+    Emitter<CartState> emit,
+  ) {
+    _appRouter.pop();
+  }
+
 }

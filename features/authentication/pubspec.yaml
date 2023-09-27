@@ -16,6 +16,10 @@ dependencies:
     path: ../../core_ui
   domain:
     path: ../../domain
+  orders:
+    path: ../orders
+  history:
+    path: ../history
   navigation:
     path: ../../navigation
 

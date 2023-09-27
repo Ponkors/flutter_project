@@ -6,12 +6,18 @@ class SettingsState {
   final bool systemTheme;
   final double textScale;
 
-  SettingsState.empty(
-    this.themeData,
-    this.isDark,
-    this.systemTheme,
-    this.textScale,
-  );
+  SettingsState({
+    required this.themeData,
+    required this.isDark,
+    required this.systemTheme,
+    required this.textScale,
+  });
+
+  SettingsState.empty()
+    : themeData = AppTheme.lightTheme,
+      isDark = false,
+      systemTheme = false,
+      textScale = 1.1;
 
   SettingsState copyWith({
     ThemeData? themeData,
@@ -19,11 +25,11 @@ class SettingsState {
     bool? systemTheme,
     double? textScale,
   }) {
-    return SettingsState.empty(
-      themeData ?? this.themeData,
-      isDark ?? this.isDark,
-      systemTheme ?? this.systemTheme,
-      textScale ?? this.textScale,
+    return SettingsState(
+      themeData: themeData ?? this.themeData,
+      isDark: isDark ?? this.isDark,
+      systemTheme: systemTheme ?? this.systemTheme,
+      textScale: textScale ?? this.textScale,
     );
   }
 }

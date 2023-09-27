@@ -6,6 +6,7 @@ class AuthenticationState {
   final SubmissionStatusForm statusForm;
   final bool isSignInPage;
   final bool isResetPasswordPage;
+  final bool isAdminUser;
 
   AuthenticationState({
     required this.userModel,
@@ -13,6 +14,7 @@ class AuthenticationState {
     required this.statusForm,
     required this.isSignInPage,
     required this.isResetPasswordPage,
+    required this.isAdminUser,
   });
 
   AuthenticationState.empty() :
@@ -20,7 +22,8 @@ class AuthenticationState {
     isLogged = false,
     statusForm = const InitSubmitStatus(),
     isSignInPage = true,
-    isResetPasswordPage = false;
+    isResetPasswordPage = false,
+    isAdminUser = false;
 
   AuthenticationState copyWith({
     UserModel? userModel,
@@ -28,6 +31,7 @@ class AuthenticationState {
     SubmissionStatusForm? statusForm,
     bool? isSignInPage,
     bool? isResetPasswordPage,
+    bool? isAdminUser,
   }) {
     return AuthenticationState(
       userModel: userModel ?? this.userModel,
@@ -35,6 +39,7 @@ class AuthenticationState {
       statusForm: statusForm ?? this.statusForm,
       isSignInPage: isSignInPage ?? this.isSignInPage,
       isResetPasswordPage: isResetPasswordPage ?? this.isResetPasswordPage,
+      isAdminUser: isAdminUser ?? this.isAdminUser,
     );
   }
 }

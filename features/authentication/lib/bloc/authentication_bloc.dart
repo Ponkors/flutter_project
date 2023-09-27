@@ -11,7 +11,6 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   final SignInUseCase _signInUseCase;
   final SignUpUseCase _signUpUseCase;
   final SignOutUseCase _signOutUseCase;
-  final SignInWithGoogleUseCase _signInWithGoogleUseCase;
   final ResetPasswordUseCase _resetPasswordUseCase;
   final GetUserFromStorageUseCase _getUserFromStorageUseCase;
   final AppRouter _appRouter;
@@ -20,14 +19,12 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     required SignInUseCase signInUseCase,
     required SignUpUseCase signUpUseCase,
     required SignOutUseCase signOutUseCase,
-    required SignInWithGoogleUseCase signInWithGoogleUseCase,
     required ResetPasswordUseCase resetPasswordUseCase,
     required GetUserFromStorageUseCase getUserFromStorageUseCase,
     required AppRouter appRouter,
   })  : _signInUseCase = signInUseCase,
         _signUpUseCase = signUpUseCase,
         _signOutUseCase = signOutUseCase,
-        _signInWithGoogleUseCase = signInWithGoogleUseCase,
         _resetPasswordUseCase = resetPasswordUseCase,
         _getUserFromStorageUseCase = getUserFromStorageUseCase,
         _appRouter = appRouter,
@@ -38,12 +35,12 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     on<SignInSubmitted>(_signInSubmitted);
     on<SignUpSubmitted>(_signUpSubmitted);
     on<SignOutSubmitted>(_signOutSubmitted);
-    on<SignInWithGoogleSubmitted>(_signInWithGoogle);
     on<ResetPasswordSubmitted>(_resetPassword);
     on<NavigateToMenuPage>(_navigateToMenuPage);
     on<NavigateToSignInScreen>(_navigateToSignInScreen);
     on<ChangeSignInPage>(_changeSignPage);
     on<ChangeResetPasswordPage>(_changeResetPasswordPage);
+    on<NavigateToAdminPanelScreen>(_navigateToAdminPanelScreen);
   }
 
   Future<void> _initAuthentication(
@@ -54,43 +51,67 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
         .execute(
       const NoParams(),
     );
-    userFromStorage.identifierId == '' ? emit(
-      state.copyWith(
-        isLogged: false,
-        userModel: const UserModel.empty(),
-      ),
-    ) : emit(
-      state.copyWith(
-        isLogged: true,
-        userModel: userFromStorage,
-      ),
-    );
+    if (userFromStorage.identifierId == '') {
+      emit(
+        state.copyWith(
+          userModel: const UserModel.empty(),
+          isLogged: false,
+        ),
+      );
+    } else if (userFromStorage.role == UserRole.admin.getStringValue() ||
+        userFromStorage.role == UserRole.developer.getStringValue()) {
+      emit(
+        state.copyWith(
+          isLogged: true,
+          isAdminUser: true,
+          userModel: userFromStorage,
+        ),
+      );
+    } else {
+      emit(
+        state.copyWith(
+          isLogged: true,
+          isAdminUser: false,
+          userModel: userFromStorage,
+        ),
+      );
+    }
   }
 
   Future<void> _signInSubmitted(
-      SignInSubmitted event,
-      Emitter<AuthenticationState> emit,
-      ) async {
+    SignInSubmitted event,
+    Emitter<AuthenticationState> emit,
+  ) async {
     emit(
       state.copyWith(
         statusForm: FormSubmitting(),
       ),
     );
     try {
-      final UserModel userModel = await _signInUseCase
-          .execute(
+      final UserModel userModel = await _signInUseCase.execute(
         SignInParameters(
           email: event.email,
           password: event.password,
         ),
       );
-
-      emit(
-        state.copyWith(
-          statusForm: SubmissionFormSuccess(),
-          userModel: userModel,
-        ),
-      );
+      if (userModel.role == UserRole.admin.getStringValue() ||
+          userModel.role == UserRole.developer.getStringValue()) {
+        emit(
+          state.copyWith(
+            statusForm: SubmissionFormSuccess(),
+            userModel: userModel,
+            isAdminUser: true,
+          ),
+        );
+      } else {
+        emit(
+          state.copyWith(
+            statusForm: SubmissionFormSuccess(),
+            userModel: userModel,
+            isAdminUser: false,
+          ),
+        );
+      }
     } on FirebaseAuthException catch (error) {
       emit(
         state.copyWith(
@@ -101,9 +122,9 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   }
 
   Future<void> _signUpSubmitted(
-      SignUpSubmitted event,
-      Emitter<AuthenticationState> emit,
-      ) async {
+    SignUpSubmitted event,
+    Emitter<AuthenticationState> emit,
+  ) async {
     emit(
       state.copyWith(
         statusForm: FormSubmitting(),
@@ -133,45 +154,20 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   }
 
   Future<void> _signOutSubmitted(
-      SignOutSubmitted event,
-      Emitter<AuthenticationState> emit,
-      ) async {
+    SignOutSubmitted event,
+    Emitter<AuthenticationState> emit,
+  ) async {
     await _signOutUseCase.execute(
       const NoParams(),
     );
     emit(state.copyWith(isLogged: false));
   }
 
-  Future<void> _signInWithGoogle(
-      SignInWithGoogleSubmitted event,
-      Emitter<AuthenticationState> emit,
-      ) async {
-    try {
-      final UserModel user = await _signInWithGoogleUseCase
-        .execute(
-          const NoParams(),
-        );
-      emit(
-        state.copyWith(
-          userModel: user,
-        ),
-      );
-      _appRouter.replace(
-        const PreMenuRoute(),
-      );
-    } catch (error) {
-      emit(
-        state.copyWith(
-          statusForm: SubmissionFormFailed(error.toString()),
-        ),
-      );
-    }
-  }
 
   Future<void> _resetPassword(
-      ResetPasswordSubmitted event,
-      Emitter<AuthenticationState> emit,
-      ) async {
+    ResetPasswordSubmitted event,
+    Emitter<AuthenticationState> emit,
+  ) async {
     try {
       await _resetPasswordUseCase.execute(event.email);
       emit(
@@ -189,24 +185,24 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   }
 
   void _navigateToMenuPage(
-      NavigateToMenuPage event,
-      Emitter<AuthenticationState> emit,
-      ) {
+    NavigateToMenuPage event,
+    Emitter<AuthenticationState> emit,
+  ) {
     _appRouter.replace(const PreMenuRoute());
   }
 
   void _navigateToSignInScreen(
-      NavigateToSignInScreen event,
-      Emitter<AuthenticationState> emit,
+    NavigateToSignInScreen event,
+    Emitter<AuthenticationState> emit,
   ) {
     _appRouter.replace(const SignInRoute());
   }
 
 
   void _changeSignPage(
-      ChangeSignInPage event,
-      Emitter<AuthenticationState> emit,
-      ) {
+    ChangeSignInPage event,
+    Emitter<AuthenticationState> emit,
+  ) {
     emit(
       state.copyWith(
         isSignInPage: !state.isSignInPage,
@@ -215,13 +211,20 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   }
 
   void _changeResetPasswordPage(
-      ChangeResetPasswordPage event,
-      Emitter<AuthenticationState> emit,
+    ChangeResetPasswordPage event,
+    Emitter<AuthenticationState> emit,
   ) {
     emit(
       state.copyWith(
         isResetPasswordPage: !state.isResetPasswordPage,
       ),
     );
+  }
+
+  void _navigateToAdminPanelScreen(
+    NavigateToAdminPanelScreen event,
+    Emitter<AuthenticationState> emit,
+  ) {
+    _appRouter.replace(const AdminPanelRoute());
   }
 }

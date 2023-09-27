@@ -14,7 +14,7 @@ class DishesState {
     this.categories = const [],
     this.dishesOfEnteredCategory = const[],
     this.exception,
-    this.haveInternetConnection = true,
+    this.haveInternetConnection,
   });
 
   DishesState copyWith({

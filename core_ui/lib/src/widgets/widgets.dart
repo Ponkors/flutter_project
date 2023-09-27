@@ -7,7 +7,6 @@ export 'welcome_text.dart';
 export 'buttons/less_button.dart';
 export 'buttons/more_button.dart';
 export 'buttons/add_to_cart_button.dart';
-export 'special_app_image.dart';
 export 'loading_indicator.dart';
 export 'bottom_navigation_bar.dart';
 export 'cache_app_image.dart';

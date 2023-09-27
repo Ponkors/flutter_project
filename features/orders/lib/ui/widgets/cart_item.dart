@@ -26,10 +26,13 @@ class CartItem extends StatelessWidget {
       child: Container(
         child: Row(
           children: <Widget>[
-            SpecialAppImage(
-              src: cartItem.dish.imageURL,
-              width: AppDimens.size_340,
-              height: AppDimens.size_140,
+            Hero(
+              tag: cartItem.dish.imageURL,
+              child: CacheAppImage(
+                imageURL: cartItem.dish.imageURL,
+                height: AppDimens.size_110,
+                fit: BoxFit.none,
+              ),
             ),
             const SizedBox(width: AppDimens.size_5),
             Column(

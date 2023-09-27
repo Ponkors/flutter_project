@@ -38,10 +38,10 @@ class DishItem extends StatelessWidget {
             children: <Widget>[
               Hero(
                 tag: dish.imageURL,
-                child: SpecialAppImage(
-                  src: dish.imageURL,
-                  width: AppDimens.size_340,
-                  height: AppDimens.size_140,
+                child: CacheAppImage(
+                  imageURL: dish.imageURL,
+                  height: AppDimens.size_110,
+                  fit: BoxFit.none,
                 ),
               ),
               const SizedBox(height: AppDimens.size_10),
@@ -66,7 +66,7 @@ class DishItem extends StatelessWidget {
                   Row(
                     children: <Widget>[
                       Text(
-                        '${'selectDishScreen.cost'.tr()}: \$${dish.cost}',
+                        '${'selectDishScreen.cost'.tr()} \$${dish.cost}',
                         style: GoogleFonts.poppins(
                           textStyle: AppFonts.normal_18,
                           color: AppColors.orange,
@@ -94,7 +94,7 @@ class DishItem extends StatelessWidget {
                         },
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ],

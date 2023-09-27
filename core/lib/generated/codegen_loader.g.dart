@@ -20,13 +20,22 @@ class CodegenLoader extends AssetLoader{
       "home": "Home",
       "cart": "Cart",
       "orderHistory": "Order History",
-      "settings": "Settings"
+      "settings": "Settings",
+      "adminPanel": "Admin Panel",
+    },
+    "adminPage": {
+      "orders": "Orders",
+      "users": 'Users',
+      "changeRole": "Change Role",
+      "cancel": "Cancel",
+      "save": "Save",
+
     },
     "menuScreen": {
       "add": "Add",
       "dishAddedToTheCart": "The dish has been added to the cart!",
       "haveInternetConnection": "Internet Connection is working.",
-      "noInternetConnection": "Internet Connection isn't working.",
+      "haventInternetConnection": "Internet Connection isn't working.",
     },
     "selectDishScreen": {
       "add": "Add to cart",
@@ -43,7 +52,8 @@ class CodegenLoader extends AssetLoader{
       "check": "Preliminary check",
       "acceptedOrder": "Accepted order, wait call soon.",
       "dishPositionCount": "Positions",
-      "cost:": "Price: "
+      "cost:": "Price:",
+      "haventInternetConnection": "Internet Connection isn't working."
     },
     "settingsScreen": {
       "useSystemTheme": "System theme:",
@@ -62,7 +72,7 @@ class CodegenLoader extends AssetLoader{
       "userNameIsRequired": "User name is required",
       "emailFormatWrong": "Invalid email format",
       "invalidUserName": "The user name must be at least 5 characters long",
-      "invalidPassword": "The password must be at least 6 characters long",
+      "invalidPassword": "The password must be at least 8 characters long",
       "forgotPassword": "Forgot password?",
       "signIn": "Sign In",
       "signUp": "Sign Up",
@@ -75,6 +85,8 @@ class CodegenLoader extends AssetLoader{
     },
     "orderHistoryScreen": {
       "orderHistoryEmpty": "Your order history is empty",
+      "price": "Check amount:",
+      "id": "Check ID:",
     }
   };
   static const Map<String,dynamic> pl_PL = {
@@ -94,7 +106,8 @@ class CodegenLoader extends AssetLoader{
     "selectDishScreen": {
       "add": "Dodaj do koszyka",
       "ingredients": "Składniki",
-      "cost": "Koszt",
+      "cost": "Koszt:",
+      "description": "Opis:",
     },
     "cartScreen": {
       "yourShoppingCartIsEmpty": "Twój koszyk jest pusty.",
@@ -105,7 +118,8 @@ class CodegenLoader extends AssetLoader{
       "check": "Wstępna kontrola",
       "acceptedOrder": "Zamówienie przyjęte. Czekaj zadzwoń.",
       "dishPositionCount": "Pozycje",
-      "cost": "Koszt: "
+      "cost": "Koszt:",
+      "haventInternetConnection": "Połączenie internetowe nie działa."
     },
     "settingsScreen": {
       "useSystemTheme": "Temat systemu:",
@@ -136,7 +150,9 @@ class CodegenLoader extends AssetLoader{
       "checkEmail": "Nowe hasło zostało przekazane. Sprawdź swoją pocztę."
     },
     "orderHistoryScreen": {
-      "orderHistoryEmpty": "Twoja historia zamówień jest pusta"
+      "orderHistoryEmpty": "Twoja historia zamówień jest pusta",
+      "price": "Sprawdź kwotę:",
+      "id": "Sprawdź dowód:",
     }
   };
   static const Map<String, Map<String,dynamic>> mapLocales = {"en_US": en_US, "pl_PL": pl_PL};

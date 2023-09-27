@@ -1,6 +1,6 @@
 import 'package:domain/domain.dart';
 
-class AddCartDishUseCase implements FutureUseCase<DishModel, void> {
+class AddCartDishUseCase implements FutureUseCase<AddToCartParameters, void> {
   final CartRepository _cartRepository;
 
   AddCartDishUseCase({
@@ -8,7 +8,20 @@ class AddCartDishUseCase implements FutureUseCase<DishModel, void> {
   }) : _cartRepository = cartRepository;
 
   @override
-  Future<void> execute(DishModel dish) async {
-    return _cartRepository.addDishToCart(dish);
+  Future<void> execute(AddToCartParameters addToCartParameters) async {
+    return _cartRepository.addDishToCart(
+      dish: addToCartParameters.dish,
+      userId: addToCartParameters.userId,
+    );
   }
+}
+
+class AddToCartParameters {
+  final DishModel dish;
+  final String userId;
+
+  const AddToCartParameters({
+    required this.dish,
+    required this.userId,
+  });
 }

@@ -1,11 +1,11 @@
 import 'package:core/core.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:domain/domain.dart';
 import 'package:navigation/navigation.dart';
 import 'package:orders/orders.dart';
 import 'package:settings/settings.dart';
 import 'package:authentication/authentication.dart';
+import 'package:admin_panel/admin_panel.dart';
 
 class FoodApp extends StatelessWidget {
   const FoodApp({super.key});
@@ -31,6 +31,7 @@ class FoodApp extends StatelessWidget {
             removeCartDishUseCase: getIt.get<RemoveCartDishUseCase>(),
             clearCartUseCase: getIt.get<ClearCartUseCase>(),
             getUserFromStorageUseCase: getIt.get<GetUserFromStorageUseCase>(),
+            appRouter: getIt.get<AppRouter>(),
           ),
         ),
         BlocProvider<AuthenticationBloc>(
@@ -38,11 +39,21 @@ class FoodApp extends StatelessWidget {
             signInUseCase: getIt.get<SignInUseCase>(),
             signUpUseCase: getIt.get<SignUpUseCase>(),
             signOutUseCase: getIt.get<SignOutUseCase>(),
-            signInWithGoogleUseCase: getIt.get<SignInWithGoogleUseCase>(),
             resetPasswordUseCase: getIt.get<ResetPasswordUseCase>(),
             getUserFromStorageUseCase: getIt.get<GetUserFromStorageUseCase>(),
             appRouter: getIt.get<AppRouter>(),
           )..add(InitAuthentication()),
+        ),
+        BlocProvider<AdminPanelBloc>(
+          create: (_) => AdminPanelBloc(
+            deleteDishUseCase: getIt.get<DeleteDishUseCase>(),
+            fetchAllDishesUseCase: getIt.get<FetchAllDishesUseCase>(),
+            fetchAllUsersUseCase: getIt.get<FetchAllUsersUseCase>(),
+            fetchAllOrdersUseCase: getIt.get<FetchAllOrdersUseCase>(),
+            updateOrderStatusUseCase: getIt.get<UpdateOrderStatusUseCase>(),
+            updateUserRoleUseCase: getIt.get<UpdateUserRoleUseCase>(),
+            appRouter: getIt.get<AppRouter>(),
+          ),
         ),
       ],
       child: BlocBuilder<SettingsBloc, SettingsState>(
@@ -59,7 +70,7 @@ class FoodApp extends StatelessWidget {
             },
             routerDelegate: getIt.get<AppRouter>().delegate(),
             routeInformationParser: getIt.get<AppRouter>().defaultRouteParser(),
-            title: 'Toomang FoodService',
+            title: 'Taamang FoodService',
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,

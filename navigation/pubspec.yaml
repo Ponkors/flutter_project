@@ -34,6 +34,8 @@ dependencies:
     path: ../features/history
   authentication:
     path: ../features/authentication
+  admin_panel:
+    path: ../features/admin_panel
   auto_route: ^5.0.4
 
 dev_dependencies:

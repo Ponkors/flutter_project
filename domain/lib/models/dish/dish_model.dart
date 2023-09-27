@@ -17,6 +17,15 @@ class DishModel {
     this.category,
   });
 
+  DishModel.empty()
+      : id = '',
+        title = '',
+        imageURL = '',
+        cost = 0,
+        category = '',
+        description = '',
+        ingredients = [];
+
   List<Object?> get props =>
       [id, title, imageURL, cost, description, ingredients, category];
 

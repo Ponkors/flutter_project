@@ -3,14 +3,14 @@ import 'package:domain/domain.dart';
 import 'package:core/core.dart';
 
 class DishesRepositoryImpl implements DishesRepository {
-  final DataProvider _dataProvider;
-  final LocalDataProvider _localDataProvider;
+  final FirebaseFirestoreDataProvider _firebaseFirestoreDataProvider;
+  final HiveProvider _hiveProvider;
 
   const DishesRepositoryImpl({
-    required DataProvider dataProvider,
-    required LocalDataProvider localDataProvider,
-  }) : _dataProvider = dataProvider,
-       _localDataProvider = localDataProvider;
+    required FirebaseFirestoreDataProvider firebaseFirestoreDataProvider,
+    required HiveProvider hiveProvider,
+  }) : _firebaseFirestoreDataProvider = firebaseFirestoreDataProvider,
+       _hiveProvider = hiveProvider;
 
   @override
   Future<List<DishModel>> fetchAllDishes() async {
@@ -18,12 +18,12 @@ class DishesRepositoryImpl implements DishesRepository {
     final bool haveInternetConnection =
         await InternetConnectionInfo.checkInternetConnection();
     if (haveInternetConnection) {
-      final List<DishEntity> result = await _dataProvider.getAllDishes();
-      dishes = result.map((DishEntity e) => DishMapper.toModel(e)).toList();
-      await _localDataProvider.saveDishesToCache(dishes);
-    } else {
       final List<DishEntity> result =
-      await _localDataProvider.getCachedDishes();
+          await _firebaseFirestoreDataProvider.getAllDishes();
+      dishes = result.map((DishEntity e) => DishMapper.toModel(e)).toList();
+      await _hiveProvider.saveDishesToCache(dishes);
+    } else {
+      final List<DishEntity> result = await _hiveProvider.getCachedDishes();
       dishes = result.map((DishEntity e) => DishMapper.toModel(e)).toList();
     }
     return dishes;

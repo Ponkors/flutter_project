@@ -4,7 +4,10 @@ import 'package:food_app/app/flutter_app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  dataDI.initDependencies();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await dataDI.initDependencies();
   appDi.initDependencies();
   await EasyLocalization.ensureInitialized();
   runApp(
@@ -12,7 +15,7 @@ void main() async {
       supportedLocales: [
         Locale('en', 'US'),
         Locale('pl', 'PL'),
-        Locale('ru', 'RU'),
+        // Locale('ru', 'RU'), ToDo
       ],
       path: 'assets/translations',
       assetLoader: const CodegenLoader(),

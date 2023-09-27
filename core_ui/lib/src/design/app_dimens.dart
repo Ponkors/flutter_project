@@ -41,6 +41,7 @@ class AppDimens {
   static const double size_335 = 335.0;
   static const double size_340 = 340.0;
   static const double size_350 = 350.0;
+  static const double size_360 = 360.0;
   static const double size_400 = 400.0;
   static const double size_450 = 450.0;
 

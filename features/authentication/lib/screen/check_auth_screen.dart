@@ -12,8 +12,11 @@ class CheckAuthenticationScreen extends StatelessWidget {
     return Scaffold(
       body: BlocListener<AuthenticationBloc, AuthenticationState>(
         listener: (BuildContext context, AuthenticationState state) {
-          if (state.isLogged) {
+          if (state.isLogged && !state.isAdminUser) {
             bloc.add(NavigateToMenuPage());
+          } else if (state.isLogged && state.isAdminUser) {
+            bloc.add(NavigateToMenuPage());
+            // bloc.add(NavigateToAdminPanelScreen());
           } else {
             bloc.add(NavigateToSignInScreen());
           }

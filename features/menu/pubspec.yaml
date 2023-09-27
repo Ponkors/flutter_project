@@ -25,6 +25,7 @@ dependencies:
   authentication:
     path: ../authentication
   another_flushbar: ^1.12.30
+  animations: ^2.0.7
 
 dev_dependencies:
   flutter_test:

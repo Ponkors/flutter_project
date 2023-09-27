@@ -1,7 +1,22 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-extension AdminBottomNavigationBarItemEx on CustomBottomNavigationBarItem {
+extension AdminBottomNavigationBarItemEx on AdminBottomNavigationBarItem {
+  String get label {
+    switch (this) {
+      case AdminBottomNavigationBarItem.dashboard:
+        return 'menuPage.home'.tr();
+      case AdminBottomNavigationBarItem.users:
+        return 'menuPage.cart'.tr();
+      case AdminBottomNavigationBarItem.orders:
+        return 'menuPage.orderHistory'.tr();
+      case AdminBottomNavigationBarItem.products:
+        return 'menuPage.orderHistory'.tr();
+      default:
+        return '';
+    }
+  }
+
   Icon get icon {
     switch (this) {
       case AdminBottomNavigationBarItem.dashboard:

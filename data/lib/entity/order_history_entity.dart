@@ -5,17 +5,20 @@ class OrdersHistoryEntity {
   final CartEntity cart;
   final DateTime dateTime;
   final String id;
+  final bool isReady;
 
   OrdersHistoryEntity({
     required this.cart,
     required this.dateTime,
     required this.id,
+    required this.isReady,
   });
 
   List<Object?> get props => [
     cart,
     dateTime,
     id,
+    isReady,
   ];
 
   Map<String, dynamic> toJson() {
@@ -23,6 +26,7 @@ class OrdersHistoryEntity {
     'cart': cart,
     'dateTime': dateTime,
     'id': id,
+    'isReady': isReady,
     };
   }
 
@@ -33,6 +37,7 @@ class OrdersHistoryEntity {
       cart: CartEntity.fromJson(json['cart']),
       dateTime: (json['dateTime'] as Timestamp).toDate(),
       id: json['id'] ?? '',
+      isReady: json['isReady'] ?? false,
     );
   }
 

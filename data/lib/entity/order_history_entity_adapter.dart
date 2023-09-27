@@ -10,11 +10,13 @@ class OrdersHistoryEntityAdapter extends TypeAdapter<OrdersHistoryEntity> {
     final CartEntity cart = reader.read() as CartEntity;
     final DateTime dateTime = reader.read() as DateTime;
     final String id = reader.read() as String;
+    final bool isReady = reader.read() as bool;
 
     return OrdersHistoryEntity(
       cart: cart,
       dateTime: dateTime,
       id: id,
+      isReady: isReady,
     );
   }
 
@@ -23,5 +25,6 @@ class OrdersHistoryEntityAdapter extends TypeAdapter<OrdersHistoryEntity> {
     writer.write(object.cart);
     writer.write(object.dateTime);
     writer.write(object.id);
+    writer.write(object.isReady);
   }
 }

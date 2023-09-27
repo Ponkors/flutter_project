@@ -3,20 +3,20 @@ import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 
 class OrdersHistoryRepositoryImpl implements OrdersHistoryRepository {
-  final OrdersHistoryDataProvider _ordersHistoryDataProvider;
-  final LocalOrdersHistoryDataProvider _localOrdersHistoryDataProvider;
+  final FirebaseFirestoreDataProvider _firebaseFirestoreDataProvider;
+  final HiveProvider _hiveProvider;
 
   const OrdersHistoryRepositoryImpl({
-    required OrdersHistoryDataProvider ordersHistoryDataProvider,
-    required LocalOrdersHistoryDataProvider localOrdersHistoryDataProvider,
-  })  : _ordersHistoryDataProvider = ordersHistoryDataProvider,
-        _localOrdersHistoryDataProvider = localOrdersHistoryDataProvider;
+    required FirebaseFirestoreDataProvider firebaseFirestoreDataProvider,
+    required HiveProvider hiveProvider,
+  })  : _firebaseFirestoreDataProvider = firebaseFirestoreDataProvider,
+        _hiveProvider = hiveProvider;
 
   @override
   Future<void> addOrder(OrdersHistoryModel orderModel) async {
     final OrdersHistoryEntity orderEntity = OrdersHistoryMapper.toEntity(orderModel);
-    await _ordersHistoryDataProvider.addOrder(orderEntity);
-    await _localOrdersHistoryDataProvider.addOrderToCache(orderModel);
+    await _firebaseFirestoreDataProvider.addOrder(orderEntity);
+    await _hiveProvider.addOrderToCache(orderModel);
   }
 
   @override
@@ -27,14 +27,14 @@ class OrdersHistoryRepositoryImpl implements OrdersHistoryRepository {
 
     if (hasInternetConnection) {
       final List<OrdersHistoryEntity> result =
-      await _ordersHistoryDataProvider.fetchOrders(uid);
+      await _firebaseFirestoreDataProvider.fetchOrders(uid);
       orders = result
           .map((OrdersHistoryEntity order) => OrdersHistoryMapper.toModel(order))
           .toList();
-      await _localOrdersHistoryDataProvider.saveOrdersToCache(orders);
+      await _hiveProvider.saveOrdersToCache(orders);
     } else {
       final List<OrdersHistoryEntity> result =
-      await _localOrdersHistoryDataProvider.getCachedOrders();
+      await _hiveProvider.getCachedOrders();
       orders = result
           .map((OrdersHistoryEntity order) => OrdersHistoryMapper.toModel(order))
           .toList();

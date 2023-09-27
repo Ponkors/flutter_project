@@ -1,5 +1,4 @@
 import 'package:domain/domain.dart';
-import 'package:domain/repositories/settings_repository.dart';
 
 class CheckFontSizeUseCase implements FutureUseCase<NoParams, double> {
   final SettingsRepository _settingsRepository;

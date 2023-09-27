@@ -7,6 +7,7 @@ abstract class OrdersHistoryMapper {
       id: model.id,
       cart: CartMapper.toEntity(model.cart),
       dateTime: model.dateTime,
+      isReady: model.isReady,
     );
   }
 
@@ -15,6 +16,7 @@ abstract class OrdersHistoryMapper {
       id: entity.id,
       cart: CartMapper.toModel(entity.cart),
       dateTime: entity.dateTime,
+      isReady: entity.isReady,
     );
   }
 }

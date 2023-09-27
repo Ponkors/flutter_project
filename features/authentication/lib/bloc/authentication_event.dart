@@ -18,10 +18,6 @@ class SignInSubmitted extends AuthenticationEvent {
   });
 }
 
-class SignInWithGoogleSubmitted extends AuthenticationEvent {
-  SignInWithGoogleSubmitted();
-}
-
 class SignUpSubmitted extends AuthenticationEvent {
   final String userName;
   final String email;
@@ -60,6 +56,10 @@ class ChangeSignInPage extends AuthenticationEvent {
 
 class ChangeResetPasswordPage extends AuthenticationEvent {
   ChangeResetPasswordPage();
+}
+
+class NavigateToAdminPanelScreen extends AuthenticationEvent {
+  NavigateToAdminPanelScreen();
 }
 
 

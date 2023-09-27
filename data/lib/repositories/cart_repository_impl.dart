@@ -2,38 +2,51 @@ import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 
 class CartRepositoryImpl implements CartRepository {
-  final CartLocalDataProvider _cartLocalDataProvider;
+  final HiveProvider _hiveProvider;
 
   CartRepositoryImpl({
-    required CartLocalDataProvider cartLocalDataProvider,
-  }) : _cartLocalDataProvider = cartLocalDataProvider;
+    required HiveProvider hiveProvider,
+  }) : _hiveProvider = hiveProvider;
 
   @override
-  Future<List<CartDish>> getDishesFromCart() async {
+  Future<List<CartDish>> getDishesFromCart({
+    required String userId,
+  }) async {
     final List<CartDishEntity> cartDishEntity =
-    await _cartLocalDataProvider.getDishesFromCart();
-    return cartDishEntity
-        .map((CartDishEntity dishEntity) =>
-        CartDishMapper.toModel(dishEntity))
-        .toList();
+      await _hiveProvider.getDishesFromCart(userId);
+    return cartDishEntity.map((CartDishEntity dishEntity) {
+      return CartDishMapper.toModel(dishEntity);
+    }).toList();
   }
 
   @override
-  Future<void> addDishToCart(DishModel dish) async {
-    final DishEntity dishEntity =
-    DishMapper.toEntity(dish);
-    await _cartLocalDataProvider.addDishToCart(dishEntity);
+  Future<void> addDishToCart({
+    required DishModel dish,
+    required String userId,
+  }) async {
+    final DishEntity dishEntity = DishMapper.toEntity(dish);
+    await _hiveProvider.addDishToCart(
+      dish: dishEntity,
+      userId: userId,
+    );
   }
 
   @override
-  Future<void> removeDishFromCart(CartDish cartDish) async {
-    final CartDishEntity cartDishEntity =
-    CartDishMapper.toEntity(cartDish);
-    await _cartLocalDataProvider.removeDishFromCart(cartDishEntity);
+  Future<void> removeDishFromCart({
+    required CartDish cart,
+    required String userId,
+  }) async {
+    final CartDishEntity cartDishEntity = CartDishMapper.toEntity(cart);
+    await _hiveProvider.removeDishFromCart(
+      cartDishEntity: cartDishEntity,
+      userId: userId,
+    );
   }
 
   @override
-  Future<void> clearCart() async {
-    await _cartLocalDataProvider.clearCart();
+  Future<void> clearCart({
+    required String userId,
+  }) async {
+    await _hiveProvider.clearCart(userId);
   }
 }
