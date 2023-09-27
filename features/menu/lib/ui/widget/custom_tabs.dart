@@ -37,7 +37,7 @@ class CustomTabs extends StatelessWidget {
                       bloc.add(FilteringDishesCategory(category: state.categories[index]));
                     },
                     child: AnimatedContainer(
-                      width: mediaQueryData.size.width * 1, // or 2
+                      width: mediaQueryData.size.width * 1,
                       duration: const Duration(microseconds: 200),
                       curve: Curves.linear,
                       decoration: BoxDecoration(
