@@ -20,15 +20,19 @@ class CustomTabs extends StatelessWidget {
           ),
           child: Column(
             children: [
+              const SizedBox(height: AppDimens.size_5),
               Text(
-                'Categories:',
+                'menuScreen.categories'.tr(),
                 style: GoogleFonts.poppins(
-                  textStyle: AppFonts.normal_16,
+                  textStyle: AppFonts.normal_18_bold,
+                  color: themeData.primaryColor,
                 ),
               ),
+              const SizedBox(height: AppDimens.size_5),
               Wrap(
-                spacing: AppDimens.size_30,
-                runSpacing: AppDimens.size_4,
+                spacing: AppDimens.size_10,
+                runSpacing: AppDimens.size_5,
+                crossAxisAlignment: WrapCrossAlignment.start,
                 children: List<Widget>.generate(state.categories.length, (int index) {
                   bool isSelected = selectedTab == index;
                   return GestureDetector(
@@ -36,23 +40,11 @@ class CustomTabs extends StatelessWidget {
                       selectedTab = index;
                       bloc.add(FilteringDishesCategory(category: state.categories[index]));
                     },
-                    child: AnimatedContainer(
-                      width: mediaQueryData.size.width * 1,
-                      duration: const Duration(microseconds: 200),
-                      curve: Curves.linear,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(AppDimens.radius_10),
-                        color: isSelected ? themeData.primaryColor : AppColors.white,
-                      ),
-                      child: Center(
-                        child: Text(
-                          state.categories[index],
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: isSelected ? AppColors.white : AppColors.grey,
-                          ),
-                        ),
-                      ),
+                    child: AnimatedCrossFade(
+                      firstChild: _buildCategoryChild(state.categories[index], themeData, mediaQueryData, isSelected: true),
+                      secondChild: _buildCategoryChild(state.categories[index], themeData, mediaQueryData, isSelected: false),
+                      crossFadeState: isSelected ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+                      duration: const Duration(milliseconds: 500),
                     ),
                   );
                 }).toList(),
@@ -61,6 +53,27 @@ class CustomTabs extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  Widget _buildCategoryChild(String category, ThemeData themeData, MediaQueryData mediaQueryData, {bool isSelected = false}) {
+    return Container(
+      width: mediaQueryData.size.width * 0.43,
+      height: mediaQueryData.size.height * 0.04,
+      padding: const EdgeInsets.all(AppDimens.size_4),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(AppDimens.radius_10),
+        color: isSelected ? themeData.primaryColor : AppColors.white,
+      ),
+      child: Center(
+        child: Text(
+          category,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: isSelected ? AppColors.white : AppColors.grey,
+          ),
+        ),
+      ),
     );
   }
 }

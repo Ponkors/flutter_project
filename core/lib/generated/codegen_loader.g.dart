@@ -36,6 +36,8 @@ class CodegenLoader extends AssetLoader{
       "dishAddedToTheCart": "The dish has been added to the cart!",
       "haveInternetConnection": "Internet Connection is working.",
       "haventInternetConnection": "Internet Connection isn't working.",
+      "categories": "Categories",
+      "dishes": "Dishes",
     },
     "selectDishScreen": {
       "add": "Add to cart",
@@ -56,7 +58,7 @@ class CodegenLoader extends AssetLoader{
       "haventInternetConnection": "Internet Connection isn't working."
     },
     "settingsScreen": {
-      "useSystemTheme": "System theme:",
+      "useSystemTheme": "System color theme:",
       "useAppTheme": "Application theme:",
       "lightTheme": "Light day   --",
       "darkTheme": "Dark night --",
@@ -92,7 +94,7 @@ class CodegenLoader extends AssetLoader{
   static const Map<String,dynamic> pl_PL = {
     "menuPage": {
       "foodDelivery": "Usługa gastronomiczna Tamang",
-      "home": "Spis treści",
+      "menu": "Spis treści",
       "cart": "Koszyk",
       "orderHistory": "Historia",
       "settings": "Ustawienia"
@@ -100,8 +102,10 @@ class CodegenLoader extends AssetLoader{
     "menuScreen": {
       "add": "Dodaj",
       "dishAddedToTheCart": "Danie zostało dodane do koszyka!",
-    "haveInternetConnection": "Połączenie internetowe działa.",
-    "notInternetConnection": "Połączenie internetowe nie działa.",
+      "haveInternetConnection": "Połączenie internetowe działa.",
+      "haventInternetConnection": "Połączenie internetowe nie działa.",
+      "categories": "Kategorie",
+      "dishes": "Strawa"
     },
     "selectDishScreen": {
       "add": "Dodaj do koszyka",
@@ -122,7 +126,7 @@ class CodegenLoader extends AssetLoader{
       "haventInternetConnection": "Połączenie internetowe nie działa."
     },
     "settingsScreen": {
-      "useSystemTheme": "Temat systemu:",
+      "useSystemTheme": "Kolor systemowy",
       "useAppTheme": "Motyw aplikacji:",
       "lightTheme": "Lekki dzień   --",
       "darkTheme": "Ciemna noc --",
@@ -130,21 +134,21 @@ class CodegenLoader extends AssetLoader{
       "selectLanguage": "Język",
       "contactButton": "Kontakt z pracodawcą"
     },
-    "authScreens": {
+    "authenticationScreen": {
       "email": "Email",
       "password": "Hasło",
-      "userName": "Nazwa użytkownika",
-      "emailIsRequired": "E-mail jest wymagany",
+      "userName": "Jak masz na imię?",
+      "emailRequired": "E-mail jest wymagany",
       "userNameIsRequired": "Nazwa użytkownika jest wymagana",
-      "invalidEmailFormat": "Nieprawidłowy format wiadomości e-mail",
+      "emailFormatWrong": "Nieprawidłowy format wiadomości e-mail",
       "invalidUserName": "Nazwa użytkownika musi mieć co najmniej 3 znaki",
-      "invalidPassword": "Hasło musi mieć co najmniej 6 znaków",
+      "invalidPassword": "Hasło musi mieć co najmniej 8 znaków",
       "forgotPassword": "Zapomniałem hasła?",
       "signIn": "Zaloguj się",
       "signUp": "Zarejestruj się",
       "or": "Or",
       "signInWithGoogle": "Zaloguj się przez Google",
-      "dontHaveAccount": "Nie masz konta?",
+      "haventAccount": "Nie masz konta?",
       "haveAccount": "Masz już konto?",
       "resetPassword": "Resetuj hasło",
       "checkEmail": "Nowe hasło zostało przekazane. Sprawdź swoją pocztę."

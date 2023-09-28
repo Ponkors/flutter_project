@@ -66,8 +66,8 @@ class SelectDishScreen extends StatelessWidget {
                       title: Text(
                         'selectDishScreen.ingredients'.tr(),
                         style: GoogleFonts.poppins(
-                          textStyle: AppFonts.normal_18,
-                          color: AppColors.orange,
+                          textStyle: AppFonts.normal_18_bold,
+                          color: themeData.primaryColor,
                         ),
                       ),
                       subtitle: IngredientsListDish(
@@ -78,8 +78,8 @@ class SelectDishScreen extends StatelessWidget {
                       title: Text(
                         'selectDishScreen.description'.tr(),
                         style: GoogleFonts.poppins(
-                          textStyle: AppFonts.normal_18,
-                          color: AppColors.orange,
+                          textStyle: AppFonts.normal_18_bold,
+                          color: themeData.primaryColor,
                         ),
                       ),
                       subtitle: RichText(
@@ -89,8 +89,7 @@ class SelectDishScreen extends StatelessWidget {
                             color: AppColors.grey,
                           ),
                           children: <TextSpan>[
-                            TextSpan(text: 'selectDishScreen.description'.tr()),
-                            TextSpan(text: ' ${dish.description}',
+                            TextSpan(text: '${dish.description}',
                             ),
                           ],
                         ),
@@ -102,8 +101,8 @@ class SelectDishScreen extends StatelessWidget {
                       title: Text(
                         '${'selectDishScreen.cost'.tr()} \$${dish.cost}',
                         style: GoogleFonts.poppins(
-                          textStyle: AppFonts.normal_18,
-                          color: AppColors.orange,
+                          textStyle: AppFonts.normal_18_bold,
+                          color: themeData.primaryColor,
                         ),
                       ),
                     ),
@@ -121,7 +120,7 @@ class SelectDishScreen extends StatelessWidget {
                           ),
                           behavior: SnackBarBehavior.floating,
                           backgroundColor: themeData.primaryColor,
-                          duration: const Duration(seconds: 2),
+                          duration: const Duration(seconds: 1),
                         );
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       },

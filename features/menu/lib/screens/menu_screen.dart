@@ -20,30 +20,12 @@ class MenuScreen extends StatelessWidget {
     cartBloc.add(InitCart());
     return RefreshIndicator(
       child: Scaffold(
+        appBar: CustomAppBar(
+          showLogoutButton: false,
+          title: 'menuPage.foodDelivery'.tr(),
+        ),
         body: NestedScrollView(
           headerSliverBuilder: (_, bool box) => <Widget>[
-            SliverAppBar(
-              actions: <Widget>[
-                IconButton(
-                  onPressed: () {
-                    authenticationBloc.add(SignOutSubmitted());
-                    authenticationBloc.add(NavigateToSignInScreen());
-                  },
-                  icon: const Icon(
-                    Icons.logout,
-                    color: AppColors.grey,
-                  ),
-                ),
-              ],
-              backgroundColor: AppColors.orange,
-              expandedHeight: AppDimens.size_1,
-              title: Text(
-                'menuPage.foodDelivery'.tr(),
-                style: GoogleFonts.poppins(
-                  textStyle: AppFonts.normal_16,
-                ),
-              ),
-            ),
             const SliverToBoxAdapter(
               child: CustomTabs(),
             ),
@@ -101,6 +83,14 @@ class MenuScreen extends StatelessWidget {
                 if (state.listOfDishes.isNotEmpty) {
                   return Column(
                     children: <Widget>[
+                      SizedBox(height: AppDimens.size_10),
+                      Text(
+                        'menuScreen.dishes'.tr(),
+                        style: GoogleFonts.poppins(
+                          textStyle: AppFonts.normal_20_bold,
+                          color: themeData.primaryColor,
+                        ),
+                      ),
                       Expanded(
                         child: ListView.builder(
                           padding: const EdgeInsets.all(AppDimens.padding_20),

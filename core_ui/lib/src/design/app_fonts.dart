@@ -51,14 +51,29 @@ class AppFonts {
     fontWeight: FontWeight.w700,
   );
 
+  static const normal_28_bold = TextStyle(
+    fontSize: 28,
+    fontWeight: FontWeight.w600,
+  );
+
   static const normal_20 = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.w400,
   );
 
+  static const normal_20_bold = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
+  );
+
   static const normal_18 = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w400,
+  );
+
+  static const normal_18_bold = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
   );
 
   static const normal_16 = TextStyle(

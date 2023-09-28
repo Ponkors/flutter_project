@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
@@ -23,15 +24,21 @@ class CustomBottomNavigationBar extends StatelessWidget {
       );
     }).toList();
 
-    return BottomNavigationBar(
-      items: items,
-      currentIndex: currentIndex,
-      onTap: onTap,
-      type: BottomNavigationBarType.fixed,
-      backgroundColor: themeData.bottomNavigationBarTheme.backgroundColor,
-      selectedItemColor: themeData.bottomNavigationBarTheme.selectedItemColor,
-      unselectedItemColor:
-      themeData.bottomNavigationBarTheme.unselectedItemColor,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: AppDimens.padding_20),
+      child: ClipRRect(
+        borderRadius: BorderRadius.all(Radius.circular(AppDimens.radius_16)),
+        child: BottomNavigationBar(
+          items: items,
+          currentIndex: currentIndex,
+          onTap: onTap,
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: themeData.bottomNavigationBarTheme.backgroundColor,
+          selectedItemColor: themeData.bottomNavigationBarTheme.selectedItemColor,
+          unselectedItemColor:
+          themeData.bottomNavigationBarTheme.unselectedItemColor,
+        ),
+      ),
     );
   }
 }

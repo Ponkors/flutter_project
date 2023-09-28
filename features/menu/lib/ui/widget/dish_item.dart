@@ -68,8 +68,8 @@ class DishItem extends StatelessWidget {
                       Text(
                         '${'selectDishScreen.cost'.tr()} \$${dish.cost}',
                         style: GoogleFonts.poppins(
-                          textStyle: AppFonts.normal_18,
-                          color: AppColors.orange,
+                          textStyle: AppFonts.normal_18_bold,
+                          color: themeData.primaryColor,
                         ),
                       ),
                       SizedBox(width: AppDimens.size_30),

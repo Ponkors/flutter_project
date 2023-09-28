@@ -23,9 +23,15 @@ class SubmitButton extends StatelessWidget {
               ? const LoadingIndicator()
               : Container(
                   width: mediaQueryData.size.width * 0.9,
+                  height: mediaQueryData.size.height * 0.06,
                   child: ElevatedButton(
                           onPressed: onPressed,
                           child: Text(label),
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(AppDimens.radius_16),
+                      ),
+                  ),
           ),
         );
       },

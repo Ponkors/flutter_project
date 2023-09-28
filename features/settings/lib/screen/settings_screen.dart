@@ -10,6 +10,7 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
+        showLogoutButton: true,
         title: 'menuPage.settings'.tr(),
       ),
       body: ListView(
@@ -17,6 +18,7 @@ class SettingsScreen extends StatelessWidget {
           ThemeSettings(),
           AppLanguageSelector(),
           FontSizeSlider(),
+          SizedBox(height: AppDimens.size_10),
           ContactUsButton(),
         ],
       ),

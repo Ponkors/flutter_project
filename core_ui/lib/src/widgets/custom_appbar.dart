@@ -5,15 +5,16 @@ import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
+  final showLogoutButton;
 
   const CustomAppBar({
     this.title = '',
+    this.showLogoutButton = false,
     super.key
   });
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
-
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
@@ -23,22 +24,24 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Text(
         title,
       ),
-      actions: <Widget>[
-        IconButton(
-          onPressed: () {
-            authenticationBloc.add(
-              SignOutSubmitted(),
-            );
-            authenticationBloc.add(
-              NavigateToSignInScreen(),
-            );
-          },
-          icon: const Icon(
-            Icons.logout,
-            color: AppColors.orange,
+      actions: showLogoutButton
+        ? <Widget>[
+          IconButton(
+            onPressed: () {
+              authenticationBloc.add(
+                SignOutSubmitted(),
+              );
+              authenticationBloc.add(
+                NavigateToSignInScreen(),
+              );
+            },
+            icon: const Icon(
+              Icons.logout,
+              color: AppColors.white,
+            ),
           ),
-        ),
-      ],
+        ]
+      : []
     );
   }
 }
