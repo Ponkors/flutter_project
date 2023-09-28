@@ -132,7 +132,7 @@ class CodegenLoader extends AssetLoader{
       "darkTheme": "Ciemna noc --",
       "changeFontSize": "Przesuń suwak, aby zmienić rozmiar czcionki",
       "selectLanguage": "Język",
-      "contactButton": "Kontakt z pracodawcą"
+      "contactButton": "Kontakt z pracodawcąm"
     },
     "authenticationScreen": {
       "email": "Email",

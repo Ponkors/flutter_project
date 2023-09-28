@@ -16,6 +16,7 @@ class CartItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final CartBloc cartBloc = BlocProvider.of<CartBloc>(context);
+    final ThemeData themeData = Theme.of(context);
     return Card(
       shadowColor: AppColors.lightGrey,
       shape: const RoundedRectangleBorder(
@@ -62,7 +63,7 @@ class CartItem extends StatelessWidget {
                       },
                       icon: Icon(
                         Icons.remove_circle_outline,
-                        color: AppColors.orange,
+                        color: themeData.primaryColor,
                       ),
                     ),
                     Text(
@@ -79,14 +80,14 @@ class CartItem extends StatelessWidget {
                       },
                       icon: Icon(
                         Icons.add_circle_outline,
-                        color: AppColors.orange,
+                        color: themeData.primaryColor,
                       ),
                     ),
                     Text(
                       '${'selectDishScreen.cost'.tr()} \$${cartItem.dish.cost}',
                       style: GoogleFonts.poppins(
                         textStyle: AppFonts.normal_18,
-                        color: AppColors.orange,
+                        color: themeData.primaryColor,
                       ),
                     ),
                   ],

@@ -12,13 +12,20 @@ class MakeAnOrderButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
+    final ThemeData themeData = Theme.of(context);
     return SizedBox(
       width: mediaQueryData.size.width * 0.9,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(
+              AppDimens.radius_16,
+            )
+          ),
           textStyle: GoogleFonts.poppins(
             textStyle: AppFonts.normal_16,
+            color: themeData.primaryColor,
           ),
         ),
         child: Text('cartScreen.makeAnOrder'.tr()),
